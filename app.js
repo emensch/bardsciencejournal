@@ -5,31 +5,6 @@ var express = require('express'),
 	Post = require('./models/post');
 
 var app = express();
-/*
-app.get('/', function (req, res) {
-	Post.find({}, function(err, posts) {
-		if (err) throw err
-
-		res.json(posts)
-	});
-});
-
-app.post('/:id', function (req, res) {
-	newPost = new Post({
-		title: parseInt(req.params.id),
-		photo: 'photourl',
-		category: 'biology',
-		type: 'interview',
-		content: 'lelelelele this is a new post',
-	});
-
-	newPost.save(function(err) {
-		if (err) res.sendStatus(500);
-		console.log("New post added with id: ", req.params.id);
-		res.sendStatus(200);
-	})
-})
-*/
 
 app.use(require('./controllers'));
 
