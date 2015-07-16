@@ -18,6 +18,7 @@
   "homepage": "https://github.com/emensch/bardsciencejournal#readme",
   "dependencies": {
     "express": "^4.13.1",
-    "mongodb": "^2.0.39"
+    "mongodb": "^2.0.39",
+    "mongoose": "^4.0.7"
   }
 }
