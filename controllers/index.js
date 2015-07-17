@@ -1,8 +1,12 @@
 var express = require('express'),
-	router = express.Router();
+	router = express.Router(),
+	bodyParser = require('body-parser');
+
+// Enable json parsing for all requests
+router.use(bodyParser.json());
 
 router.get('/', function (req, res) {
-	res.send('Hello world!');
+	res.send('BSJ');
 });
 
 router.use('/posts', require('./posts'));

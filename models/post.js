@@ -7,9 +7,9 @@ var postSchema = new Schema({
 	category: String,
 	type: String,
 	content: String,
-	authors: [{ name: String }],
-	tags: [{ name: String }],
-	edits: [{ description: String, date: Date }],
+	authors: [{ _id: false, name: String }],
+	tags: [{ _id: false, name: String }],
+	edits: [{ _id: false, description: String, date: { type: Date, default: Date.now }}],
 	date: { type: Date, default: Date.now }
 });
 
