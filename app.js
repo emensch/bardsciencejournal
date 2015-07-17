@@ -1,6 +1,5 @@
 var express = require('express'),
 	env = require('./env.js'),
-	db = require('./db'),
 	mongoose = require('mongoose');
 
 var app = express();
