@@ -22,11 +22,8 @@ userSchema.statics.createFromBody = function (body, cb) {
 };
 
 userSchema.statics.findByUsername = function (name, cb) {
-	this.find( { username:  name }, function (err, user) {
-		if (err) return cb(err);
-		cb(null, user);
-	});
-}
+	return this.findOne({ username: name }, cb);
+};
 
 userSchema.methods.cmpPassword = function (pw, cb) {
 	bcrypt.compare(pw, this.password, function (err, match) { 

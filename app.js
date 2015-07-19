@@ -1,8 +1,11 @@
 var express = require('express'),
 	env = require('./env.js'),
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
+	passport = require('passport');
 
 var app = express();
+
+app.use(passport.initialize());
 
 app.use(require('./controllers'));
 
