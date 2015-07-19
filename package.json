@@ -23,6 +23,7 @@
     "mongodb": "^2.0.39",
     "mongoose": "^4.0.7",
     "passport": "^0.2.2",
-    "passport-http": "^0.2.2"
+    "passport-http": "^0.2.2",
+    "slug": "^0.9.1"
   }
 }

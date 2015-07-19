@@ -1,5 +1,5 @@
 var express = require('express'),
-	router = express.Router()
+	router = express.Router(),
 	Type = require('../models/type');
 
 router.get('/', function (req, res) {
@@ -18,8 +18,8 @@ router.post('/', function (req, res) {
 	});
 });
 
-router.delete('/:name', function (req, res) {
-	Type.findByName(req.params.name).remove( function (err) {
+router.delete('/:slug', function (req, res) {
+	Type.findBySlug(req.params.slug).remove( function (err) {
 		if (err) res.sendStatus(500);
 
 		res.sendStatus(200);

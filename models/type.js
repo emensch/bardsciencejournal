@@ -1,9 +1,15 @@
 var mongoose = require('mongoose'),
+	slug = require('slug'),
 	Schema = mongoose.Schema;
 
 var typeSchema = new Schema({
 	name: String, 
+	slug: String
 });
+
+typeSchema.statics.findBySlug = function (slug, cb) {
+	return this.findOne( { slug: slug }, cb);
+};
 
 typeSchema.statics.createFromBody = function (body, cb) {
 	newType = new this({
@@ -13,8 +19,11 @@ typeSchema.statics.createFromBody = function (body, cb) {
 	newType.save(cb);
 };
 
-typeSchema.statics.findByName = function (name, cb) {
-	return this.find( { name:  name }, cb);
-};
+typeSchema.pre('save', function (next) {
+	if (!this.isModified('name')) return next();
+
+	this.slug = slug(this.name);
+	next();
+});
 
 module.exports = mongoose.model('Type', typeSchema);

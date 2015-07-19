@@ -10,8 +10,8 @@ router.get('/', function (req, res) {
 	});
 });
 
-router.get('/:id', function (req, res) {
-	Post.findById(req.params.id, function(err, post) {
+router.get('/:slug', function (req, res) {
+	Post.findBySlug(req.params.slug, function(err, post) {
 		if (err) res.sendStatus(500);
 
 		res.json(post);
@@ -26,20 +26,20 @@ router.post('/', function (req, res) {
 	});
 });
 
-router.put('/:id', function (req, res) {
-	Post.updateFromBodyById(req.params.id, req.body, function (err) {
+router.put('/:slug', function (req, res) {
+	Post.updateFromBodyBySlug(req.params.slug, req.body, function (err) {
 		if (err) res.sendStatus(500);
 
 		res.sendStatus(200);
-	})
+	});
 });
 
-router.delete('/:id', function (req, res) {
-	Post.findById(req.params.id).remove( function (err) {
+router.delete('/:slug', function (req, res) {
+	Post.findBySlug(req.params.slug).remove( function (err) {
 		if (err) res.sendStatus(500);
 
 		res.sendStatus(200);
-	})
+	});
 });
 
 module.exports = router;

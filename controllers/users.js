@@ -18,12 +18,12 @@ router.post('/', function (req, res) {
 	});
 });
 
-router.delete('/:id', function (req, res) {
-	User.findById(req.params.id).remove( function (err) {
+router.delete('/:username', function (req, res) {
+	User.findByUsername(req.params.username).remove( function (err) {
 		if (err) res.sendStatus(500);
 
 		res.sendStatus(200);
 	});
 });
 
-module.exports = router
+module.exports = router;
