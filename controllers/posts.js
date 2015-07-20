@@ -3,7 +3,7 @@ var express = require('express'),
 	Post = require('../models/post');
 
 router.get('/', function (req, res) {
-	Post.find({}, function(err, posts) {
+	Post.find({}).select('-_id -__v').exec( function (err, posts) {
 		if (err) res.sendStatus(500);
 
 		res.json(posts);
@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/:slug', function (req, res) {
-	Post.findBySlug(req.params.slug, function(err, post) {
+	Post.findBySlug(req.params.slug).select('-_id -__v').exec( function (err, post) {
 		if (err) res.sendStatus(500);
 
 		res.json(post);

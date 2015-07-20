@@ -3,7 +3,7 @@ var express = require('express'),
 	Type = require('../models/type');
 
 router.get('/', function (req, res) {
-	Type.find({}, function(err, types) {
+	Type.find({}).select('-_id -__v').exec( function (err, types) {
 		if (err) res.sendStatus(500);
 
 		res.json(types);

@@ -3,7 +3,7 @@ var express = require('express'),
 	Category = require('../models/category');
 
 router.get('/', function (req, res) {
-	Category.find({}, function(err, categories) {
+	Category.find({}).select('-_id -__v').exec( function (err, categories) {
 		if (err) res.sendStatus(500);
 
 		res.json(categories);

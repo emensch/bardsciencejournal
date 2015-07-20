@@ -3,7 +3,7 @@ var express = require('express'),
 	User = require('../models/user');
 
 router.get('/', function (req, res) {
-	User.find({}, function(err, users) {
+	User.find({}).select('-_id -__v').exec( function (err, users) {
 		if (err) res.sendStatus(500);
 
 		res.json(users);
