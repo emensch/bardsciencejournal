@@ -3,12 +3,12 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-	title: String, 
-	slug: String,
-	photo: String,
-	category: String,
-	type: String,
-	content: String,
+	title: { type: String, required: true }, 
+	slug: { type: String, required: true, index: { unique: true } },
+	photo: { type: String, required: true },
+	category: { type: String, required: true },
+	type: { type: String, required: true },
+	content: { type: String, required: true },
 	authors: [{ _id: false, name: String }],
 	tags: [{ _id: false, name: String }],
 	edits: [{ _id: false, description: String, date: { type: Date, default: Date.now }}],

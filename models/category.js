@@ -3,8 +3,8 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var categorySchema = new Schema({
-	name: String, 
-	slug: String
+	name: { type: String, required: true }, 
+	slug: { type: String, required: true, index: { unique: true } }
 });
 
 categorySchema.statics.findBySlug = function (slug, cb) {
