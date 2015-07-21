@@ -4,7 +4,10 @@ var express = require('express'),
 
 router.get('/', function (req, res) {
 	Type.find({}).select('-_id -__v').exec( function (err, types) {
-		if (err) res.sendStatus(500);
+		if (err) {
+			console.log(err);
+			return res.sendStatus(500);
+		}
 
 		res.json(types);
 	});
@@ -12,7 +15,10 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
 	Type.createFromBody(req.body, function (err) {
-		if (err) res.sendStatus(500);
+		if (err) {
+			console.log(err);
+			return res.sendStatus(500);
+		}
 
 		res.sendStatus(201);
 	});
@@ -20,7 +26,10 @@ router.post('/', function (req, res) {
 
 router.delete('/:slug', function (req, res) {
 	Type.findBySlug(req.params.slug).remove( function (err) {
-		if (err) res.sendStatus(500);
+		if (err) {
+			console.log(err);
+			return res.sendStatus(500);
+		}
 
 		res.sendStatus(200);
 	});

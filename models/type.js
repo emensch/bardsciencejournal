@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 var typeSchema = new Schema({
 	name: { type: String, required: true }, 
-	slug: { type: String, required: true, index: { unique: true } }
+	slug: { type: String, required: true, unique: true, index: true }
 });
 
 typeSchema.statics.findBySlug = function (slug, cb) {
@@ -19,7 +19,7 @@ typeSchema.statics.createFromBody = function (body, cb) {
 	newType.save(cb);
 };
 
-typeSchema.pre('save', function (next) {
+typeSchema.pre('validate', function (next) {
 	if (!this.isModified('name')) return next();
 
 	this.slug = slug(this.name);

@@ -4,14 +4,16 @@ var mongoose = require('mongoose'),
 
 var postSchema = new Schema({
 	title: { type: String, required: true }, 
-	slug: { type: String, required: true, index: { unique: true } },
+	slug: { type: String, required: true, unique: true, index: true },
 	photo: { type: String, required: true },
 	category: { type: String, required: true },
 	type: { type: String, required: true },
 	content: { type: String, required: true },
-	authors: [{ _id: false, name: String }],
-	tags: [{ _id: false, name: String }],
-	edits: [{ _id: false, description: String, date: { type: Date, default: Date.now }}],
+	authors: [{ _id: false, name: { type: String, required: true } }],
+	tags: [{ _id: false, name: { type: String, required: true } }],
+	edits: [{ _id: false, 
+		description: { type: String, required: true }, 
+		date: { type: Date, default: Date.now }}],
 	date: { type: Date, default: Date.now }
 });
 
@@ -64,7 +66,7 @@ postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
 	});
 };
 
-postSchema.pre('save', function (next) {
+postSchema.pre('validate', function (next) {
 	if (!this.isModified('title')) return next();
 
 	this.slug = slug(this.title);

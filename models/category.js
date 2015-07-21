@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 var categorySchema = new Schema({
 	name: { type: String, required: true }, 
-	slug: { type: String, required: true, index: { unique: true } }
+	slug: { type: String, required: true, unique: true, index: true }
 });
 
 categorySchema.statics.findBySlug = function (slug, cb) {
@@ -19,7 +19,7 @@ categorySchema.statics.createFromBody = function (body, cb) {
 	newCategory.save(cb);
 };
 
-categorySchema.pre('save', function (next) {
+categorySchema.pre('validate', function (next) {
 	if (!this.isModified('name')) return next();
 
 	this.slug = slug(this.name);
