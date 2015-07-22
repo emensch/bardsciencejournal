@@ -2,33 +2,30 @@ var express = require('express'),
 	router = express.Router(),
 	User = require('../models/user');
 
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
 	User.find({}).select('-_id -__v').exec( function (err, users) {
 		if (err) {
-			console.log(err);
-			return res.sendStatus(500);
+			return next(err);
 		}
 
 		res.json(users);
 	});
 });
 
-router.post('/', function (req, res) {
+router.post('/', function (req, res, next) {
 	User.createFromBody(req.body, function (err) {
 		if (err) {
-			console.log(err);
-			return res.sendStatus(500);
+			return next(err);
 		}
 
 		res.sendStatus(201);
 	});
 });
 
-router.delete('/:username', function (req, res) {
+router.delete('/:username', function (req, res, next) {
 	User.findByUsername(req.params.username).remove( function (err) {
 		if (err) {
-			console.log(err);
-			return res.sendStatus(500);
+			return next(err);
 		}
 
 		res.sendStatus(200);

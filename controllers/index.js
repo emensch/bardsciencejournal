@@ -1,6 +1,7 @@
 var express = require('express'),
 	router = express.Router(),
 	bodyParser = require('body-parser'),
+	errorHandler = require('../middlewares/error'),
 	auth = require('../middlewares/auth');
 
 // Enable json parsing for all requests
@@ -12,12 +13,14 @@ router.get('/', function (req, res) {
 
 // Auth test
 router.get('/auth', auth, function (req, res) {
-	res.send("Hello, Mr. Anderson.")
+	res.send("Hello, Mr. Anderson.");
 });
 
 router.use('/posts', require('./posts'));
 router.use('/categories', require('./categories'));
 router.use('/types', require('./types'));
 router.use('/users', require('./users'));
+
+router.use(errorHandler);
 
 module.exports = router;

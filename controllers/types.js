@@ -2,33 +2,30 @@ var express = require('express'),
 	router = express.Router(),
 	Type = require('../models/type');
 
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
 	Type.find({}).select('-_id -__v').exec( function (err, types) {
 		if (err) {
-			console.log(err);
-			return res.sendStatus(500);
+			return next(err);
 		}
 
 		res.json(types);
 	});
 });
 
-router.post('/', function (req, res) {
+router.post('/', function (req, res, next) {
 	Type.createFromBody(req.body, function (err) {
 		if (err) {
-			console.log(err);
-			return res.sendStatus(500);
+			return next(err);
 		}
 
 		res.sendStatus(201);
 	});
 });
 
-router.delete('/:slug', function (req, res) {
+router.delete('/:slug', function (req, res, next) {
 	Type.findBySlug(req.params.slug).remove( function (err) {
 		if (err) {
-			console.log(err);
-			return res.sendStatus(500);
+			return next(err);
 		}
 
 		res.sendStatus(200);
