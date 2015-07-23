@@ -11,6 +11,41 @@ var userSchema = new Schema({
 
 });
 
+userSchema.statics.findAll = function (cb) {
+	this.find({})
+	.select('-_id -__v')
+	.exec( function (err, user) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, user);
+	})
+};
+
+userSchema.statics.findByUsername = function (name, cb) {
+	this.findOne({ username: name })
+	.select('-_id -__v')
+	.exec( function (err, user) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, user);
+	});
+};
+
+userSchema.statics.deleteByUsername = function (name, cb) {
+	this.findOne({ username: name })
+	.remove( function (err) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, err);
+	});
+};
+
 userSchema.statics.createFromBody = function (body, cb) {
 	newUser = new this({
 		username: body.username,
@@ -19,10 +54,6 @@ userSchema.statics.createFromBody = function (body, cb) {
 	});
 
 	newUser.save(cb);
-};
-
-userSchema.statics.findByUsername = function (name, cb) {
-	return this.findOne({ username: name }, cb);
 };
 
 userSchema.methods.cmpPassword = function (pw, cb) {

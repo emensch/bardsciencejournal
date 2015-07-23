@@ -3,7 +3,7 @@ var express = require('express'),
 	Post = require('../models/post');
 
 router.get('/', function (req, res, next) {
-	Post.find({}).select('-_id -__v').exec( function (err, posts) {
+	Post.findAll( function (err, posts) {
 		if (err) {
 			return next(err);
 		}
@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:slug', function (req, res, next) {
-	Post.findBySlug(req.params.slug).select('-_id -__v').exec( function (err, post) {
+	Post.findBySlug(req.params.slug, function (err, post) {
 		if (err) {
 			return next(err);
 		}
@@ -43,7 +43,7 @@ router.put('/:slug', function (req, res, next) {
 });
 
 router.delete('/:slug', function (req, res, next) {
-	Post.findBySlug(req.params.slug).remove( function (err) {
+	Post.deleteBySlug(req.params.slug, function (err) {
 		if (err) {
 			return next(err);
 		}

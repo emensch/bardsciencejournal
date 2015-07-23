@@ -17,8 +17,39 @@ var postSchema = new Schema({
 	date: { type: Date, default: Date.now }
 });
 
+postSchema.statics.findAll = function (cb) {
+	this.find({})
+	.select('-_id -__v')
+	.exec( function (err, post) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, post);
+	})
+};
+
 postSchema.statics.findBySlug = function (slug, cb) {
-	return this.findOne( { slug: slug }, cb);
+	this.findOne({ slug: slug })
+	.select('-_id -__v')
+	.exec( function (err, post) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, post);
+	});
+};
+
+postSchema.statics.deleteBySlug = function (slug, cb) {
+	this.findOne({ slug: slug })
+	.remove( function (err) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, err);
+	})
 };
 
 postSchema.statics.createFromBody = function (body, cb) {

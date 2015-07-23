@@ -7,8 +7,39 @@ var categorySchema = new Schema({
 	slug: { type: String, required: true, unique: true, index: true }
 });
 
+categorySchema.statics.findAll = function (cb) {
+	this.find({})
+	.select('-_id -__v')
+	.exec( function (err, category) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, category);
+	})
+};
+
 categorySchema.statics.findBySlug = function (slug, cb) {
-	return this.findOne( { slug: slug }, cb);
+	this.findOne({ slug: slug })
+	.select('-_id -__v')
+	.exec( function (err, category) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, category);
+	});
+};
+
+categorySchema.statics.deleteBySlug = function (slug, cb) {
+	this.findOne({ slug: slug })
+	.remove( function (err) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, err);
+	})
 };
 
 categorySchema.statics.createFromBody = function (body, cb) {

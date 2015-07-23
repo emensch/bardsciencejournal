@@ -7,8 +7,39 @@ var typeSchema = new Schema({
 	slug: { type: String, required: true, unique: true, index: true }
 });
 
+typeSchema.statics.findAll = function (cb) {
+	this.find({})
+	.select('-_id -__v')
+	.exec( function (err, type) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, type);
+	})
+};
+
 typeSchema.statics.findBySlug = function (slug, cb) {
-	return this.findOne( { slug: slug }, cb);
+	this.findOne({ slug: slug })
+	.select('-_id -__v')
+	.exec( function (err, type) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, type);
+	});
+};
+
+typeSchema.statics.deleteBySlug = function (slug, cb) {
+	this.findOne({ slug: slug })
+	.remove( function (err) {
+		if (err) {
+			cb(err);
+		}
+
+		cb(null, err);
+	})
 };
 
 typeSchema.statics.createFromBody = function (body, cb) {

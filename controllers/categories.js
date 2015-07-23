@@ -3,7 +3,7 @@ var express = require('express'),
 	Category = require('../models/category');
 
 router.get('/', function (req, res, next) {
-	Category.find({}).select('-_id -__v').exec( function (err, categories) {
+	Category.findAll( function (err, categories) {
 		if (err) {
 			return next(err);
 		}
@@ -23,7 +23,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.delete('/:slug', function (req, res, next) {
-	Category.findBySlug(req.params.slug).remove( function (err) {
+	Category.deleteBySlug(req.params.slug, function (err) {
 		if (err) {
 			return next(err);
 		}

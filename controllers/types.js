@@ -3,7 +3,7 @@ var express = require('express'),
 	Type = require('../models/type');
 
 router.get('/', function (req, res, next) {
-	Type.find({}).select('-_id -__v').exec( function (err, types) {
+	Type.findAll( function (err, types) {
 		if (err) {
 			return next(err);
 		}
@@ -23,7 +23,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.delete('/:slug', function (req, res, next) {
-	Type.findBySlug(req.params.slug).remove( function (err) {
+	Type.deleteBySlug(req.params.slug, function (err) {
 		if (err) {
 			return next(err);
 		}

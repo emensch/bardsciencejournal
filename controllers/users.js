@@ -3,7 +3,7 @@ var express = require('express'),
 	User = require('../models/user');
 
 router.get('/', function (req, res, next) {
-	User.find({}).select('-_id -__v').exec( function (err, users) {
+	User.findAll( function (err, users) {
 		if (err) {
 			return next(err);
 		}
@@ -23,7 +23,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.delete('/:username', function (req, res, next) {
-	User.findByUsername(req.params.username).remove( function (err) {
+	User.deleteByUsername(req.params.username, function (err) {
 		if (err) {
 			return next(err);
 		}
