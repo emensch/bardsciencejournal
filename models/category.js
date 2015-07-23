@@ -27,15 +27,26 @@ categorySchema.statics.findBySlug = function (slug, cb) {
 			cb(err);
 		}
 
+		if(!category) {
+			var err = new Error();
+			err.http_code = 404;
+			return cb(err);
+		}
+
 		cb(null, category);
 	});
 };
 
 categorySchema.statics.deleteBySlug = function (slug, cb) {
-	this.findOne({ slug: slug })
-	.remove( function (err) {
+	this.findOneAndRemove({ slug: slug }, function (err, category) {
 		if (err) {
 			cb(err);
+		}
+
+		if(!category) {
+			var err = new Error();
+			err.http_code = 404;
+			return cb(err);
 		}
 
 		cb(null, err);
@@ -47,7 +58,18 @@ categorySchema.statics.createFromBody = function (body, cb) {
 		name: body.name
 	});
 
-	newCategory.save(cb);
+	newCategory.save( function (err) {
+		if (err) {
+			if (err.name == 'ValidationError') {
+				err.http_code = 400;
+			} else if (!err.http_code && err.code == 11000) {
+				err.http_code = 409;
+			}
+			return cb(err);
+		}
+
+		cb();
+	});
 };
 
 categorySchema.pre('validate', function (next) {

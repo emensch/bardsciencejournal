@@ -37,15 +37,26 @@ postSchema.statics.findBySlug = function (slug, cb) {
 			cb(err);
 		}
 
+		if(!post) {
+			var err = new Error();
+			err.http_code = 404;
+			return cb(err);
+		}
+
 		cb(null, post);
 	});
 };
 
 postSchema.statics.deleteBySlug = function (slug, cb) {
-	this.findOne({ slug: slug })
-	.remove( function (err) {
+	this.findOneAndRemove({ slug: slug }, function (err, post) {
 		if (err) {
 			cb(err);
+		}
+
+		if(!post) {
+			var err = new Error();
+			err.http_code = 404;
+			return cb(err);
 		}
 
 		cb(null, err);
@@ -69,11 +80,22 @@ postSchema.statics.createFromBody = function (body, cb) {
 		newPost.tags.push({ name: tag });
 	}
 
-	newPost.save(cb);
+	newPost.save( function (err) {
+		if (err) {
+			if (err.name == 'ValidationError') {
+				err.http_code = 400;
+			} else if (!err.http_code && err.code == 11000) {
+				err.http_code = 409;
+			}
+			return cb(err);
+		}
+
+		cb();
+	});
 };
 
 postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
-	this.findBySlug(slug, function(err, post) {
+	this.findOne({ slug: slug }, function (err, post) {
 		if (err) cb(err);
 
 		post.title = body.title;
@@ -93,7 +115,18 @@ postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
 			post.tags.push({ name: tag })
 		}
 
-		post.save(cb);
+		post.save( function (err) {
+			if (err) {
+				if (err.name == 'ValidationError') {
+					err.http_code = 400;
+				} else if (!err.http_code && err.code == 11000) {
+					err.http_code = 409;
+				}
+				return cb(err);
+			}
+
+			cb();
+		});
 	});
 };
 

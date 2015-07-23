@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 var userSchema = new Schema({
 	username: { type: String, required: true, unique: true, index: true },
-	email: { type: String, required: true },
+	email: { type: String, required: true, unique: true },
 	password: { type: String, required: true },
 	date: { type: Date, default: Date.now },
 	approved: { type: Boolean, default: false }
@@ -31,15 +31,26 @@ userSchema.statics.findByUsername = function (name, cb) {
 			cb(err);
 		}
 
+		if(!user) {
+			var err = new Error();
+			err.http_code = 404;
+			return cb(err);
+		}
+
 		cb(null, user);
 	});
 };
 
 userSchema.statics.deleteByUsername = function (name, cb) {
-	this.findOne({ username: name })
-	.remove( function (err) {
+	this.findOneAndRemove({ username: name }, function (err) {
 		if (err) {
 			cb(err);
+		}
+
+		if(!user) {
+			var err = new Error();
+			err.http_code = 404;
+			return cb(err);
 		}
 
 		cb(null, err);
@@ -53,7 +64,18 @@ userSchema.statics.createFromBody = function (body, cb) {
 		password: body.password
 	});
 
-	newUser.save(cb);
+	newUser.save( function (err) {
+		if (err) {
+			if (err.name == 'ValidationError') {
+				err.http_code = 400;
+			} else if (!err.http_code && err.code == 11000) {
+				err.http_code = 409;
+			}
+			return cb(err);
+		}
+
+		cb();
+	});
 };
 
 userSchema.methods.cmpPassword = function (pw, cb) {

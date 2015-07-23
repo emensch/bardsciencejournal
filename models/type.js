@@ -27,15 +27,26 @@ typeSchema.statics.findBySlug = function (slug, cb) {
 			cb(err);
 		}
 
+		if(!type) {
+			var err = new Error();
+			err.http_code = 404;
+			return cb(err);
+		}
+
 		cb(null, type);
 	});
 };
 
 typeSchema.statics.deleteBySlug = function (slug, cb) {
-	this.findOne({ slug: slug })
-	.remove( function (err) {
+	this.findOneAndRemove({ slug: slug }, function (err, type) {
 		if (err) {
 			cb(err);
+		}
+
+		if(!type) {
+			var err = new Error();
+			err.http_code = 404;
+			return cb(err);
 		}
 
 		cb(null, err);
@@ -47,11 +58,28 @@ typeSchema.statics.createFromBody = function (body, cb) {
 		name: body.name
 	});
 
-	newType.save(cb);
+	newType.save( function (err) {
+		if (err) {
+			if (err.name == 'ValidationError') {
+				err.http_code = 400;
+			} else if (!err.http_code && err.code == 11000) {
+				err.http_code = 409;
+			}
+			return cb(err);
+		}
+
+		cb();
+	});
 };
 
 typeSchema.pre('validate', function (next) {
 	if (!this.isModified('name')) return next();
+
+	if (!this.name) {
+		var err = new Error();
+		err.http_code = 400;
+		return next(err);
+	}
 
 	this.slug = slug(this.name);
 	next();
