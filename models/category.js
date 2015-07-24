@@ -5,8 +5,10 @@ var mongoose = require('mongoose'),
 
 var categorySchema = new Schema({
 	name: { type: String, required: true }, 
-	slug: { type: String, required: true, unique: true, index: true }
+	slug: { type: String, required: true }
 });
+
+categorySchema.index({ slug: 1 }, { unique: true });
 
 categorySchema.statics.findAll = function (cb) {
 	this.find({})

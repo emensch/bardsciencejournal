@@ -5,8 +5,10 @@ var mongoose = require('mongoose'),
 
 var typeSchema = new Schema({
 	name: { type: String, required: true }, 
-	slug: { type: String, required: true, unique: true, index: true }
+	slug: { type: String, required: true }
 });
+
+typeSchema.index({ slug: 1 }, { unique: true });
 
 typeSchema.statics.findAll = function (cb) {
 	this.find({})

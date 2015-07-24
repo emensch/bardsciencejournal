@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 
 var postSchema = new Schema({
 	title: { type: String, required: true }, 
-	slug: { type: String, required: true, unique: true, index: true },
+	slug: { type: String, required: true },
 	photo: { type: String, required: true },
 	category: { type: String, required: true },
 	type: { type: String, required: true },
@@ -17,6 +17,10 @@ var postSchema = new Schema({
 		date: { type: Date, default: Date.now }}],
 	date: { type: Date, default: Date.now }
 });
+
+postSchema.index({ slug: 1 }, { unique: true });
+postSchema.index({ category: 1 });
+postSchema.index({ type: 1 });
 
 postSchema.statics.findAll = function (cb) {
 	this.find({})
