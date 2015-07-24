@@ -122,6 +122,12 @@ postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
 	});
 };
 
+// Ensure photo is a valid url
+postSchema.path('photo').validate( function (photo) {
+	var regex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	return regex.test(photo);
+});
+
 postSchema.pre('validate', function (next) {
 	if (!this.isModified('title')) return next();
 

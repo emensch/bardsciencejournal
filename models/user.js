@@ -101,6 +101,24 @@ userSchema.methods.checkAuthorized = function (pw, cb) {
 	}
 };
 
+// Ensure valid email address
+userSchema.path('email').validate( function (email) {
+	var regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+	return regex.test(email);
+});
+
+// Ensure username is 3-16 alphanumeric chars/dashes/underscores
+userSchema.path('username').validate( function (username) {
+	var regex = /^[a-z0-9_-]{3,16}$/;
+	return regex.test(username);
+});
+
+// Ensure password length is between 8-64 characters
+userSchema.path('password').validate( function (password) {
+	return (password.length >= 8 && password.length <= 64);
+});
+
+
 // Password hashing middleware
 userSchema.pre('save', function (next) { 
 	// Only hash if password has been modified
