@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
 	slug = require('slug'),
+	errors = require('../helpers/modelerrors'),
 	Schema = mongoose.Schema;
 
 var typeSchema = new Schema({
@@ -28,8 +29,7 @@ typeSchema.statics.findBySlug = function (slug, cb) {
 		}
 
 		if(!type) {
-			var err = new Error();
-			err.http_code = 404;
+			err = errors.notFound();
 			return cb(err);
 		}
 
@@ -44,8 +44,7 @@ typeSchema.statics.deleteBySlug = function (slug, cb) {
 		}
 
 		if(!type) {
-			var err = new Error();
-			err.http_code = 404;
+			err = errors.notFound();
 			return cb(err);
 		}
 
@@ -60,11 +59,7 @@ typeSchema.statics.createFromBody = function (body, cb) {
 
 	newType.save( function (err) {
 		if (err) {
-			if (err.name == 'ValidationError') {
-				err.http_code = 400;
-			} else if (!err.http_code && err.code == 11000) {
-				err.http_code = 409;
-			}
+			errors.parseSaveError(err);
 			return cb(err);
 		}
 
@@ -76,8 +71,7 @@ typeSchema.pre('validate', function (next) {
 	if (!this.isModified('name')) return next();
 
 	if (!this.name) {
-		var err = new Error();
-		err.http_code = 400;
+		err = errors.badRequest();
 		return next(err);
 	}
 

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
+	errors = require('../helpers/modelerrors'),
 	bcrypt = require('bcrypt');
 
 var userSchema = new Schema({
@@ -32,8 +33,7 @@ userSchema.statics.findByUsername = function (name, cb) {
 		}
 
 		if(!user) {
-			var err = new Error();
-			err.http_code = 404;
+			err = errors.notFound();
 			return cb(err);
 		}
 
@@ -48,8 +48,7 @@ userSchema.statics.deleteByUsername = function (name, cb) {
 		}
 
 		if(!user) {
-			var err = new Error();
-			err.http_code = 404;
+			err = errors.notFound();
 			return cb(err);
 		}
 
@@ -66,11 +65,7 @@ userSchema.statics.createFromBody = function (body, cb) {
 
 	newUser.save( function (err) {
 		if (err) {
-			if (err.name == 'ValidationError') {
-				err.http_code = 400;
-			} else if (!err.http_code && err.code == 11000) {
-				err.http_code = 409;
-			}
+			errors.parseSaveError(err);
 			return cb(err);
 		}
 

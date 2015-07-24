@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
 	slug = require('slug'),
+	errors = require('../helpers/modelerrors'),
 	Schema = mongoose.Schema;
 
 var postSchema = new Schema({
@@ -38,8 +39,7 @@ postSchema.statics.findBySlug = function (slug, cb) {
 		}
 
 		if(!post) {
-			var err = new Error();
-			err.http_code = 404;
+			err = errors.notFound();
 			return cb(err);
 		}
 
@@ -54,8 +54,7 @@ postSchema.statics.deleteBySlug = function (slug, cb) {
 		}
 
 		if(!post) {
-			var err = new Error();
-			err.http_code = 404;
+			err = errors.notFound();
 			return cb(err);
 		}
 
@@ -82,11 +81,7 @@ postSchema.statics.createFromBody = function (body, cb) {
 
 	newPost.save( function (err) {
 		if (err) {
-			if (err.name == 'ValidationError') {
-				err.http_code = 400;
-			} else if (!err.http_code && err.code == 11000) {
-				err.http_code = 409;
-			}
+			errors.parseSaveError(err);
 			return cb(err);
 		}
 
@@ -117,11 +112,7 @@ postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
 
 		post.save( function (err) {
 			if (err) {
-				if (err.name == 'ValidationError') {
-					err.http_code = 400;
-				} else if (!err.http_code && err.code == 11000) {
-					err.http_code = 409;
-				}
+				errors.parseSaveError(err);
 				return cb(err);
 			}
 
@@ -132,6 +123,11 @@ postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
 
 postSchema.pre('validate', function (next) {
 	if (!this.isModified('title')) return next();
+
+	if (!this.title) {
+		err = errors.badRequest();
+		return next(err);
+	}
 
 	this.slug = slug(this.title);
 	next();
