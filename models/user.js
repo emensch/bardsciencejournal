@@ -9,7 +9,6 @@ var userSchema = new Schema({
 	password: { type: String, required: true },
 	date: { type: Date, default: Date.now },
 	approved: { type: Boolean, default: false }
-
 });
 
 userSchema.statics.findAll = function (cb) {
@@ -17,11 +16,11 @@ userSchema.statics.findAll = function (cb) {
 	.select('-_id -__v')
 	.exec( function (err, user) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		cb(null, user);
-	})
+	});
 };
 
 userSchema.statics.findByUsername = function (name, cb) {
@@ -29,7 +28,7 @@ userSchema.statics.findByUsername = function (name, cb) {
 	.select('-_id -__v')
 	.exec( function (err, user) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		if(!user) {
@@ -42,9 +41,9 @@ userSchema.statics.findByUsername = function (name, cb) {
 };
 
 userSchema.statics.deleteByUsername = function (name, cb) {
-	this.findOneAndRemove({ username: name }, function (err) {
+	this.findOneAndRemove({ username: name }, function (err, user) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		if(!user) {
@@ -73,11 +72,33 @@ userSchema.statics.createFromBody = function (body, cb) {
 	});
 };
 
-userSchema.methods.cmpPassword = function (pw, cb) {
-	bcrypt.compare(pw, this.password, function (err, match) { 
-		if (err) return cb(err);
-		cb(null, match);
+userSchema.statics.updateFromBodyByUsername = function (name, body, cb) {
+	this.findOne({ username: name }, function (err, user) {
+		if (err) {
+			return cb(err);
+		}
+		user.approved = body.approved;
+
+		user.save( function (err) {
+			if (err) {
+				errors.parseSaveError(err);
+				return cb(err);
+			}
+
+			cb();
+		});
 	});
+};
+
+userSchema.methods.checkAuthorized = function (pw, cb) {
+	if (this.approved) {
+		bcrypt.compare(pw, this.password, function (err, res) { 
+			if (err) return cb(err);
+			return cb(null, res);
+		});
+	} else {
+		cb(null, false);
+	}
 };
 
 // Password hashing middleware

@@ -23,11 +23,11 @@ postSchema.statics.findAll = function (cb) {
 	.select('-_id -__v')
 	.exec( function (err, post) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		cb(null, post);
-	})
+	});
 };
 
 postSchema.statics.findBySlug = function (slug, cb) {
@@ -35,7 +35,7 @@ postSchema.statics.findBySlug = function (slug, cb) {
 	.select('-_id -__v')
 	.exec( function (err, post) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		if(!post) {
@@ -50,7 +50,7 @@ postSchema.statics.findBySlug = function (slug, cb) {
 postSchema.statics.deleteBySlug = function (slug, cb) {
 	this.findOneAndRemove({ slug: slug }, function (err, post) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		if(!post) {
@@ -59,7 +59,7 @@ postSchema.statics.deleteBySlug = function (slug, cb) {
 		}
 
 		cb(null, err);
-	})
+	});
 };
 
 postSchema.statics.createFromBody = function (body, cb) {
@@ -91,8 +91,9 @@ postSchema.statics.createFromBody = function (body, cb) {
 
 postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
 	this.findOne({ slug: slug }, function (err, post) {
-		if (err) cb(err);
-
+		if (err) {
+			return cb(err);
+		}
 		post.title = body.title;
 		post.photo = body.photourl;
 		post.category = body.category;

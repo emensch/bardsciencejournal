@@ -5,15 +5,19 @@ var User = require('../models/user'),
 passport.use(new BasicStrategy( 
 	function (username, password, cb) {
 		User.findByUsername(username, function (err, user) {
-			if (err) return cb(err);
+			if (err) {
+				// Prevent 404 from being returned if user is nonexistent
+				err.http_code = 401;
+				return cb(err);
+			}
 			if (!user) return cb(null, false);
-			user.cmpPassword(password, function (err, match) {
+			user.checkAuthorized(password, function (err, ok) {
 				if (err) return cb(err);
-				if (!match) return cb(null, false);
+				if (!ok) return cb(null, false);
 				return cb(null, user);
 			});
 		});
 	}
 ));
 
-module.exports = passport.authenticate('basic', { session: false })
+module.exports = passport.authenticate('basic', { session: false });

@@ -13,11 +13,11 @@ typeSchema.statics.findAll = function (cb) {
 	.select('-_id -__v')
 	.exec( function (err, type) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		cb(null, type);
-	})
+	});
 };
 
 typeSchema.statics.findBySlug = function (slug, cb) {
@@ -25,7 +25,7 @@ typeSchema.statics.findBySlug = function (slug, cb) {
 	.select('-_id -__v')
 	.exec( function (err, type) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		if(!type) {
@@ -40,7 +40,7 @@ typeSchema.statics.findBySlug = function (slug, cb) {
 typeSchema.statics.deleteBySlug = function (slug, cb) {
 	this.findOneAndRemove({ slug: slug }, function (err, type) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		if(!type) {
@@ -49,7 +49,7 @@ typeSchema.statics.deleteBySlug = function (slug, cb) {
 		}
 
 		cb(null, err);
-	})
+	});
 };
 
 typeSchema.statics.createFromBody = function (body, cb) {

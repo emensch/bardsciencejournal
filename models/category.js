@@ -13,11 +13,11 @@ categorySchema.statics.findAll = function (cb) {
 	.select('-_id -__v')
 	.exec( function (err, category) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		cb(null, category);
-	})
+	});
 };
 
 categorySchema.statics.findBySlug = function (slug, cb) {
@@ -25,7 +25,7 @@ categorySchema.statics.findBySlug = function (slug, cb) {
 	.select('-_id -__v')
 	.exec( function (err, category) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		if(!category) {
@@ -40,7 +40,7 @@ categorySchema.statics.findBySlug = function (slug, cb) {
 categorySchema.statics.deleteBySlug = function (slug, cb) {
 	this.findOneAndRemove({ slug: slug }, function (err, category) {
 		if (err) {
-			cb(err);
+			return cb(err);
 		}
 
 		if(!category) {
@@ -49,7 +49,7 @@ categorySchema.statics.deleteBySlug = function (slug, cb) {
 		}
 
 		cb(null, err);
-	})
+	});
 };
 
 categorySchema.statics.createFromBody = function (body, cb) {
