@@ -3,49 +3,49 @@ var mongoose = require('mongoose'),
 	errors = require('../helpers/modelerrors'),
 	Schema = mongoose.Schema;
 
-var categorySchema = new Schema({
+var subjectSchema = new Schema({
 	name: { type: String, required: true }, 
 	slug: { type: String, required: true }
 });
 
-categorySchema.index({ slug: 1 }, { unique: true });
+subjectSchema.index({ slug: 1 }, { unique: true });
 
-categorySchema.statics.findAll = function (cb) {
+subjectSchema.statics.findAll = function (cb) {
 	this.find({})
 	.select('-_id -__v')
-	.exec( function (err, category) {
+	.exec( function (err, subject) {
 		if (err) {
 			return cb(err);
 		}
 
-		cb(null, category);
+		cb(null, subject);
 	});
 };
 
-categorySchema.statics.findBySlug = function (slug, cb) {
+subjectSchema.statics.findBySlug = function (slug, cb) {
 	this.findOne({ slug: slug })
 	.select('-_id -__v')
-	.exec( function (err, category) {
+	.exec( function (err, subject) {
 		if (err) {
 			return cb(err);
 		}
 
-		if(!category) {
+		if(!subject) {
 			err = errors.notFound();
 			return cb(err);
 		}
 
-		cb(null, category);
+		cb(null, subject);
 	});
 };
 
-categorySchema.statics.deleteBySlug = function (slug, cb) {
-	this.findOneAndRemove({ slug: slug }, function (err, category) {
+subjectSchema.statics.deleteBySlug = function (slug, cb) {
+	this.findOneAndRemove({ slug: slug }, function (err, subject) {
 		if (err) {
 			return cb(err);
 		}
 
-		if(!category) {
+		if(!subject) {
 			err = errors.notFound();
 			return cb(err);
 		}
@@ -54,12 +54,12 @@ categorySchema.statics.deleteBySlug = function (slug, cb) {
 	});
 };
 
-categorySchema.statics.createFromBody = function (body, cb) {
-	newCategory = new this({
+subjectSchema.statics.createFromBody = function (body, cb) {
+	newSubject = new this({
 		name: body.name
 	});
 
-	newCategory.save( function (err) {
+	newSubject.save( function (err) {
 		if (err) {
 			errors.parseSaveError(err);
 			return cb(err);
@@ -69,7 +69,7 @@ categorySchema.statics.createFromBody = function (body, cb) {
 	});
 };
 
-categorySchema.pre('validate', function (next) {
+subjectSchema.pre('validate', function (next) {
 	if (!this.isModified('name')) return next();
 
 	if (!this.name) {
@@ -81,4 +81,4 @@ categorySchema.pre('validate', function (next) {
 	next();
 });
 
-module.exports = mongoose.model('Category', categorySchema);
+module.exports = mongoose.model('Subject', subjectSchema);

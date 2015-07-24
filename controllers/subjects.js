@@ -1,9 +1,9 @@
 var express = require('express'),
 	router = express.Router(),
-	Category = require('../models/category');
+	Subject = require('../models/subject');
 
 router.get('/', function (req, res, next) {
-	Category.findAll( function (err, categories) {
+	Subject.findAll( function (err, categories) {
 		if (err) {
 			return next(err);
 		}
@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-	Category.createFromBody(req.body, function (err) {
+	Subject.createFromBody(req.body, function (err) {
 		if (err) {
 			return next(err);
 		}
@@ -23,7 +23,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.delete('/:slug', function (req, res, next) {
-	Category.deleteBySlug(req.params.slug, function (err) {
+	Subject.deleteBySlug(req.params.slug, function (err) {
 		if (err) {
 			return next(err);
 		}

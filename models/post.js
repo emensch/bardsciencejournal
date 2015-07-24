@@ -7,7 +7,7 @@ var postSchema = new Schema({
 	title: { type: String, required: true }, 
 	slug: { type: String, required: true },
 	photo: { type: String, required: true },
-	category: { type: String, required: true },
+	subject: { type: String, required: true },
 	type: { type: String, required: true },
 	content: { type: String, required: true },
 	authors: [String],
@@ -19,7 +19,7 @@ var postSchema = new Schema({
 });
 
 postSchema.index({ slug: 1 }, { unique: true });
-postSchema.index({ category: 1 });
+postSchema.index({ subject: 1 });
 postSchema.index({ type: 1 });
 
 postSchema.statics.findAll = function (cb) {
@@ -70,7 +70,7 @@ postSchema.statics.createFromBody = function (body, cb) {
 	newPost = new this({
 		title: body.title,
 		photo: body.photourl,
-		category: body.category,
+		subject: body.subject,
 		type: body.type,
 		content: body.content,
 	});
@@ -95,7 +95,7 @@ postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
 		}
 		post.title = body.title;
 		post.photo = body.photourl;
-		post.category = body.category;
+		post.subject = body.subject;
 		post.type = body.type;
 		post.content = body.content;
 		post.edits.push({ description: body.description });

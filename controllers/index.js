@@ -17,7 +17,7 @@ router.get('/auth', auth, function (req, res) {
 });
 
 router.use('/posts', require('./posts'));
-router.use('/categories', require('./categories'));
+router.use('/subjects', require('./subjects'));
 router.use('/types', require('./types'));
 router.use('/users', require('./users'));
 
