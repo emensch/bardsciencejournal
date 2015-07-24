@@ -10,8 +10,8 @@ var postSchema = new Schema({
 	category: { type: String, required: true },
 	type: { type: String, required: true },
 	content: { type: String, required: true },
-	authors: [{ _id: false, name: { type: String, required: true } }],
-	tags: [{ _id: false, name: { type: String, required: true } }],
+	authors: [String],
+	tags: [String],
 	edits: [{ _id: false, 
 		description: { type: String, required: true }, 
 		date: { type: Date, default: Date.now }}],
@@ -75,13 +75,8 @@ postSchema.statics.createFromBody = function (body, cb) {
 		content: body.content,
 	});
 
-	for (author of body.authors) {
-		newPost.authors.push({ name: author });
-	} 
-
-	for (tag of body.tags) {
-		newPost.tags.push({ name: tag });
-	}
+	newPost.authors = body.authors;
+	newPost.tags = body.tags;
 
 	newPost.save( function (err) {
 		if (err) {
@@ -105,15 +100,8 @@ postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
 		post.content = body.content;
 		post.edits.push({ description: body.description });
 
-		post.authors = [];
-		for (author of body.authors) {
-			post.authors.push({ name: author })
-		} 
-
-		post.tags = [];
-		for (tag of body.tags) {
-			post.tags.push({ name: tag })
-		}
+		post.authors = body.authors;
+		post.tags = body.tags;
 
 		post.save( function (err) {
 			if (err) {
