@@ -13,7 +13,7 @@ var userSchema = new Schema({
 
 userSchema.statics.findAll = function (cb) {
 	this.find({})
-	.select('-_id -__v')
+	.select('-_id -__v -password')
 	.exec( function (err, user) {
 		if (err) {
 			return cb(err);
