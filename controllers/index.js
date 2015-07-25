@@ -13,6 +13,7 @@ router.get('/', function (req, res) {
 
 // Auth test
 router.get('/auth', auth, function (req, res) {
+	console.log(req.user);
 	res.send("Hello, Mr. Anderson.");
 });
 

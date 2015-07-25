@@ -59,7 +59,8 @@ userSchema.statics.deleteByUsername = function (name, cb) {
 	});
 };
 
-userSchema.statics.createFromBody = function (body, cb) {
+userSchema.statics.createFromReq = function (req, cb) {
+	var body = req.body;
 	newUser = new this({
 		username: body.username,
 		email: body.email,
@@ -76,7 +77,9 @@ userSchema.statics.createFromBody = function (body, cb) {
 	});
 };
 
-userSchema.statics.updateFromBodyByUsername = function (name, body, cb) {
+userSchema.statics.updateFromReq = function (req, cb) {
+	var name = req.params.username;
+	var body = req.body;
 	this.findOne({ username: name }, function (err, user) {
 		if (err) {
 			return cb(err);

@@ -54,7 +54,8 @@ subjectSchema.statics.deleteBySlug = function (slug, cb) {
 	});
 };
 
-subjectSchema.statics.createFromBody = function (body, cb) {
+subjectSchema.statics.createFromReq = function (req, cb) {
+	var body = req.body;
 	newSubject = new this({
 		name: body.name
 	});

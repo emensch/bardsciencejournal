@@ -54,7 +54,8 @@ typeSchema.statics.deleteBySlug = function (slug, cb) {
 	});
 };
 
-typeSchema.statics.createFromBody = function (body, cb) {
+typeSchema.statics.createFromReq = function (req, cb) {
+	var body = req.body;
 	newType = new this({
 		name: body.name
 	});

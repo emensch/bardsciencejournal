@@ -105,7 +105,8 @@ postSchema.statics.deleteBySlug = function (slug, cb) {
 	});
 };
 
-postSchema.statics.createFromBody = function (body, cb) {
+postSchema.statics.createFromReq = function (req, cb) {
+	var body = req.body;
 	newPost = new this({
 		title: body.title,
 		photo: body.photourl,
@@ -127,7 +128,9 @@ postSchema.statics.createFromBody = function (body, cb) {
 	});
 };
 
-postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
+postSchema.statics.updateFromReq = function (req, cb) {
+	var slug = req.params.slug;
+	var body = req.body;
 	this.findOne({ slug: slug }, function (err, post) {
 		if (err) {
 			return cb(err);
@@ -137,7 +140,7 @@ postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
 			err = errors.notFound();
 			return cb(err);
 		}
-		
+
 		post.title = body.title;
 		post.photo = body.photourl;
 		post.subject = body.subject;

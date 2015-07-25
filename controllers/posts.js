@@ -23,7 +23,7 @@ router.get('/:slug', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-	Post.createFromBody(req.body, function (err) {
+	Post.createFromReq(req, function (err) {
 		if (err) {
 			return next(err);
 		}
@@ -33,7 +33,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.put('/:slug', function (req, res, next) {
-	Post.updateFromBodyBySlug(req.params.slug, req.body, function (err) {
+	Post.updateFromReq(req, function (err) {
 		if (err) {
 			return next(err);
 		}

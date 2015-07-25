@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-	Type.createFromBody(req.body, function (err) {
+	Type.createFromReq(req, function (err) {
 		if (err) {
 			return next(err);
 		}

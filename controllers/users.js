@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-	User.createFromBody(req.body, function (err) {
+	User.createFromReq(req, function (err) {
 		if (err) {
 			return next(err);
 		}
@@ -23,7 +23,7 @@ router.post('/', function (req, res, next) {
 });
 
 router.put('/:username', function (req, res, next) {
-	User.updateFromBodyByUsername(req.params.username, req.body, function (err) {
+	User.updateFromReq(req, function (err) {
 		if (err) {
 			return next(err);
 		}
