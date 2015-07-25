@@ -3,7 +3,7 @@ var express = require('express'),
 	Post = require('../models/post');
 
 router.get('/', function (req, res, next) {
-	Post.findAll( function (err, posts) {
+	Post.findWithQuery(req.query, function (err, posts) {
 		if (err) {
 			return next(err);
 		}

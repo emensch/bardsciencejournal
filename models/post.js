@@ -21,10 +21,49 @@ var postSchema = new Schema({
 postSchema.index({ slug: 1 }, { unique: true });
 postSchema.index({ subject: 1 });
 postSchema.index({ type: 1 });
+//Text search index
+postSchema.index({
+	title: 'text',
+	content: 'text',
+	authors: 'text',
+	tags: 'text'
+},
+{
+	name: 'textsearch_idx'
+});
 
-postSchema.statics.findAll = function (cb) {
-	this.find({})
+postSchema.statics.findWithQuery = function (query, cb) {
+	var subject = query.subject;
+	var type = query.type;
+	var author = query.author;
+	var tag = query.tag;
+	var search = query.search;
+	var page = query.page || 1;
+	var queryObj = {};
+	var sortObj = {};
+	var metaObj = {};
+
+	// Build query object
+	// If search is present, exclude other query params
+	if (search) {
+		queryObj = { $text: { $search: search } };
+		metaObj = { score: { $meta: "textScore" } };
+		sortObj = { score: { $meta: 'textScore' } };
+	} else {
+		if (subject) queryObj.subject = subject;
+		if (type) queryObj.type = type;
+		if (author) queryObj.authors = author;
+		if (tag) queryObj.tags = tag; 
+		sortObj = { date: -1 };
+	}
+
+	console.log(queryObj);
+
+	this.find(queryObj, metaObj)
 	.select('-_id -__v')
+	.skip((page - 1) * 10)
+	.limit(10)
+	.sort(sortObj)
 	.exec( function (err, post) {
 		if (err) {
 			return cb(err);
