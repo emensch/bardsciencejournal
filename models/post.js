@@ -132,6 +132,12 @@ postSchema.statics.updateFromBodyBySlug = function (slug, body, cb) {
 		if (err) {
 			return cb(err);
 		}
+
+		if (!post) {
+			err = errors.notFound();
+			return cb(err);
+		}
+		
 		post.title = body.title;
 		post.photo = body.photourl;
 		post.subject = body.subject;

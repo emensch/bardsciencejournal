@@ -17,3 +17,9 @@ module.exports.badRequest = function() {
 	err.http_code = 400;
 	return err;
 }
+
+module.exports.notAuthorized = function() {
+	var err = new Error();
+	err.http_code = 401;
+	return err;	
+}

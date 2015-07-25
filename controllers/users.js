@@ -42,4 +42,24 @@ router.delete('/:username', function (req, res, next) {
 	});
 });
 
+router.post('/:username/resetpassword', function (req, res, next) {
+	User.beginPassReset(req.params.username, function (err) {
+		if (err) {
+			return next(err);
+		}
+
+		res.sendStatus(200);
+	});
+});
+
+router.delete('/:username/resetpassword', function (req, res, next) {
+	User.finishPassReset(req.params.username, req.body, function (err) {
+		if (err) {
+			return next(err);
+		}
+
+		res.sendStatus(200);
+	});
+});
+
 module.exports = router;

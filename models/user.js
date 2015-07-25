@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	errors = require('../helpers/modelerrors'),
+	Token = require('./reset_token'),
 	bcrypt = require('bcrypt');
 
 var userSchema = new Schema({
@@ -34,7 +35,7 @@ userSchema.statics.findByUsername = function (name, cb) {
 			return cb(err);
 		}
 
-		if(!user) {
+		if (!user) {
 			err = errors.notFound();
 			return cb(err);
 		}
@@ -49,12 +50,12 @@ userSchema.statics.deleteByUsername = function (name, cb) {
 			return cb(err);
 		}
 
-		if(!user) {
+		if (!user) {
 			err = errors.notFound();
 			return cb(err);
 		}
 
-		cb(null, err);
+		cb();
 	});
 };
 
@@ -80,6 +81,12 @@ userSchema.statics.updateFromBodyByUsername = function (name, body, cb) {
 		if (err) {
 			return cb(err);
 		}
+
+		if (!user) {
+			err = errors.notFound();
+			return cb(err);
+		}
+
 		user.approved = body.approved;
 
 		user.save( function (err) {
@@ -89,6 +96,81 @@ userSchema.statics.updateFromBodyByUsername = function (name, body, cb) {
 			}
 
 			cb();
+		});
+	});
+};
+
+userSchema.statics.beginPassReset = function (name, cb) {
+	this.findOne({ username: name, approved: true }, function (err, user) {
+		if (err) {
+			return cb(err);
+		}
+
+		if (!user) {
+			err = errors.notFound();
+			return cb(err);
+		}
+
+		Token.generate(name, function (err, token) {
+			if (err) {
+				return cb(err);
+			}
+
+			// TODO Email token to user
+			console.log(token, ' sent to: ', user.email);
+
+			cb();
+		});
+	});
+};
+
+userSchema.statics.finishPassReset = function (name, body, cb) {
+	if (!body.token || !body.password) {
+		err = errors.badRequest();
+		return cb(err);
+	}
+
+	this.findOne({ username: name, approved: true }, function (err, user) {
+		if (err) {
+			return cb(err);
+		}
+
+		if (!user) {
+			err = errors.notFound();
+			return cb(err);
+		}
+
+		Token.findByUsername(user.username, function (err, token) {
+			if (err) {
+				return cb(err);
+			}
+
+			if (!token) {
+				err = errors.notFound();
+				return cb(err);
+			}
+
+			if (token.check(body.token)) {
+				user.password = body.password;
+
+				Token.deleteByUsername(user.username, function (err) {
+					if (err) {
+						return cb(err);
+					}
+				});
+
+				user.save( function (err) {
+					if (err) {
+						errors.parseSaveError(err);
+						return cb(err);
+					}
+
+					cb();
+				});
+			} else {
+				err = errors.notAuthorized();
+				cb(err);
+			}
 		});
 	});
 };
