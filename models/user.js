@@ -150,7 +150,16 @@ userSchema.statics.finishPassReset = function (name, body, cb) {
 				return cb(err);
 			}
 
-			if (token.check(body.token)) {
+			token.check(body.token, function (err, ok) {
+				if (err) {
+					return cb(err);
+				}
+
+				if (!ok) {
+					err = errors.notAuthorized();
+					return cb(err);
+				}
+
 				user.password = body.password;
 
 				Token.deleteByUsername(user.username, function (err) {
@@ -167,10 +176,7 @@ userSchema.statics.finishPassReset = function (name, body, cb) {
 
 					cb();
 				});
-			} else {
-				err = errors.notAuthorized();
-				cb(err);
-			}
+			});
 		});
 	});
 };
