@@ -21,6 +21,8 @@ var postSchema = new Schema({
 postSchema.index({ slug: 1 }, { unique: true });
 postSchema.index({ subject: 1 });
 postSchema.index({ type: 1 });
+postSchema.index({ authors: 1 });
+postSchema.index({ tags: 1 });
 //Text search index
 postSchema.index({
 	title: 'text',
@@ -47,7 +49,7 @@ postSchema.statics.findWithQuery = function (query, cb) {
 	// If search is present, exclude other query params
 	if (search) {
 		queryObj = { $text: { $search: search } };
-		metaObj = { score: { $meta: "textScore" } };
+		metaObj = { score: { $meta: 'textScore' } };
 		sortObj = { score: { $meta: 'textScore' } };
 	} else {
 		if (subject) queryObj.subject = subject;
@@ -56,8 +58,6 @@ postSchema.statics.findWithQuery = function (query, cb) {
 		if (tag) queryObj.tags = tag; 
 		sortObj = { date: -1 };
 	}
-
-	console.log(queryObj);
 
 	this.find(queryObj, metaObj)
 	.select('-_id -__v')
