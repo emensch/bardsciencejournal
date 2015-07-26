@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
 	errors = require('../helpers/modelerrors'),
 	bcrypt = require('bcrypt'),
+	crypto = require('crypto'),
 	Schema = mongoose.Schema;
 
 var tokenSchema = new Schema({
@@ -12,30 +13,33 @@ var tokenSchema = new Schema({
 tokenSchema.index( { created: 1 }, { expireAfterSeconds: 600 });
 
 tokenSchema.statics.generate = function (name, cb) {
-	var key = Math.floor(Math.random() * 900000) + 100000;
 	var Token = this;
+	crypto.randomBytes(16, function (err, buf) {
+		if (err) return cb(err);
+		var key = buf.toString('hex');
 
-	bcrypt.genSalt(10, function (err, salt) {
-		if (err) return next(err);
-
-		bcrypt.hash(key.toString(), salt, function (err, hash) {
+		bcrypt.genSalt(10, function (err, salt) {
 			if (err) return cb(err);
 
-			newToken = new Token({
-				username: name,
-				token: hash
-			});
+			bcrypt.hash(key, salt, function (err, hash) {
+				if (err) return cb(err);
 
-			var upsertData = newToken.toObject();
-			delete upsertData._id;
+				newToken = new Token({
+					username: name,
+					token: hash
+				});
 
-			Token.update(
-				{username: name}, upsertData, { upsert: true }, function (err) {
-				if (err) {
-					return cb(err);
-				}
+				var upsertData = newToken.toObject();
+				delete upsertData._id;
 
-				cb(null, key);
+				Token.update(
+					{username: name}, upsertData, { upsert: true }, function (err) {
+					if (err) {
+						return cb(err);
+					}
+
+					cb(null, key);
+				});
 			});
 		});
 	});
@@ -73,7 +77,7 @@ tokenSchema.statics.deleteByUsername = function (name, cb) {
 };
 
 tokenSchema.methods.check = function (token, cb) {
-	bcrypt.compare(token.toString(), this.token, function (err, res) { 
+	bcrypt.compare(token, this.token, function (err, res) { 
 		if (err) return cb(err);
 		return cb(null, res);
 	});
