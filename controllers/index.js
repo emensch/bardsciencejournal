@@ -21,6 +21,7 @@ router.use('/posts', require('./posts'));
 router.use('/subjects', require('./subjects'));
 router.use('/types', require('./types'));
 router.use('/users', require('./users'));
+router.use('/user', require('./user'));
 
 router.use(errorHandler);
 

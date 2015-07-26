@@ -77,8 +77,8 @@ userSchema.statics.createFromReq = function (req, cb) {
 	});
 };
 
-userSchema.statics.updateFromReq = function (req, cb) {
-	var name = req.params.username;
+userSchema.statics.updateCurrentFromReq = function (req, cb) {
+	var name = req.user.username;
 	var body = req.body;
 	this.findOne({ username: name }, function (err, user) {
 		if (err) {
