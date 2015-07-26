@@ -42,6 +42,16 @@ router.delete('/:username', function (req, res, next) {
 	});
 });
 
+router.post('/:username/approve', function (req, res, next) {
+	User.approveFromReq(req, function (err) {
+		if (err) {
+			return next(err);
+		}
+
+		res.sendStatus(200);
+	});
+});
+
 router.post('/:username/resetpassword', function (req, res, next) {
 	User.beginPassReset(req.params.username, function (err) {
 		if (err) {

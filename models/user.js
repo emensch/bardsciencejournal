@@ -90,7 +90,33 @@ userSchema.statics.updateFromReq = function (req, cb) {
 			return cb(err);
 		}
 
-		user.approved = body.approved;
+		user.email = body.email || user.email;
+		user.password = body.password || user.password;
+
+		user.save( function (err) {
+			if (err) {
+				errors.parseSaveError(err);
+				return cb(err);
+			}
+
+			cb();
+		});
+	});
+};
+
+userSchema.statics.approveFromReq = function (req, cb) {
+	var name = req.params.username;
+	this.findOne({ username: name }, function (err, user) {
+		if (err) {
+			return cb(err);
+		}
+
+		if (!user) {
+			err = errors.notFound();
+			return cb(err);
+		}
+
+		user.approved = true;
 
 		user.save( function (err) {
 			if (err) {
