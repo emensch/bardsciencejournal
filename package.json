@@ -25,5 +25,8 @@
     "passport": "^0.2.2",
     "passport-http": "^0.2.2",
     "slug": "^0.9.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0"
   }
 }
