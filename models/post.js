@@ -9,11 +9,12 @@ var postSchema = new Schema({
 	photo: { type: String, required: true },
 	subject: { type: String, required: true },
 	type: { type: String, required: true },
+	description: { type: String, required: true},
 	content: { type: String, required: true },
 	authors: [String],
 	tags: [String],
 	edits: [{ _id: false, 
-		description: { type: String, required: true }, 
+		reason: { type: String, required: true }, 
 		date: { type: Date, default: Date.now }}],
 	date: { type: Date, default: Date.now }
 });
@@ -60,7 +61,7 @@ postSchema.statics.findWithQuery = function (query, cb) {
 	}
 
 	this.find(queryObj, metaObj)
-	.select('-_id -__v')
+	.select('-_id -__v -content')
 	.skip((page - 1) * 10)
 	.limit(10)
 	.sort(sortObj)
@@ -112,6 +113,7 @@ postSchema.statics.createFromReq = function (req, cb) {
 		photo: body.photourl,
 		subject: body.subject,
 		type: body.type,
+		description: body.description, 
 		content: body.content,
 	});
 
@@ -145,8 +147,9 @@ postSchema.statics.updateFromReq = function (req, cb) {
 		post.photo = body.photourl;
 		post.subject = body.subject;
 		post.type = body.type;
+		post.description = body.description;
 		post.content = body.content;
-		post.edits.push({ description: body.description });
+		post.edits.push({ reason: body.reason });
 
 		post.authors = body.authors;
 		post.tags = body.tags;
