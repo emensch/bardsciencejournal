@@ -43,7 +43,7 @@ router.post('/:username/approve', function (req, res, next) {
 });
 
 router.post('/:username/resetpassword', function (req, res, next) {
-	User.beginPassReset(req.params.username, function (err) {
+	User.beginPassReset(req, function (err) {
 		if (err) {
 			return next(err);
 		}
@@ -53,7 +53,7 @@ router.post('/:username/resetpassword', function (req, res, next) {
 });
 
 router.delete('/:username/resetpassword', function (req, res, next) {
-	User.finishPassReset(req.params.username, req.body, function (err) {
+	User.finishPassReset(req, function (err) {
 		if (err) {
 			return next(err);
 		}

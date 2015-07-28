@@ -46,6 +46,7 @@ tokenSchema.statics.generate = function (name, cb) {
 };
 
 tokenSchema.statics.findByUsername = function (name, cb) {
+	var name = name.toLowerCase();
 	this.findOne({ username: name })
 	.exec( function (err, token) {
 		if (err) {
@@ -62,6 +63,7 @@ tokenSchema.statics.findByUsername = function (name, cb) {
 };
 
 tokenSchema.statics.deleteByUsername = function (name, cb) {
+	var name = name.toLowerCase();
 	this.findOneAndRemove({ username: name }, function (err, token) {
 		if (err) {
 			return cb(err);

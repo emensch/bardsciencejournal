@@ -7,12 +7,12 @@ var postSchema = new Schema({
 	title: { type: String, required: true }, 
 	slug: { type: String, required: true },
 	photo: { type: String, required: true },
-	subject: { type: String, required: true },
-	type: { type: String, required: true },
+	subject: { type: String, required: true, lowercase: true, trim: true },
+	type: { type: String, required: true, lowercase: true, trim: true },
 	description: { type: String, required: true},
 	content: { type: String, required: true },
-	authors: [String],
-	tags: [String],
+	authors: [{ type: String, lowercase: true, trim: true }],
+	tags: [{ type: String, lowercase: true, trim: true }],
 	edits: [{ _id: false, 
 		reason: { type: String, required: true }, 
 		date: { type: Date, default: Date.now }}],
@@ -53,10 +53,10 @@ postSchema.statics.findWithQuery = function (query, cb) {
 		metaObj = { score: { $meta: 'textScore' } };
 		sortObj = { score: { $meta: 'textScore' } };
 	} else {
-		if (subject) queryObj.subject = subject;
-		if (type) queryObj.type = type;
-		if (author) queryObj.authors = author;
-		if (tag) queryObj.tags = tag; 
+		if (subject) queryObj.subject = subject.toLowerCase();
+		if (type) queryObj.type = type.toLowerCase();
+		if (author) queryObj.authors = author.toLowerCase(); 
+		if (tag) queryObj.tags = tag.toLowerCase(); 
 		sortObj = { date: -1 };
 	}
 

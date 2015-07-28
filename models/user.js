@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 	bcrypt = require('bcrypt');
 
 var userSchema = new Schema({
+	username_id: { type: String, required: true },
 	username: { type: String, required: true },
 	email: { type: String, required: true },
 	password: { type: String, required: true },
@@ -12,12 +13,12 @@ var userSchema = new Schema({
 	approved: { type: Boolean, default: false }
 });
 
-userSchema.index({ username: 1 }, { unique: true });
+userSchema.index({ username_id: 1 }, { unique: true });
 userSchema.index({ email: 1 }, {unique: true });
 
 userSchema.statics.findAll = function (cb) {
 	this.find({})
-	.select('-_id -__v -password')
+	.select('-_id -__v -password -username_id')
 	.exec( function (err, user) {
 		if (err) {
 			return cb(err);
@@ -28,7 +29,8 @@ userSchema.statics.findAll = function (cb) {
 };
 
 userSchema.statics.findByUsername = function (name, cb) {
-	this.findOne({ username: name })
+	var name = name.toLowerCase();
+	this.findOne({ username_id: name })
 	.select('-_id -__v')
 	.exec( function (err, user) {
 		if (err) {
@@ -45,7 +47,8 @@ userSchema.statics.findByUsername = function (name, cb) {
 };
 
 userSchema.statics.deleteByUsername = function (name, cb) {
-	this.findOneAndRemove({ username: name }, function (err, user) {
+	var name = name.toLowerCase();
+	this.findOneAndRemove({ username_id: name }, function (err, user) {
 		if (err) {
 			return cb(err);
 		}
@@ -78,9 +81,9 @@ userSchema.statics.createFromReq = function (req, cb) {
 };
 
 userSchema.statics.updateCurrentFromReq = function (req, cb) {
-	var name = req.user.username;
+	var name = req.user.username.toLowerCase();
 	var body = req.body;
-	this.findOne({ username: name }, function (err, user) {
+	this.findOne({ username_id: name }, function (err, user) {
 		if (err) {
 			return cb(err);
 		}
@@ -105,8 +108,8 @@ userSchema.statics.updateCurrentFromReq = function (req, cb) {
 };
 
 userSchema.statics.approveFromReq = function (req, cb) {
-	var name = req.params.username;
-	this.findOne({ username: name }, function (err, user) {
+	var name = req.params.username.toLowerCase();
+	this.findOne({ username_id: name }, function (err, user) {
 		if (err) {
 			return cb(err);
 		}
@@ -129,8 +132,9 @@ userSchema.statics.approveFromReq = function (req, cb) {
 	});
 };
 
-userSchema.statics.beginPassReset = function (name, cb) {
-	this.findOne({ username: name, approved: true }, function (err, user) {
+userSchema.statics.beginPassReset = function (req, cb) {
+	var name = req.params.username.toLowerCase();
+	this.findOne({ username_id: name, approved: true }, function (err, user) {
 		if (err) {
 			return cb(err);
 		}
@@ -153,13 +157,15 @@ userSchema.statics.beginPassReset = function (name, cb) {
 	});
 };
 
-userSchema.statics.finishPassReset = function (name, body, cb) {
+userSchema.statics.finishPassReset = function (req, cb) {
+	var body = req.body;
 	if (!body.token || !body.password) {
 		err = errors.badRequest();
 		return cb(err);
 	}
 
-	this.findOne({ username: name, approved: true }, function (err, user) {
+	var name = req.params.username.toLowerCase();
+	this.findOne({ username_id: name, approved: true }, function (err, user) {
 		if (err) {
 			return cb(err);
 		}
@@ -169,17 +175,17 @@ userSchema.statics.finishPassReset = function (name, body, cb) {
 			return cb(err);
 		}
 
-		Token.findByUsername(user.username, function (err, token) {
+		Token.findByUsername(user.username, function (err, thistoken) {
 			if (err) {
 				return cb(err);
 			}
 
-			if (!token) {
+			if (!thistoken) {
 				err = errors.notFound();
 				return cb(err);
 			}
 
-			token.check(body.token, function (err, ok) {
+			thistoken.check(body.token, function (err, ok) {
 				if (err) {
 					return cb(err);
 				}
@@ -229,7 +235,7 @@ userSchema.path('email').validate( function (email) {
 
 // Ensure username is 3-16 alphanumeric chars/dashes/underscores
 userSchema.path('username').validate( function (username) {
-	var regex = /^[a-z0-9_-]{3,16}$/;
+	var regex = /^[a-zA-Z0-9_-]{3,16}$/;
 	return regex.test(username);
 });
 
@@ -238,6 +244,17 @@ userSchema.path('password').validate( function (password) {
 	return (password.length >= 8 && password.length <= 64);
 });
 
+userSchema.pre('validate', function (next) {
+	if (!this.isModified('username')) return next();
+
+	if (!this.username) {
+		err = errors.badRequest();
+		return next(err);
+	}
+
+	this.username_id = this.username.toLowerCase();
+	next();
+});
 
 // Password hashing middleware
 userSchema.pre('save', function (next) { 
