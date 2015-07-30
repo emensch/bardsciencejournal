@@ -7,7 +7,9 @@ var app = express();
 
 app.use(passport.initialize());
 
-app.use(require('./controllers'));
+app.use('/api', require('./controllers'));
+
+app.use(express.static('public'));
 
 // Connect to mongodb and run server on success
 mongoose.connect(process.env.MONGO_URL);
