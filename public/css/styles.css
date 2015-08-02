@@ -6008,3 +6008,6 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+
+div.container {
+  padding-top: 20px; }
