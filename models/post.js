@@ -42,6 +42,7 @@ postSchema.statics.findWithQuery = function (query, cb) {
 	var tag = query.tag;
 	var search = query.search;
 	var page = query.page || 1;
+	var num = Math.min(query.num, 10);
 	var queryObj = {};
 	var sortObj = {};
 	var metaObj = {};
@@ -62,8 +63,8 @@ postSchema.statics.findWithQuery = function (query, cb) {
 
 	this.find(queryObj, metaObj)
 	.select('-_id -__v -content')
-	.skip((page - 1) * 10)
-	.limit(10)
+	.skip((page - 1) * num)
+	.limit(num)
 	.sort(sortObj)
 	.exec( function (err, post) {
 		if (err) {
