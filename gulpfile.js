@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	concat = require('gulp-concat'),
 	jade = require('gulp-jade'),
+	gutil = require('gulp-util'),
 	del = require('del');
 
 gulp.task('styles', function () {
@@ -20,7 +21,7 @@ gulp.task('styles', function () {
 
 gulp.task('jade', function () {
 	gulp.src('assets/index.jade')
-		.pipe(jade({ pretty: true }).on('error', jade.logError))
+		.pipe(jade({ pretty: true }).on('error', gutil.log))
 		.pipe(gulp.dest('public'));
 	gulp.src('assets/partials/*.jade')
 		.pipe(jade({ pretty: true }))
@@ -32,7 +33,7 @@ gulp.task('scripts', function () {
 		.pipe(concat('app.js'))
 		.pipe(gulp.dest('public/js'))
 		.pipe(rename({ suffix: '.min' }))
-		.pipe(uglify())
+		.pipe(uglify().on('error', gutil.log))
 		.pipe(gulp.dest('public/js'));
 });
 
