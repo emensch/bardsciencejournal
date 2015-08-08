@@ -1,5 +1,5 @@
 # bardsciencejournal
-The website for the Bard Science Journal! Built on Node, Express, Mongoose, and Angular.
+The website for the Bard Science Journal! Built on Node, Express, MongoDB, and Angular.
 
 ### Structure
 ##### Assets
