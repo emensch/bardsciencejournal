@@ -24,7 +24,7 @@ gulp.task('jade', function () {
 		.pipe(jade({ pretty: true }).on('error', gutil.log))
 		.pipe(gulp.dest('public'));
 	gulp.src('assets/partials/*.jade')
-		.pipe(jade({ pretty: true }))
+		.pipe(jade({ pretty: true }).on('error', gutil.log))
 		.pipe(gulp.dest('public/partials')); 
 });
 
