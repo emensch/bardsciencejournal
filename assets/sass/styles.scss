@@ -1,0 +1,70 @@
+@import 'normalize';
+
+$font-stack: Raleway, sans-serif;
+$font-color: #FFFFFF;
+$bg-color: #EFEFEF;
+$container-bg-color: #FFFFFF;
+$navbar-color: #990020;
+$navbar-hover-color: lighten($navbar-color, 10%); 
+
+body {
+	background-color: $bg-color;
+	font-family: $font-stack;
+	color: $font-color;
+}
+
+a {
+	text-decoration: none;
+	color: $font-color;
+}
+
+.container {
+	position: relative;
+	height: 800px;
+	width: 80%;
+	margin: 20px auto 80px auto;
+	background-color: $container-bg-color;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.15);
+
+}
+
+.logo {
+	width: 300px;
+	height: 50px;
+	float: left;
+	padding-bottom: 0px;
+	background-image: url(http://www.bard.edu/images/bard_logo_large.png);
+	background-repeat: no-repeat;
+}
+
+.navbar {
+	background-color: $navbar-color;
+	min-height: 40px;
+
+	ul.nav-links {
+		list-style: none;
+		margin: 0px;
+		padding: 0px;
+		display: block;
+
+		li {
+			float: left;
+
+			a {
+				position: relative;
+				display: block;
+				padding: 10px 15px;
+
+				transition: background-color 0.3s ease;
+			}
+
+			a:hover {
+				background-color: $navbar-hover-color;
+			}
+		}
+	}
+}
+
+.nav-tab {
+
+}
