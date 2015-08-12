@@ -17,9 +17,10 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error connecting to database:'));
 db.once('open', function () {
 	console.log('Connected to database.');
-
-	var server = app.listen(3000, function() {
-		var port = server.address().port
-		console.log('Listening on port %s...', port)
-	});
 });
+
+var server = app.listen(3001, function() {
+	var port = server.address().port
+	console.log('Listening on port %s...', port)
+});
+
