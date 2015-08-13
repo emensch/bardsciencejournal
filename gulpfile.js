@@ -48,10 +48,10 @@ gulp.task('watch', function () {
 
 gulp.task('clean', function (cb) {
 	del([
-			'public/js/*', 
-			'public/css/*', 
-			'public/*', 
-			'public/partials/*'
+			'public/*.*',
+			'public/css/*.*',
+			'public/js/*.*',
+			'public/partials/*.*'
 		], cb);
 });
 

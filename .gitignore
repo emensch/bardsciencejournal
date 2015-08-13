@@ -28,3 +28,11 @@ node_modules
 
 # Config file
 env.js
+
+# Files in public folders
+public/*.*
+public/partials/*.*
+public/js/*.*
+public/css/*.*
+
+# Include all gitkeeps
