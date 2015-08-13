@@ -1,5 +1,5 @@
 doctype html
-html(lang='en')
+html(lang='en' ng-app='bsj')
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
@@ -8,20 +8,22 @@ html(lang='en')
     link(href='css/styles.min.css', rel='stylesheet')
   body
     .main-container
-      .nav
-        .navbar
-          ul.nav-links
-            li.active
-              a(href='#') Home
-            li
-              a(href='#/archive') Archive
-            li
-              a(href='#/about') About
-          .search-container 
-            input(type='search', id='search', placeholder='Search')
-            button.search-btn
-              i.fa.fa-search
-
+      .header-container
+        .nav
+          .navbar
+            ul.nav-links
+              li.active
+                a(href='#') Home
+              li
+                a(href='#/archive') Archive
+              li
+                a(href='#/about') About
+            .search-container 
+              input(type='search', id='search', placeholder='Search')
+              button.search-btn
+                i.fa.fa-search
+      .body-container
+        div(ng-view)
 
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
     script(src='js/app.min.js')
