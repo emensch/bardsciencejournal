@@ -4,8 +4,10 @@ $font-stack: Raleway, sans-serif;
 $font-color: #FFFFFF;
 $bg-color: #EFEFEF;
 $container-bg-color: #FFFFFF;
-$nav-color: #990020;
-$nav-hover-color: lighten($nav-color, 10%); 
+$nav-color: #BE1D23;
+$nav-hover-color: darken($nav-color, 7.5%); 
+$search-color: darken($nav-color, 5%);
+$search-hover-color: darken($search-color, 5%);
 
 body {
 	background-color: $bg-color;
@@ -20,18 +22,25 @@ a {
 
 .nav {
 	background-color: $nav-color;
-	min-height: 40px;
+	min-height: 30px;
 }
 
 .navbar {
-	width: 800px;
+	max-width: 800px;
 	margin: auto;
+	overflow: hidden;
+	position: relative;
 
 	ul.nav-links {
 		list-style: none;
 		margin: 0px;
 		padding: 0px;
-		display: block;
+		display: inline-block;
+		float: left;
+
+		.active {
+			background-color: $nav-hover-color;
+		}
 
 		li {
 			float: left;
@@ -47,6 +56,46 @@ a {
 			a:hover {
 				background-color: $nav-hover-color;
 			}
+		}
+	}
+
+	.search-container {
+		float: right;
+		vertical-align: middle;
+		white-space: nowrap;
+		position: absolute;
+		height: 100%;
+		top: 0;
+		right: 0;
+
+		#search {
+			border: none;
+			outline: none;
+			height: 100%;
+			background-color: $search-color;
+			padding-left: 10px;
+			padding-right: 10px;
+
+			transition: background-color 0.3s ease;
+		}
+
+		#search:focus {
+			background-color: #FFFFFF;
+			color: #000000;
+		}
+
+		.search-btn {
+			border: none;
+			height: 100%;
+			float: right;
+			outline: none;
+			background-color: $search-color;
+
+			transition: background-color 0.3s ease;
+		}
+
+		.search-btn:hover {
+			background-color: $search-hover-color;
 		}
 	}
 }

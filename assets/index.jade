@@ -4,18 +4,23 @@ html(lang='en')
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title Bard Science Journal
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet')
     link(href='css/styles.min.css', rel='stylesheet')
   body
     .main-container
       .nav
         .navbar
           ul.nav-links
-            li
+            li.active
               a(href='#') Home
             li
-              a(href='#') Archive
+              a(href='#/archive') Archive
             li
-              a(href='#') About
+              a(href='#/about') About
+          .search-container 
+            input(type='search', id='search', placeholder='Search')
+            button.search-btn
+              i.fa.fa-search
 
 
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
