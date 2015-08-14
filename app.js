@@ -1,13 +1,20 @@
 var express = require('express'),
 	env = require('./env.js'),
 	mongoose = require('mongoose'),
-	passport = require('passport');
+	passport = require('passport'),
+	ng_interceptor = require('./middlewares/ng_interceptor');
 
 var app = express();
 
 app.use(passport.initialize());
 
 app.use('/api', require('./controllers'));
+
+app.use(ng_interceptor([
+	'/',
+	'/archive',
+	'/about',
+], 'public/index.html'));
 
 app.use(express.static('public'));
 
