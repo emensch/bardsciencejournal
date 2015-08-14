@@ -2,6 +2,7 @@
 
 $font-stack: Raleway, sans-serif;
 $font-color: #FFFFFF;
+$content-font-color: #000000;
 $bg-color: #EFEFEF;
 $container-bg-color: #FFFFFF;
 $nav-color: #BE1D23;
@@ -10,8 +11,6 @@ $search-color: darken($nav-color, 5%);
 $search-hover-color: darken($search-color, 5%);
 
 $box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.50);
-
-
 
 body {
 	background-color: $bg-color;
@@ -28,11 +27,17 @@ a {
 	position: relative;
 	height: 100px;
 	box-shadow: $box-shadow;
+	margin-bottom: 20px;
 }
-	
 
 .body-container {
 
+}
+	
+.content {
+	max-width: 800px;
+	margin: auto;
+	color: $content-font-color;
 }
 
 .nav {
@@ -41,6 +46,9 @@ a {
 	min-height: 30px;
 	bottom: 0;
 	width: 100%;
+	padding-left: 20px;
+	padding-right: 20px;
+	box-sizing: border-box;
 }
 
 .navbar {
