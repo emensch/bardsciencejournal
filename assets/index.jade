@@ -6,24 +6,28 @@ html(lang='en' ng-app='bsj')
     title Bard Science Journal
     link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet')
     link(href='css/styles.min.css', rel='stylesheet')
+    base(href='/')
   body
     .main-container
       .header-container
-        .nav
+        .nav(ng-controller='navController')
           .navbar
             ul.nav-links
-              li.active
-                a(href='#') Home
-              li
-                a(href='#/archive') Archive
-              li
-                a(href='#/about') About
+              li(ng-class='{active: isActive(\'/\')}')
+                a(href='/') Home
+              li(ng-class='{active: isActive(\'/archive\')}')
+                a(href='/archive') Archive
+              li(ng-class='{active: isActive(\'/about\')}')
+                a(href='/about') About
             .search-container 
               input(type='search', id='search', placeholder='Search')
               button.search-btn
                 i.fa.fa-search
       .body-container
-        div(ng-view)
+        .content
+          div(ng-view)
 
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
-    script(src='js/app.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js')
+    script(src='js/app.js')
