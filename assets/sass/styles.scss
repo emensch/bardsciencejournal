@@ -64,24 +64,25 @@ a {
 		display: inline-block;
 		float: left;
 
-		.active {
+		li.active {
 			background-color: $nav-hover-color;
 		}
 
 		li {
 			float: left;
+			background-color: $nav-color;
+
+			transition: background-color 0.3s ease;
 
 			a {
 				position: relative;
 				display: block;
 				padding: 10px 15px;
-
-				transition: background-color 0.3s ease;
 			}
+		}
 
-			a:hover {
-				background-color: $nav-hover-color;
-			}
+		li:hover {
+			background-color: $nav-hover-color;
 		}
 	}
 
