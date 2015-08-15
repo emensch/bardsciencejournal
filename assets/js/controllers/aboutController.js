@@ -2,6 +2,7 @@ angular
 	.module('bsj')
 	.controller('aboutController', aboutController);
 
-function aboutController ($scope) {
-	$scope.message = 'about';
+function aboutController() {
+	var vm = this;
+	vm.message = 'about';
 };

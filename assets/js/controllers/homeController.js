@@ -2,6 +2,7 @@ angular
 	.module('bsj')
 	.controller('homeController', homeController);
 
-function homeController ($scope) {
-	$scope.message = 'home';
+function homeController(postService) {
+	var vm = this;
+	vm.message = 'home';
 };

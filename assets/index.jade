@@ -10,14 +10,14 @@ html(lang='en' ng-app='bsj')
   body
     .main-container
       .header-container
-        .nav(ng-controller='navController')
+        .nav(ng-controller='navController as vm')
           .navbar
             ul.nav-links
-              li(ng-class='{active: isActive(\'/\')}')
+              li(ng-class='{active: vm.isActive(\'/\')}')
                 a(href='/') Home
-              li(ng-class='{active: isActive(\'/archive\')}')
+              li(ng-class='{active: vm.isActive(\'/archive\')}')
                 a(href='/archive') Archive
-              li(ng-class='{active: isActive(\'/about\')}')
+              li(ng-class='{active: vm.isActive(\'/about\')}')
                 a(href='/about') About
             .search-container 
               input(type='search', id='search', placeholder='Search')

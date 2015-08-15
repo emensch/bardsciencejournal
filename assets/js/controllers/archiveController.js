@@ -2,6 +2,7 @@ angular
 	.module('bsj')
 	.controller('archiveController', archiveController);
 
-function archiveController ($scope) {
-	$scope.message = 'archive';
+function archiveController() {
+	var vm = this;
+	vm.message = 'archive';
 };
