@@ -1,8 +1,10 @@
-angular
-	.module('bsj')
-	.controller('archiveController', archiveController);
+(function() {
+	angular
+		.module('bsj')
+		.controller('archiveController', archiveController);
 
-function archiveController() {
-	var vm = this;
-	vm.message = 'archive';
-};
+	function archiveController() {
+		var vm = this;
+		vm.message = 'archive';
+	};
+})();

@@ -1,2 +1,4 @@
-angular
-	.module('bsj', ['ngRoute']);
+(function() {
+	angular
+		.module('bsj', ['ngRoute']);	
+})();	
