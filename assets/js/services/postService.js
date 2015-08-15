@@ -3,7 +3,7 @@
 		.module('bsj')
 		.factory('postService', postService);
 
-	function postService($http) {
+	function postService(API_PREFIX, $http) {
 		var service = {
 			getPosts: getPosts
 		}
@@ -11,7 +11,7 @@
 		return service;
 
 		function getPosts() {
-			return $http.get('/api/posts')
+			return $http.get(API_PREFIX + '/posts')
 				.then(getPostsComplete)
 				.catch(getPostsFailed);
 
