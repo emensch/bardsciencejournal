@@ -43,7 +43,7 @@ gulp.task('watch', function () {
 			'assets/partials/*.jade', 
 			'assets/*.jade', 
 		], ['jade']);
-	gulp.watch('assets/js/*.js', ['scripts']);
+	gulp.watch('assets/js/**/*.js', ['scripts']);
 });
 
 gulp.task('clean', function (cb) {
