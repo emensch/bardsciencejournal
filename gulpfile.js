@@ -29,7 +29,7 @@ gulp.task('jade', function () {
 });
 
 gulp.task('scripts', function () {
-	gulp.src(['assets/js/app.module.js', 'assets/js/*.js'])
+	gulp.src(['assets/js/app.module.js', 'assets/js/**/*.js'])
 		.pipe(concat('app.js'))
 		.pipe(gulp.dest('public/js'))
 		.pipe(rename({ suffix: '.min' }))
