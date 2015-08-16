@@ -11,7 +11,6 @@ app.use(passport.initialize());
 app.use('/api', require('./controllers'));
 
 app.use(ng_interceptor([
-	'/',
 	'/archive',
 	'/about',
 	'/post/*'
