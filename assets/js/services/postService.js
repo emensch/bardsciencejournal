@@ -11,8 +11,13 @@
 
 		return service;
 
-		function getPosts() {
-			return $http.get(API_PREFIX + '/posts')
+		function getPosts(options) {
+			var queryStr = ''
+			if (options) {
+				queryStr = buildQueryStr(options);
+			}
+
+			return $http.get(API_PREFIX + '/posts' + queryStr)
 				.then(getPostsComplete)
 				.catch(getPostsFailed);
 
@@ -22,6 +27,16 @@
 
 			function getPostsFailed(res) {
 				console.log('Failed to retrieve '+res.config.url);
+			}
+
+			function buildQueryStr(opts) {
+				var str = ''
+				var i = 0;
+				for (var prop in opts) {
+					str += (i ? '&' : '?') + prop + '=' + opts[prop];
+					i++;
+				}
+				return str;
 			}
 		}
 
