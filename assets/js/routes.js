@@ -19,6 +19,11 @@
 				templateUrl: 'partials/about.html',
 				controller: 'aboutController',
 				controllerAs: 'vm'
+			})
+			.when('/post/:slug', {
+				templateUrl: 'partials/post.html',
+				controller: 'postController',
+				controllerAs: 'vm'
 			});
 
 			$locationProvider.html5Mode(true);

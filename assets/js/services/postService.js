@@ -5,7 +5,8 @@
 
 	function postService(API_PREFIX, $http) {
 		var service = {
-			getPosts: getPosts
+			getPosts: getPosts,
+			getPostBySlug: getPostBySlug
 		}
 
 		return service;
@@ -20,6 +21,20 @@
 			}
 
 			function getPostsFailed(res) {
+				console.log('Failed to retrieve '+res.config.url);
+			}
+		}
+
+		function getPostBySlug(slug) {
+			return $http.get(API_PREFIX + '/posts/' + slug)
+				.then(getPostBySlugComplete)
+				.catch(getPostBySlugFailed);
+
+			function getPostBySlugComplete(res) {
+				return res.data;
+			}
+
+			function getPostBySlugFailed(res) {
 				console.log('Failed to retrieve '+res.config.url);
 			}
 		}

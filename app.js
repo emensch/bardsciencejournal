@@ -14,6 +14,7 @@ app.use(ng_interceptor([
 	'/',
 	'/archive',
 	'/about',
+	'/post/*'
 ], 'public/index.html'));
 
 app.use(express.static('public'));
