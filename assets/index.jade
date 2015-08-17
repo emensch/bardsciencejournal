@@ -19,9 +19,9 @@ html(lang='en' ng-app='bsj')
                 a(href='/archive') Archive
               li(ng-class='{active: vm.isActive(\'/about\')}')
                 a(href='/about') About
-            .search-container 
-              input(type='search', id='search', placeholder='Search')
-              button.search-btn
+            form.search-container 
+              input(type='search', id='search', placeholder='Search' ng-model='vm.search')
+              button.search-btn(type='submit', ng-click='vm.submit()')
                 i.fa.fa-search
       .body-container
         .content
