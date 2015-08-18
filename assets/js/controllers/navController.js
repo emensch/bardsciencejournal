@@ -3,7 +3,7 @@
 		.module('bsj')
 		.controller('navController', navController);
 
-	function navController($location) {
+	function navController($location, searchService) {
 		var vm = this;
 
 		vm.isActive = function(path) {
@@ -11,7 +11,7 @@
 		}
 
 		vm.submit = function() {
-			console.log(vm.search);
+			searchService.search(vm.search);
 		}
 	}
 })();	
