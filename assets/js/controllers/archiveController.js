@@ -6,6 +6,7 @@
 	function archiveController($location, postService) {
 		var vm = this;
 		vm.message = 'archive';
+		vm.posts = [];
 
 		activate();
 
