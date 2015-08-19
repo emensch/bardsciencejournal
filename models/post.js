@@ -29,6 +29,8 @@ postSchema.index({
 	title: 'text',
 	content: 'text',
 	authors: 'text',
+	subject: 'text',
+	type: 'text',
 	tags: 'text'
 },
 {
