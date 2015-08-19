@@ -43,9 +43,12 @@ postSchema.statics.findWithQuery = function (query, cb) {
 	var author = query.author;
 	var tag = query.tag;
 	var search = query.search;
+	var startDate = query.start;
+	var endDate = query.end;
 	var page = query.page || 1;
 	var num = Math.min(query.num, 10);
 	var queryObj = {};
+	var dateObj = {};
 	var sortObj = {};
 	var metaObj = {};
 
@@ -60,6 +63,13 @@ postSchema.statics.findWithQuery = function (query, cb) {
 		if (type) queryObj.type = type.toLowerCase();
 		if (author) queryObj.authors = author.toLowerCase(); 
 		if (tag) queryObj.tags = tag.toLowerCase(); 
+
+		if (startDate || endDate) {
+			if (startDate) dateObj.$gte = new Date(startDate);
+			if (endDate) dateObj.$lte = new Date(endDate);
+			queryObj.date = dateObj;
+		}
+
 		sortObj = { date: -1 };
 	}
 
