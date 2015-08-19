@@ -1,0 +1,22 @@
+{
+  "name": "bardsciencejournal",
+  "version": "0.0.0",
+  "homepage": "https://github.com/emensch/bardsciencejournal",
+  "authors": [
+    "emensch <eli.mensch@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "susy": "~2.2.5"
+  }
+}
