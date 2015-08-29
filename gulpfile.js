@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	autoprefixer = require('gulp-autoprefixer'),
-	minifycss = require('gulp-minify-css'),
+	csso = require('gulp-csso'),
 	uglify = require('gulp-uglify'),
 	rename = require('gulp-rename'),
 	concat = require('gulp-concat'),
@@ -15,7 +15,7 @@ gulp.task('styles', function () {
 		.pipe(autoprefixer('last 2 version'))
 		.pipe(gulp.dest('public/css'))
 		.pipe(rename({ suffix: '.min' }))
-		.pipe(minifycss())
+		.pipe(csso())
 		.pipe(gulp.dest('public/css'));
 });
 
