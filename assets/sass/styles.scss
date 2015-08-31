@@ -3,6 +3,14 @@
 @import 'bower_components/susy/sass/susy';
 @import 'nav';
 
+$susy: (
+	columns: 12,
+	container: 800px,
+	global-box-sizing: border-box
+	);
+
+@include border-box-sizing;
+
 body {
 	background-color: $bg-color;
 	font-family: $font-stack;
@@ -26,9 +34,22 @@ a {
 }
 	
 .content {
-	max-width: 800px;
-	margin: auto;
+	@include container;
 	color: $content-font-color;
+	position: relative;
+}
+
+.post {
+	@include span(5);
+	height: 200px;
+}
+
+.bigpost {
+	@include span(12);
+	height: 200px;
+	background-color: #FFFFFF;
+	box-shadow: $box-shadow;	
+	margin-bottom: 20px;
 }
 
 .post {
@@ -36,3 +57,32 @@ a {
 	box-shadow: $box-shadow;	
 	margin-bottom: 20px;
 }
+
+.view {
+	opacity: 1;
+	position: absolute;
+	width: 100%;
+}
+
+.view.ng-enter,
+.view.ng-leave {
+	transition: opacity 0.3s ease;
+}
+
+.view.ng-enter {
+	opacity: 0;
+}
+
+.view.ng-enter-active {
+	opacity: 1;
+}
+
+.view.ng-leave {
+	opacity: 1;
+}
+
+.view.ng-leave-active {
+	opacity: 0;
+}
+
+

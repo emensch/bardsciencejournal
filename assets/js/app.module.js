@@ -1,4 +1,4 @@
 (function() {
 	angular
-		.module('bsj', ['ngRoute']);	
+		.module('bsj', ['ngRoute', 'ngAnimate']);	
 })();	
