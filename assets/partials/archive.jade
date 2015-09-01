@@ -1,9 +1,10 @@
-.post(ng-repeat='post in vm.posts')
-	p {{ post.title }}
-	p {{ post.description }}
-	p {{ post.photo }}
-	p {{ post.subject }}
-	p {{ post.type }}
-	span(ng-repeat='author in post.authors') {{ author }},&nbsp; 
-	br
-	span(ng-repeat='tag in post.tags') {{ tag }},&nbsp; 
+.archive-sidebar
+.archive-post(ng-repeat='post in vm.posts')
+  p {{ post.title }}
+  p {{ post.description }}
+  p {{ post.photo }}
+  p {{ post.subject }}
+  p {{ post.type }}
+  span(ng-repeat='author in post.authors') {{ author }},&nbsp; 
+  br
+  span(ng-repeat='tag in post.tags') {{ tag }},&nbsp; 
