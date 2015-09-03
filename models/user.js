@@ -2,7 +2,8 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	errors = require('../helpers/modelerrors'),
 	Token = require('./reset_token'),
-	bcrypt = require('bcrypt');
+	bcrypt = require('bcrypt'),
+	mailer = require('../helpers/mailer');
 
 var userSchema = new Schema({
 	username_id: { type: String, required: true },
@@ -150,7 +151,14 @@ userSchema.statics.beginPassReset = function (req, cb) {
 			}
 
 			// TODO Email token to user
-			console.log(token, ' sent to: ', user.email);
+			mailer.sendResetEmail(user.email, token, function (err, json) {
+				if (err) {
+					console.log('Error sending email: ', err)
+				}
+
+				console.log(token, ' sent to: ', user.email);
+			});
+			
 
 			cb();
 		});
