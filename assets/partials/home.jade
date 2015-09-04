@@ -1,3 +1,10 @@
-div(ng-repeat='post in vm.posts', ng-class='{bigpost: $first, post: !$first}')
+.post(ng-repeat='post in vm.posts', ng-class='{bigpost: $first, smallpost: !$first}')
   .img-container(ng-style='{\'background-image\': \'url(\'+post.photo+\')\'}')
-  p {{ post.title }}
+  p.title-line {{ post.title }}
+  .author-line
+    span by
+    ul
+      li 
+        a(href='/') Theo Black,
+      li 
+        a(href='/') Ian Tripp
