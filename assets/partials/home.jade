@@ -1,6 +1,3 @@
-.bigpost
-.post
-.post
-.post
-.post
-  p {{ vm.message }}
+div(ng-repeat='post in vm.posts', ng-class='{bigpost: $first, post: !$first}')
+  .img-container(ng-style='{\'background-image\': \'url(\'+post.photo+\')\'}')
+  p {{ post.title }}

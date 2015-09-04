@@ -40,23 +40,34 @@ a {
 	position: relative;
 }
 
+.img-container {
+	background-size: cover;
+	background-position: center;
+}
+
 .bigpost {
 	@include span(12);
-	height: 200px;
 	background-color: #FFFFFF;
 	box-shadow: $box-shadow;	
 	margin-bottom: 20px;
+
+	.img-container {
+		height: 400px;
+	}
 }
 
 .post {
 	@include span(6);
-	height: 200px;
 	background-color: #FFFFFF;
 	box-shadow: $box-shadow;	
 	margin-bottom: 20px;
 
 	&:nth-child(2n) {
 		@include last;
+	}
+
+	.img-container {
+		height: 200px;
 	}
 }
 
