@@ -15,7 +15,7 @@
 		}
 
 		function getPosts() {
-			return postService.getPosts()
+			return postService.getPosts({ num: 5 })
 				.then(function(data) {
 					vm.posts = data;
 					console.log(vm.posts);
