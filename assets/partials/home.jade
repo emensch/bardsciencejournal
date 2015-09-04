@@ -4,7 +4,6 @@
   .author-line
     span by
     ul
-      li 
-        a(href='/') Theo Black,
-      li 
-        a(href='/') Ian Tripp
+      li(ng-repeat='author in post.authors') 
+        a(href='/') {{ author }}
+        span(ng-if='post.authors.length > 1 && !$last') {{ $index == post.authors.length-2 ? ' and' : ',' }}
