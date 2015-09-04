@@ -49,6 +49,7 @@ a {
 	background-color: #FFFFFF;
 	box-shadow: $box-shadow;	
 	margin-bottom: 20px;
+	color: $content-font-color;
 
 	text-align: center;
 
@@ -56,6 +57,10 @@ a {
 		margin-top: 10px;
 		margin-bottom: 5px;
 		font-size: 32px;
+
+		a {
+			color: $content-font-color;
+		}
 	}
 
 	.author-line {
