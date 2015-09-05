@@ -131,6 +131,13 @@ a {
 	margin-bottom: 20px;
 }
 
+.post-content {
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-bottom: 20px;
+	text-align: left;
+}
+
 .about {
 	@include span(12);
 	height: 400px;
