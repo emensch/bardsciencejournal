@@ -115,16 +115,16 @@ a {
 }
 
 
-.archive-sidebar {
-	@include span(3);
-	height: 500px;
+.archive-nav {
+	@include span(12);
+	height: 40px;
 	background-color: #FFFFFF;
 	box-shadow: $box-shadow;
 	margin-bottom: 20px;
 }
 
 .archive-post {
-	@include span(9 last);
+	@include span(12);
 	height: 200px;
 	background-color: #FFFFFF;
 	box-shadow: $box-shadow;
