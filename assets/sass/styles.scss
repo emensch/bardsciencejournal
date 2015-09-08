@@ -125,10 +125,22 @@ a {
 
 .archive-post {
 	@include span(12);
-	height: 200px;
+	position: relative;
 	background-color: #FFFFFF;
 	box-shadow: $box-shadow;
 	margin-bottom: 20px;
+
+	.img-container {
+		position: absolute;
+		width: 200px;
+		height: 100%;
+	}
+
+	.archive-content {
+		padding-left: 215px;
+		display: inline-block;
+		width: 100%;
+	}
 }
 
 .post-content {
