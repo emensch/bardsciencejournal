@@ -8,5 +8,4 @@
       li(ng-repeat='author in vm.post.authors') 
         a(href='/') {{ author }}
         span(ng-if='vm.post.authors.length > 1 && !$last') {{ $index == vm.post.authors.length-2 ? ' and' : ',' }}
-  .post-content
-    {{ vm.post.content }}
+  .post-content {{ vm.post.content }}

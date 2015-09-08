@@ -1,6 +1,6 @@
 .post(ng-repeat='post in vm.posts', ng-class='{bigpost: $first, smallpost: !$first}')
   .img-container(ng-style='{\'background-image\': \'url(\'+post.photo+\')\'}')
-  .title-line
+  .title-line {{ post.title }}
     a(ng-href='/post/{{post.slug}}') {{ post.title }}
   .author-line
     span by
