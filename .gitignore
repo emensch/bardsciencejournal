@@ -37,3 +37,7 @@ public/*.*
 public/partials/*.*
 public/js/*.*
 public/css/*.*
+public/admin/*.*
+public/admin/partials/*.*
+public/admin/js/*.*
+public/admin/css/*.*
