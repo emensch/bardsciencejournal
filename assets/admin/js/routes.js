@@ -5,17 +5,17 @@
 
 	function router($routeProvider, $locationProvider) {
 		$routeProvider
-			.when('/admin', {
+			.when('/', {
 				templateUrl: 'partials/main.html',
 				controller: 'homeController',
 				controllerAs: 'vm'
 			}) 
-			.when('/admin/login', {
+			.when('/login', {
 				templateUrl: 'partials/login.html',
 				controller: 'archiveController',
 				controllerAs: 'vm'
 			})
-			.when('/admin/resetpassword', {
+			.when('/resetpassword', {
 				templateUrl: 'partials/resetpass.html',
 				controller: 'archiveController',
 				controllerAs: 'vm'
