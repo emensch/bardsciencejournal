@@ -7,17 +7,17 @@
 		$routeProvider
 			.when('/', {
 				templateUrl: 'partials/main.html',
-				controller: 'homeController',
+				controller: 'mainController',
 				controllerAs: 'vm'
 			}) 
 			.when('/login', {
 				templateUrl: 'partials/login.html',
-				controller: 'archiveController',
+				controller: 'loginController',
 				controllerAs: 'vm'
 			})
 			.when('/resetpassword', {
 				templateUrl: 'partials/resetpass.html',
-				controller: 'archiveController',
+				controller: 'resetpassController',
 				controllerAs: 'vm'
 			});
 
