@@ -1,0 +1,17 @@
+doctype html
+html(lang='en' ng-app='bsj')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Bard Science Journal
+    base(href='/admin')
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet')
+    link(href='admin/css/styles.min.css', rel='stylesheet') 
+  body
+    p ADMIN TIME
+    .view(ng-view)
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js')
+    script(src='admin/js/app.js')
