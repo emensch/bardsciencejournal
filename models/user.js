@@ -165,6 +165,35 @@ userSchema.statics.beginPassReset = function (req, cb) {
 	});
 };
 
+userSchema.statics.checkPassReset = function (req, cb) {
+	var name = req.params.username.toLowerCase();
+	var token = req.params.token;
+
+	Token.findByUsername(name, function (err, thistoken) {
+		if (err) {
+			return cb(err);
+		}
+
+		if (!thistoken) {
+			err = errors.notFound();
+			return cb(err);
+		}
+
+		thistoken.check(token, function (err, ok) {
+			if (err) {
+				return cb(err);
+			}
+
+			if (!ok) {
+				err = errors.notFound()
+				return cb(err);
+			}
+
+			cb();
+		});
+	});
+}
+
 userSchema.statics.finishPassReset = function (req, cb) {
 	var body = req.body;
 	if (!body.token || !body.password) {

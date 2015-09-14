@@ -52,6 +52,16 @@ router.post('/:username/resetpassword', function (req, res, next) {
 	});
 });
 
+router.get('/:username/resetpassword/:token', function (req, res, next) {
+	User.checkPassReset(req, function (err) {
+		if (err) {
+			return next(err);
+		}
+
+		res.sendStatus(200);
+	});
+});
+
 router.delete('/:username/resetpassword', function (req, res, next) {
 	User.finishPassReset(req, function (err) {
 		if (err) {
