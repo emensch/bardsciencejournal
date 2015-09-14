@@ -150,7 +150,7 @@ userSchema.statics.beginPassReset = function (req, cb) {
 				return cb(err);
 			}
 
-			mailer.sendResetEmail(user.email, token, function (err, json) {
+			mailer.sendResetEmail(user.email, user.username, token, function (err, json) {
 				if (err) {
 					console.log('Error sending email: ', err)
 				}
