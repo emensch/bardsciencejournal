@@ -39,11 +39,11 @@
 				.catch(submitPassFailed);
 
 			function submitPassComplete(res) {
-				return true;
+				return $q.resolve();
 			}
 
 			function submitPassFailed(res) {
-				return false;
+				return $q.reject();
 			}
 		}
 	}
