@@ -13,8 +13,13 @@ app.use('/api', require('./controllers'));
 app.use(ng_interceptor([
 	'/archive',
 	'/about',
-	'/post/*'
+	'/post/*',
 ], 'public/index.html'));
+
+app.use(ng_interceptor([
+	'/admin/login',
+	'/admin/resetpassword'
+], 'public/admin/index.html'));
 
 app.use(express.static('public'));
 
