@@ -150,7 +150,6 @@ userSchema.statics.beginPassReset = function (req, cb) {
 				return cb(err);
 			}
 
-			// TODO Email token to user
 			mailer.sendResetEmail(user.email, token, function (err, json) {
 				if (err) {
 					console.log('Error sending email: ', err)
@@ -196,7 +195,9 @@ userSchema.statics.checkPassReset = function (req, cb) {
 
 userSchema.statics.finishPassReset = function (req, cb) {
 	var body = req.body;
-	if (!body.token || !body.password) {
+	var token = req.params.token;
+
+	if (!body.password) {
 		err = errors.badRequest();
 		return cb(err);
 	}
@@ -222,7 +223,7 @@ userSchema.statics.finishPassReset = function (req, cb) {
 				return cb(err);
 			}
 
-			thistoken.check(body.token, function (err, ok) {
+			thistoken.check(token, function (err, ok) {
 				if (err) {
 					return cb(err);
 				}

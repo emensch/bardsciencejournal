@@ -62,7 +62,7 @@ router.get('/:username/resetpassword/:token', function (req, res, next) {
 	});
 });
 
-router.delete('/:username/resetpassword', function (req, res, next) {
+router.delete('/:username/resetpassword/:token', function (req, res, next) {
 	User.finishPassReset(req, function (err) {
 		if (err) {
 			return next(err);
