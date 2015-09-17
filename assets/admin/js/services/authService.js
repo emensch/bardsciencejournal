@@ -3,7 +3,7 @@
 		.module('bsj.admin')
 		.factory('authService', authService);
 
-	function authService($q, $http, base64) {
+	function authService(API_PREFIX, $q, $http, base64) {
 		var currentUser = null;
 
 		var service = {
@@ -28,7 +28,7 @@
 				}
 			};
 
-			return $http.get('api/auth', config)
+			return $http.get(API_PREFIX + '/auth', config)
 				.then(loginSuccess)
 				.catch(loginFailed);
 
@@ -49,7 +49,7 @@
 		}
 
 		function logout() {
-			currentUser = {};
+			currentUser = null;
 		}
 
 		function getCurrentUser(username, password) {

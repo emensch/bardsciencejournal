@@ -3,7 +3,7 @@
 		.module('bsj.admin')
 		.factory('resetpassService', resetpassService);
 
-	function resetpassService($q, $http) {
+	function resetpassService(API_PREFIX, $q, $http) {
 		var service = {
 			checkToken: checkToken,
 			submitPass: submitPass
@@ -12,7 +12,7 @@
 		return service;
 
 		function checkToken(username, token) {
-			return $http.get('api/users/' + username + '/resetpassword/' + token)
+			return $http.get(API_PREFIX + '/users/' + username + '/resetpassword/' + token)
 				.then(checkTokenComplete)
 				.catch(checkTokenFailed);
 
@@ -34,7 +34,7 @@
 				}
 			}
 
-			return $http.delete('api/users/' + username + '/resetpassword/' + token, config)
+			return $http.delete(API_PREFIX + '/users/' + username + '/resetpassword/' + token, config)
 				.then(submitPassComplete)
 				.catch(submitPassFailed);
 
