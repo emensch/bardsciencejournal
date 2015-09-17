@@ -5,7 +5,7 @@
 		.module('bsj')
 		.factory('postService', postService);
 
-	function postService(API_PREFIX, $http) {
+	function postService(API_PREFIX, $http, queryBuildService) {
 		var service = {
 			getPosts: getPosts,
 			getPostBySlug: getPostBySlug
@@ -16,7 +16,7 @@
 		function getPosts(options) {
 			var queryStr = '';
 			if (options) {
-				queryStr = buildQueryStr(options);
+				queryStr = queryBuildService.buildQueryStr(options);
 			}
 
 			return $http.get(API_PREFIX + '/posts' + queryStr)
@@ -29,16 +29,6 @@
 
 			function getPostsFailed(res) {
 				console.log('Failed to retrieve '+res.config.url);
-			}
-
-			function buildQueryStr(opts) {
-				var str = '';
-				var i = 0;
-				for (var prop in opts) {
-					str += (i ? '&' : '?') + prop + '=' + opts[prop];
-					i++;
-				}
-				return str;
 			}
 		}
 
