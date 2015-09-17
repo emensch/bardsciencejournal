@@ -7,7 +7,7 @@
 		var currentUser = null;
 
 		var service = {
-			currentUser: currentUser, 
+			getCurrentUser: getCurrentUser, 
 			login: login,
 			logout: logout,
 			getAuthStr: getAuthStr
@@ -18,8 +18,9 @@
 		function login(credentials) {
 			var username = credentials.username;
 			var password = credentials.password;
-
 			var authStr = getAuthStr(username, password);
+
+			currentUser = null;
 
 			var config = {
 				headers: {
@@ -36,14 +37,12 @@
 					username: username,
 					password: password
 				}
-
-				console.log('Auth')
+				
 				return $q.resolve();
 			}
 
 			function loginFailed(res) {
 				currentUser = null;
-				console.log('Auth failed');
 
 				return $q.reject();
 			}
@@ -51,6 +50,10 @@
 
 		function logout() {
 			currentUser = {};
+		}
+
+		function getCurrentUser(username, password) {
+			return currentUser;
 		}
 
 		function getAuthStr(username, password) {

@@ -13,14 +13,12 @@
 					password: vm.password
 				}
 
-				console.log(credentials);
-
 				return authService.login(credentials)
 					.then(loginComplete)
 					.catch(loginFailed);
 
 				function loginComplete() {
-					console.log(authService.currentUser);
+					console.log(authService.getCurrentUser());
 				}
 
 				function loginFailed() {

@@ -13,7 +13,7 @@
 		function appendBasicHeader(config) {
 			// Workaround for circular dependency injection
 			var authService = $injector.get('authService');
-			var user = authService.currentUser;
+			var user = authService.getCurrentUser();
 
 			if(user) {
 				console.log('user logged in');
