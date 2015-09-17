@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj')
 		.controller('archiveController', archiveController);
@@ -44,7 +46,7 @@
 					vm.subjects = data;
 					console.log(vm.subjects);
 					return vm.types;
-				})
+				});
 		}
-	};
+	}
 })();

@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj.admin')
 		.factory('authInterceptor', authInterceptor);
@@ -6,7 +8,7 @@
 	function authInterceptor($injector) {
 		var interceptor = {
 			request: appendBasicHeader
-		}
+		};
 
 		return interceptor;
 
@@ -16,9 +18,8 @@
 			var user = authService.getCurrentUser();
 
 			if(user) {
-				console.log('user logged in');
-				var authStr = getAuthStr(user.username, user.password);
-				config.headers['Authorization'] = authStr;
+				var authStr = authService.getAuthStr(user.username, user.password);
+				config.headers.Authorization = authStr;
 				return config; 
 			} 
 

@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj')
 		.factory('searchService', searchService);
@@ -6,7 +8,7 @@
 	function searchService($location) {
 		var service = {
 			search: search
-		}
+		};
 
 		return service;
 

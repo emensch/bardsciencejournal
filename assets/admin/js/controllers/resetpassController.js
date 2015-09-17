@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+	
 	angular
 		.module('bsj.admin')
 		.controller('resetpassController', resetpassController);
@@ -34,10 +36,10 @@
 		}
 
 		function submitPass() {
-			if(vm.pw1 === vm.pw1) {
+			if(vm.pw1 == vm.pw1) {
 				console.log(vm.pw1);
 				resetpassService.submitPass(username, token, vm.pw1);
 			}
 		}
-	};
+	}
 })();

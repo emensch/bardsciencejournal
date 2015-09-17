@@ -1,7 +1,9 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj.admin')
-		.config(router)
+		.config(router);
 
 	function router($routeProvider, $locationProvider) {
 		$routeProvider
@@ -27,5 +29,5 @@
 			});
 
 			$locationProvider.html5Mode(true);
-	};	
+	}
 })();

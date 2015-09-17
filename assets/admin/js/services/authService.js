@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj.admin')
 		.factory('authService', authService);
@@ -11,7 +13,7 @@
 			login: login,
 			logout: logout,
 			getAuthStr: getAuthStr
-		}
+		};
 
 		return service;
 
@@ -32,16 +34,16 @@
 				.then(loginSuccess)
 				.catch(loginFailed);
 
-			function loginSuccess(res) {
+			function loginSuccess() {
 				currentUser = {
 					username: username,
 					password: password
-				}
+				};
 				
 				return $q.resolve();
 			}
 
-			function loginFailed(res) {
+			function loginFailed() {
 				currentUser = null;
 
 				return $q.reject();
@@ -52,7 +54,7 @@
 			currentUser = null;
 		}
 
-		function getCurrentUser(username, password) {
+		function getCurrentUser() {
 			return currentUser;
 		}
 

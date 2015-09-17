@@ -1,4 +1,6 @@
 (function() {	
+	'use strict';
+
 	angular
 		.module('bsj')
 		.controller('homeController', homeController);
@@ -23,5 +25,5 @@
 					return vm.posts;
 				});
 		}
-	};
+	}
 })();

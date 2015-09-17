@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj.admin')
 		.controller('newuserController', newuserController);
@@ -10,23 +12,23 @@
 
 		function submit() {
 			if(vm.pw1 == vm.pw2) {
-				data = {
+				var data = {
 					username: vm.username,
 					email: vm.email,
 					password: vm.pw1
-				}
+				};
 
 				return userService.createUser(data)
 					.then(createUserComplete)
 					.catch(createUserFailed);
+			}
 
-				function createUserComplete() {
-					console.log('Creation succeeded');
-				}
+			function createUserComplete() {
+				console.log('Creation succeeded');
+			}
 
-				function createUserFailed() {
-					console.log('Creation failed')
-				}
+			function createUserFailed() {
+				console.log('Creation failed');
 			}	
 		}
 	}

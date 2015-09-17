@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj.admin')
 		.factory('resetpassService', resetpassService);
@@ -7,7 +9,7 @@
 		var service = {
 			checkToken: checkToken,
 			submitPass: submitPass
-		}
+		};
 
 		return service;
 
@@ -16,12 +18,11 @@
 				.then(checkTokenComplete)
 				.catch(checkTokenFailed);
 
-			function checkTokenComplete(res) {
+			function checkTokenComplete() {
 				return $q.resolve();
 			}
 
-			function checkTokenFailed(res) {
-				console.log('fale')
+			function checkTokenFailed() {
 				return $q.reject();
 			}
 		}
@@ -32,17 +33,17 @@
 				data: {
 					password: password
 				}
-			}
+			};
 
 			return $http.delete(API_PREFIX + '/users/' + username + '/resetpassword/' + token, config)
 				.then(submitPassComplete)
 				.catch(submitPassFailed);
 
-			function submitPassComplete(res) {
+			function submitPassComplete() {
 				return $q.resolve();
 			}
 
-			function submitPassFailed(res) {
+			function submitPassFailed() {
 				return $q.reject();
 			}
 		}

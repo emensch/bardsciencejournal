@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj')
 		.factory('postService', postService);
@@ -7,12 +9,12 @@
 		var service = {
 			getPosts: getPosts,
 			getPostBySlug: getPostBySlug
-		}
+		};
 
 		return service;
 
 		function getPosts(options) {
-			var queryStr = ''
+			var queryStr = '';
 			if (options) {
 				queryStr = buildQueryStr(options);
 			}
@@ -30,7 +32,7 @@
 			}
 
 			function buildQueryStr(opts) {
-				var str = ''
+				var str = '';
 				var i = 0;
 				for (var prop in opts) {
 					str += (i ? '&' : '?') + prop + '=' + opts[prop];

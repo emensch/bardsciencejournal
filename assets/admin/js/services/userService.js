@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj.admin')
 		.factory('userService', userService);
@@ -33,11 +35,11 @@
 				.then(createUserComplete)
 				.catch(createUserFailed);
 
-			function createUserComplete(res) {
+			function createUserComplete() {
 				return $q.resolve();
 			}
 
-			function createUserFailed(res) {
+			function createUserFailed() {
 				return $q.reject();
 			}
 		}	
@@ -47,11 +49,11 @@
 				.then(deleteUserComplete)
 				.catch(deleteUserFailed);
 
-			function deleteUserComplete(res) {
+			function deleteUserComplete() {
 				return $q.resolve();
 			}
 
-			function deleteUserFailed(res) {
+			function deleteUserFailed() {
 				return $q.reject();
 			}
 		}
@@ -61,11 +63,11 @@
 				.then(approveUserComplete)
 				.catch(approveUserFailed);
 
-			function approveUserComplete(res) {
+			function approveUserComplete() {
 				return $q.resolve();
 			}
 
-			function approveUserFailed(res) {
+			function approveUserFailed() {
 				return $q.reject();
 			}
 		}

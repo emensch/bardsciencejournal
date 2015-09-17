@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj.admin')
 		.controller('loginController', loginController);
@@ -10,22 +12,22 @@
 
 		function submit() {
 			if(vm.username && vm.password) {
-				credentials = {
+				var credentials = {
 					username: vm.username,
 					password: vm.password
-				}
+				};
 
 				return authService.login(credentials)
 					.then(loginComplete)
 					.catch(loginFailed);
+			}
 
-				function loginComplete() {
-					console.log(authService.getCurrentUser());
-				}
+			function loginComplete() {
+				console.log(authService.getCurrentUser());
+			}
 
-				function loginFailed() {
-					console.log('Login failed');
-				}
+			function loginFailed() {
+				console.log('Login failed');
 			}
 		}
 	}

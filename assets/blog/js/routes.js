@@ -1,7 +1,9 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj')
-		.config(router)
+		.config(router);
 
 	function router($routeProvider, $locationProvider) {
 		$routeProvider

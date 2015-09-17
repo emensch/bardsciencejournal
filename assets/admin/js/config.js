@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj.admin')
 		.config(configure);
@@ -7,7 +9,7 @@
 		'$httpProvider',
 	];
 
-	function configure ($httpProvider) {
+	function configure($httpProvider) {
 		$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 		$httpProvider.interceptors.push('authInterceptor');
 	}

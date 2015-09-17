@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	angular
 		.module('bsj')
 		.service('descriptorService', descriptorService);
@@ -7,7 +9,7 @@
 		var service = {
 			getSubjects: getSubjects,
 			getTypes: getTypes 
-		}
+		};
 
 		return service;
 
