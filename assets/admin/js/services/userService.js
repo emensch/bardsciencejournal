@@ -15,8 +15,13 @@
 
 		return service;
 
-		function getUsers() {
-			return $http.get(API_PREFIX + '/users')
+		function getUsers(options) {
+			var queryStr = '';
+			if (options) {
+				queryStr = queryBuildService.buildQueryStr(options);
+			}
+
+			return $http.get(API_PREFIX + '/users' + queryStr)
 				.then(getUsersComplete)
 				.catch(getUsersFailed);
 
