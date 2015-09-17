@@ -3,7 +3,7 @@ var express = require('express'),
 	User = require('../models/user');
 
 router.get('/', function (req, res, next) {
-	User.findAll( function (err, users) {
+	User.findAllWithQuery(req.query, function (err, users) {
 		if (err) {
 			return next(err);
 		}

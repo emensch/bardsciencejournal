@@ -17,8 +17,17 @@ var userSchema = new Schema({
 userSchema.index({ username_id: 1 }, { unique: true });
 userSchema.index({ email: 1 }, {unique: true });
 
-userSchema.statics.findAll = function (cb) {
-	this.find({})
+userSchema.statics.findAllWithQuery = function (query, cb) {
+	var queryObj = {};
+
+	if (query.approved) {
+		var approved = query.approved.toLowerCase();
+
+		if (approved == 'true') queryObj = { approved: true };
+		if (approved == 'false') queryObj = { approved: false };
+	}
+
+	this.find(queryObj)
 	.select('-_id -__v -password -username_id')
 	.exec( function (err, user) {
 		if (err) {
