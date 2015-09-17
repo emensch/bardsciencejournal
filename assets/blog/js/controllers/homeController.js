@@ -5,6 +5,7 @@
 
 	function homeController(postService) {
 		var vm = this;
+		
 		vm.message = 'home';
 		vm.posts = [];
 

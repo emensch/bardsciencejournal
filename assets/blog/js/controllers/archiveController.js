@@ -5,6 +5,7 @@
 
 	function archiveController($q, $location, postService, descriptorService) {
 		var vm = this;
+		
 		vm.message = 'archive';
 		vm.posts = [];
 		vm.types = [];

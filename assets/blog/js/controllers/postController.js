@@ -5,6 +5,7 @@
 
 	function postController($routeParams, postService) {
 		var vm = this;
+		
 		vm.message = 'post';
 		vm.post = {};
 		

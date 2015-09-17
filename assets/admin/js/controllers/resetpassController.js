@@ -5,7 +5,10 @@
 
 	function resetpassController($routeParams, resetpassService) {
 		var vm = this;
+
 		vm.OK = false;
+		vm.submitPass = submitPass;
+
 
 		var username = $routeParams.username;
 		var token = $routeParams.token;
@@ -30,7 +33,7 @@
 			}
 		}
 
-		vm.submitPass = function() {
+		function submitPass() {
 			if(vm.pw1 === vm.pw1) {
 				console.log(vm.pw1);
 				resetpassService.submitPass(username, token, vm.pw1);

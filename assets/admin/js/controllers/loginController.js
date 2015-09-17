@@ -6,7 +6,9 @@
 	function loginController(authService) {
 		var vm = this;
 
-		vm.submit = function() {
+		vm.submit = submit;
+
+		function submit() {
 			if(vm.username && vm.password) {
 				credentials = {
 					username: vm.username,
