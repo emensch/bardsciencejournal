@@ -7,8 +7,9 @@ html(lang='en' ng-app='bsj.admin')
     base(href='/admin')
     link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet')
     link(href='admin/css/styles.min.css', rel='stylesheet') 
-  body
+  body(ng-controller='rootController as vm')
     p ADMIN TIME
+    p {{ vm.user.username }}
     .view(ng-view)
 
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
