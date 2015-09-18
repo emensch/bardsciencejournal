@@ -10,7 +10,10 @@
 			.when('/admin', {
 				templateUrl: 'admin/partials/main.html',
 				controller: 'mainController',
-				controllerAs: 'vm'
+				controllerAs: 'vm',
+				resolve: {
+					checkAuth: checkAuth
+				}
 			}) 
 			.when('/admin/login', {
 				templateUrl: 'admin/partials/login.html',
@@ -29,5 +32,18 @@
 			});
 
 			$locationProvider.html5Mode(true);
+	}
+
+	function checkAuth($q, $location, authService) {
+		var deferred = $q.defer();
+
+		if(authService.getCurrentUser()) {
+			deferred.resolve();
+		} else {
+			deferred.reject();
+			$location.path('/admin/login');
+		}
+
+		return deferred.promise;
 	}
 })();
