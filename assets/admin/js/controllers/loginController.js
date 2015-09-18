@@ -5,7 +5,7 @@
 		.module('bsj.admin')
 		.controller('loginController', loginController);
 
-	function loginController(authService) {
+	function loginController(authService, $location) {
 		var vm = this;
 
 		vm.submit = submit;
@@ -23,6 +23,7 @@
 			}
 
 			function loginComplete() {
+				$location.path('/admin');
 				console.log(authService.getCurrentUser());
 			}
 
