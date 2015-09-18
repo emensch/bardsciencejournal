@@ -5,7 +5,7 @@
 		.module('bsj.admin')
 		.factory('authService', authService);
 
-	function authService(API_PREFIX, $q, $http, base64) {
+	function authService(API_PREFIX, $q, $http, $rootScope, base64) {
 		var currentUser = null;
 
 		var service = {
@@ -40,6 +40,8 @@
 					password: password
 				};
 				
+				$rootScope.$emit('loginStatusChanged');
+
 				return $q.resolve();
 			}
 
@@ -52,6 +54,7 @@
 
 		function logout() {
 			currentUser = null;
+			$rootScope.$emit('loginStatusChanged');
 		}
 
 		function getCurrentUser() {
