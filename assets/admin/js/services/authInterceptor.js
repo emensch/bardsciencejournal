@@ -5,25 +5,34 @@
 		.module('bsj.admin')
 		.factory('authInterceptor', authInterceptor);
 
-	function authInterceptor($injector) {
+	function authInterceptor($q, $location, $injector) {
 		var interceptor = {
-			request: appendBasicHeader
+			request: appendBasicHeader,
+			responseError: redirectToLogin
 		};
 
 		return interceptor;
 
-		function appendBasicHeader(config) {
+		function appendBasicHeader(request) {
 			// Workaround for circular dependency injection
 			var authService = $injector.get('authService');
 			var user = authService.getCurrentUser();
 
 			if(user) {
 				var authStr = authService.getAuthStr(user.username, user.password);
-				config.headers.Authorization = authStr;
-				return config; 
+				request.headers.Authorization = authStr;
+				return request; 
 			} 
 
-			return config; 
+			return request; 
+		}
+
+		function redirectToLogin(rejection) {
+			if (rejection.status == 401) {
+				$location.path('/admin/login');
+			}
+
+			return $q.reject(rejection);
 		}
 	}
 })();
