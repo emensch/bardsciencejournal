@@ -5,7 +5,7 @@
 		.module('bsj.admin')
 		.factory('userService', userService);
 
-	function userService(API_PREFIX, $q, $http) {
+	function userService(API_PREFIX, $q, $http, queryBuildService) {
 		var service = {
 			getUsers: getUsers,
 			createUser: createUser,
