@@ -3,9 +3,9 @@
 
 	angular
 		.module('bsj.admin')
-		.controller('newuserController', newuserController);
+		.controller('registerController', registerController);
 
-	function newuserController(userService) {
+	function registerController(userService) {
 		var vm = this;
 
 		vm.submit = submit;

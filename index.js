@@ -19,7 +19,7 @@ app.use(ng_interceptor([
 app.use(ng_interceptor([
 	'/admin/login',
 	'/admin/resetpassword',
-	'/admin/newuser',
+	'/admin/register',
 ], 'public/admin/index.html'));
 
 app.use(express.static('public'));

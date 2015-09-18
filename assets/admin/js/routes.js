@@ -17,9 +17,9 @@
 				controller: 'loginController',
 				controllerAs: 'vm'
 			})
-			.when('/admin/newuser', {
-				templateUrl: 'admin/partials/newuser.html',
-				controller: 'newuserController',
+			.when('/admin/register', {
+				templateUrl: 'admin/partials/register.html',
+				controller: 'registerController',
 				controllerAs: 'vm'
 			})
 			.when('/admin/resetpassword', {
