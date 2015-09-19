@@ -5,7 +5,7 @@
 		.module('bsj.admin')
 		.factory('authService', authService);
 
-	function authService(API_PREFIX, $q, $http, $rootScope, base64) {
+	function authService(API_PREFIX, $q, $http, $rootScope, localStorageService, base64) {
 		var currentUser = null;
 
 		var service = {
@@ -39,7 +39,8 @@
 					username: username,
 					password: password
 				};
-				
+
+				localStorageService.set('currentUser', currentUser);
 				$rootScope.$emit('loginStatusChanged');
 
 				return $q.resolve();
@@ -54,10 +55,20 @@
 
 		function logout() {
 			currentUser = null;
+			localStorageService.remove('currentUser');
 			$rootScope.$emit('loginStatusChanged');
 		}
 
 		function getCurrentUser() {
+			if(!currentUser) {
+				var localStorageUser = localStorageService.get('currentUser');
+				if(localStorageUser) {
+					console.log('Retrieving user from local storage');
+					currentUser = localStorageUser;
+					$rootScope.$emit('loginStatusChanged');
+				}
+			}
+
 			return currentUser;
 		}
 
