@@ -2,5 +2,5 @@
 	'use strict';
 	
 	angular
-		.module('bsj.admin', ['ngRoute']);	
+		.module('bsj.admin', ['ngRoute', 'LocalStorageModule']);	
 })();	
