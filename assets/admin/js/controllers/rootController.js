@@ -9,11 +9,17 @@
 		var vm = this;
 
 		vm.user = null;
+		vm.logout = logout;
 
 		$rootScope.$on('loginStatusChanged', updateUser);
 
 		function updateUser() {
 			vm.user = authService.getCurrentUser();
+		}
+
+		function logout() {
+			authService.logout();
+			$location.path('/admin/login');
 		}
 	}
 })();
