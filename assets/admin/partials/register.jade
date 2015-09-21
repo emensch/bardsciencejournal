@@ -1,5 +1,5 @@
 p new user
-form(novalidate) 
+form(name='registerform', novalidate) 
   div Username
   input(type='text', ng-model='vm.username', validate-username, required)
   div Email
@@ -8,4 +8,4 @@ form(novalidate)
   input(type='password', ng-model='vm.pw1', validate-password, required)
   div Confirm password
   input(type='password', ng-model='vm.pw2', validate-password, compare-to='vm.pw1', required)
-  button(type='submit', ng-click='vm.submit()') Submit
+  button(type='submit', ng-click='registerform.$valid && vm.submit()') Submit
