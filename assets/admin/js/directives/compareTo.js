@@ -17,12 +17,12 @@
 
 		return directive;
 
-		function link(scope, elem, attrs, ngModel) {
-			ngModel.$validators.compareTo = function(modelValue) {
-				return modelValue == scope.otherVal;
+		function link($scope, $elem, $attrs, ngModel) {
+			ngModel.$validators.compareTo = function(value) {
+				return value == $scope.otherVal;
 			};
 
-			scope.$watch('otherVal', function() {
+			$scope.$watch('otherVal', function() {
 				ngModel.$validate();
 			});
 		}

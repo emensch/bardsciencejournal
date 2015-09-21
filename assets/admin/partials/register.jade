@@ -1,11 +1,11 @@
 p new user
 form(novalidate) 
   div Username
-  input(type='text', ng-model='vm.username' ng-pattern='/^[a-zA-Z0-9_-]{3,16}$/' required)
+  input(type='text', ng-model='vm.username', validate-username, required)
   div Email
-  input(type='email', ng-model='vm.email' ng-pattern='/^([\\w-\.]+@([\\w-]+\.)+[\\w-]{2,4})?$/' required)
+  input(type='email', ng-model='vm.email', validate-email, required)
   div Password
-  input(type='password', ng-model='vm.pw1' ng-minlength='8' ng-maxlength='64' required)
+  input(type='password', ng-model='vm.pw1', validate-password, required)
   div Confirm password
-  input(type='password', ng-model='vm.pw2' ng-minlength='8' ng-maxlength='64' compare-to='vm.pw1' required)
+  input(type='password', ng-model='vm.pw2', validate-password, compare-to='vm.pw1', required)
   button(type='submit', ng-click='vm.submit()') Submit
