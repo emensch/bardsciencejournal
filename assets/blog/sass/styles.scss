@@ -26,6 +26,23 @@ a {
 	position: relative;
 	box-shadow: $box-shadow;
 	margin-bottom: 20px;
+	background-color: #FFFFFF;
+}
+
+.title-container {
+	text-align: center;
+	font-family: 'Droid Serif', serif; 
+}
+
+.bard {
+	font-size: 48px;
+	color: $nav-color;
+	margin-right: 8px;
+}
+
+.science-journal {
+	font-size: 30px;
+	color: #000000;
 }
 
 .body-container {
