@@ -19,7 +19,7 @@
 
 			$scope.$watch($attrs.ngModel, function(value) {
 				var valid = regex.test(value);
-				ngModel.$setValidity($attrs.ngModel, valid);
+				ngModel.$setValidity('pattern', valid);
 			});
 		}	
 	}
