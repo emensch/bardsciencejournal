@@ -1,0 +1,26 @@
+.view {
+	opacity: 1;
+	position: absolute;
+	width: 100%;
+}
+
+.view.ng-enter,
+.view.ng-leave {
+	transition: opacity 0.3s ease;
+}
+
+.view.ng-enter {
+	opacity: 0;
+}
+
+.view.ng-enter-active {
+	opacity: 1;
+}
+
+.view.ng-leave {
+	opacity: 1;
+}
+
+.view.ng-leave-active {
+	opacity: 0;
+}

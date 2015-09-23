@@ -1,5 +1,5 @@
 .nav {
-	background-color: $nav-color;
+	background-color: $primary-color;
 	min-height: 30px;
 	bottom: 0;
 	width: 100%;
@@ -26,7 +26,7 @@
 
 		li {
 			float: left;
-			background-color: $nav-color;
+			background-color: $primary-color;
 
 			transition: background-color 0.3s ease;
 

@@ -1,7 +1,10 @@
 @import 'bower_components/normalize-scss/_normalize';
 @import 'bower_components/susy/sass/susy';
 @import 'variables';
+@import 'mixins';
 @import 'nav';
+@import 'header';
+@import 'ng-animate';
 
 @import url(https://fonts.googleapis.com/css?family=Droid+Serif|Raleway);
 
@@ -16,35 +19,12 @@ $susy: (
 
 body {
 	background-color: $bg-color;
-	font-family: $font-stack;
+	font-family: $sans-fonts;
 	color: $font-color;
 }
 
 a {
 	text-decoration: none;
-}
-
-.header-container {
-	position: relative;
-	box-shadow: $box-shadow;
-	margin-bottom: 20px;
-	background-color: #FFFFFF;
-}
-
-.title-container {
-	text-align: center;
-	font-family: 'Droid Serif', serif; 
-}
-
-.bard {
-	font-size: 48px;
-	color: $nav-color;
-	margin-right: 8px;
-}
-
-.science-journal {
-	font-size: 30px;
-	color: #000000;
 }
 
 .body-container {
@@ -64,8 +44,8 @@ a {
 }
 
 .post {
-	background-color: #FFFFFF;
-	box-shadow: $box-shadow;	
+	@include card;
+
 	margin-bottom: 20px;
 	color: $content-font-color;
 
@@ -135,17 +115,17 @@ a {
 
 .archive-nav {
 	@include span(12);
+	@include card;
+
 	height: 40px;
-	background-color: #FFFFFF;
-	box-shadow: $box-shadow;
 	margin-bottom: 20px;
 }
 
 .archive-post {
 	@include span(12);
+	@include card;
+
 	position: relative;
-	background-color: #FFFFFF;
-	box-shadow: $box-shadow;
 	margin-bottom: 20px;
 	min-height: 200px;
 
@@ -217,37 +197,8 @@ a {
 
 .about {
 	@include span(12);
+	@include card;
+
 	height: 400px;
-	background-color: #FFFFFF;
-	box-shadow: $box-shadow;
 	margin-bottom: 20px;
 }
-
-.view {
-	opacity: 1;
-	position: absolute;
-	width: 100%;
-}
-
-.view.ng-enter,
-.view.ng-leave {
-	transition: opacity 0.3s ease;
-}
-
-.view.ng-enter {
-	opacity: 0;
-}
-
-.view.ng-enter-active {
-	opacity: 1;
-}
-
-.view.ng-leave {
-	opacity: 1;
-}
-
-.view.ng-leave-active {
-	opacity: 0;
-}
-
-
