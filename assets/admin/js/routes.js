@@ -14,7 +14,31 @@
 				resolve: {
 					checkAuth: checkAuth
 				}
+			})
+			.when('/admin/posts', {
+				templateUrl: 'admin/partials/posts.html',
+				controller: 'postsController',
+				controllerAs: 'vm',
+				resolve: {
+					checkAuth: checkAuth
+				}				
+			})
+			.when('/admin/users', {
+				templateUrl: 'admin/partials/users.html',
+				controller: 'usersController',
+				controllerAs: 'vm',
+				resolve: {
+					checkAuth: checkAuth
+				}
 			}) 
+			.when('/admin/descriptors', {
+				templateUrl: 'admin/partials/descriptors.html',
+				controller: 'descriptorsController',
+				controllerAs: 'vm',
+				resolve: {
+					checkAuth: checkAuth
+				}				
+			})
 			.when('/admin/login', {
 				templateUrl: 'admin/partials/login.html',
 				controller: 'loginController',

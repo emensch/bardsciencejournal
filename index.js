@@ -17,6 +17,9 @@ app.use(ng_interceptor([
 ], 'public/index.html'));
 
 app.use(ng_interceptor([
+	'/admin/posts',
+	'/admin/users',
+	'/admin/descriptors',
 	'/admin/login',
 	'/admin/resetpassword',
 	'/admin/register',
