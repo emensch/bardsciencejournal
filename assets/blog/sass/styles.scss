@@ -4,6 +4,7 @@
 @import 'mixins';
 @import 'nav';
 @import 'header';
+@import 'footer';
 @import 'ng-animate';
 
 @import url(https://fonts.googleapis.com/css?family=Droid+Serif|Raleway);
@@ -18,13 +19,17 @@ $susy: (
 @include border-box-sizing;
 
 body {
-	background-color: $bg-color;
 	font-family: $sans-fonts;
 	color: $font-color;
+	background-color: $footer-color;
 }
 
 a {
 	text-decoration: none;
+}
+
+.main-container {
+	background-color: $bg-color;
 }
 
 .body-container {

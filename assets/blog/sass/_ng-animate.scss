@@ -1,6 +1,5 @@
 .view {
 	opacity: 1;
-	position: absolute;
 	width: 100%;
 }
 
@@ -10,6 +9,7 @@
 }
 
 .view.ng-enter {
+	height: 100vh;
 	opacity: 0;
 }
 
@@ -18,6 +18,7 @@
 }
 
 .view.ng-leave {
+	position: absolute;
 	opacity: 1;
 }
 
