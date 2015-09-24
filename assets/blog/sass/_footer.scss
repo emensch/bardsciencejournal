@@ -1,4 +1,23 @@
 .footer-container {
 	background-color: $footer-color;
-	height: 100px;
+	text-align: center;
+	color: $font-color-secondary;
+	font-size: 14px;
+
+	a, a:visited, {
+		color: inherit;
+	}
+
+	a:hover {
+		color: lighten($font-color-secondary, 5%);
+	}
+
+	.login {
+		padding-top: 5px;
+		padding-bottom: 10px;
+	}
+
+	.secondline {
+		
+	}
 }
