@@ -8,13 +8,23 @@ html(lang='en' ng-app='bsj.admin')
     link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet')
     link(href='admin/css/styles.min.css', rel='stylesheet') 
   body(ng-controller='rootController as vm')
-    p ADMIN TIME
-    div(ng-if='vm.user')
-        p {{ vm.user.username }}
-        button(type='button' ng-click='vm.logout()') logout
-    .view(ng-view)
+    .main-container
+      .header-container
+        .nav
+          .navbar()
+            ul.nav-links
+              li(ng-class='{active: vm.isActive(\'/\')}')
+                a(href='/') Home
+              li(ng-class='{active: vm.isActive(\'/archive\')}')
+                a(href='/archive') Archive
+              li(ng-class='{active: vm.isActive(\'/about\')}')
+                a(href='/about') About
+          .user-display
+            span {{ vm.user.username }}
+            button(type='button' ng-click='vm.logout()') logout
+      .body-container
+        .view(ng-view)
 
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js')
     script(src='bower_components/angular-local-storage/dist/angular-local-storage.js')
