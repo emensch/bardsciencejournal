@@ -1,8 +1,38 @@
 @import 'bower_components/normalize-scss/_normalize';
 @import 'bower_components/susy/sass/susy';
+@import 'variables';
+@import 'mixins';
+@import 'nav';
+@import 'header';
+
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif|Raleway);
+
+$susy: (
+	columns: 12,
+	gutters: 1/4,
+	container: 800px,
+	global-box-sizing: border-box
+	);
+
+@include border-box-sizing;
+
+body {
+	font-family: $sans-fonts;
+	color: $font-color;
+	background-color: $footer-color;
+}
+
+a {
+	text-decoration: none;
+}
+
+.main-container {
+	background-color: $bg-color;
+	color: $content-font-color;
+}
 
 form {
-	input
+	input {
 		.ng-invalid.ng-touched {
 			background-color: #FA787E;
 		}

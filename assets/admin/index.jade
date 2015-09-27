@@ -7,21 +7,21 @@ html(lang='en' ng-app='bsj.admin')
     base(href='/admin')
     link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet')
     link(href='admin/css/styles.min.css', rel='stylesheet') 
-  body(ng-controller='rootController as vm')
+  body
     .main-container
       .header-container
-        .nav
-          .navbar()
+        .nav(ng-controller='navController as vm')
+          .navbar
             ul.nav-links
-              li(ng-class='{active: vm.isActive(\'/\')}')
-                a(href='/') Home
-              li(ng-class='{active: vm.isActive(\'/archive\')}')
-                a(href='/archive') Archive
-              li(ng-class='{active: vm.isActive(\'/about\')}')
-                a(href='/about') About
-          .user-display
-            span {{ vm.user.username }}
-            button(type='button' ng-click='vm.logout()') logout
+              li(ng-class='{active: vm.isActive(\'/admin/posts\')}')
+                a(href='/admin/posts') Posts
+              li(ng-class='{active: vm.isActive(\'/admin/descriptors\')}')
+                a(href='/admin/descriptors') Subjects/Types
+              li(ng-class='{active: vm.isActive(\'/admin/users\')}')
+                a(href='/admin/users') Users
+            .user-display
+              span {{ vm.user.username }}
+              a(ng-click='vm.logout()') logout
       .body-container
         .view(ng-view)
 

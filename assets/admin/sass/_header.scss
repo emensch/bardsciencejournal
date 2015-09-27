@@ -1,0 +1,22 @@
+.header-container {
+	position: relative;
+	margin-bottom: 20px;
+	
+	@include card;
+}
+
+.user-display {
+	display: inline-block;
+	float: right;
+	color: $font-color;
+
+	a {
+		margin-left: 10px;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+	a:hover {
+		color: darken($font-color, 20%);
+	}
+}

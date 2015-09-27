@@ -1,0 +1,23 @@
+// Site-wide serif/sans-serif font stacks
+$sans-fonts: 'Raleway', sans-serif;
+$serif-fonts: 'Droid Serif', serif;
+
+// Site-wide color
+$bg-color: #EFEFEF;
+$primary-color: #BE1D23;
+
+// Site-wide font colors
+$font-color: #FFFFFF;
+$font-color-secondary: #A1A1A1;
+$content-font-color: #000000;
+
+// Card variables
+$card-background-color: #FFFFFF;
+
+// Nav/search variables
+$nav-hover-color: darken($primary-color, 7.5%); 
+$search-color: darken($primary-color, 5%);
+$search-hover-color: darken($search-color, 5%);
+
+// Footer colors/variables
+$footer-color: #4C4C4C;
