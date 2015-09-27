@@ -1,16 +1,17 @@
 (function() {
 	'use strict';
-
+		
 	angular
 		.module('bsj.admin')
-		.controller('rootController', rootController);
+		.controller('navController', navController);
 
-	function rootController($rootScope, $location, authService) {
+	function navController($rootScope, $location, authService) {
 		var vm = this;
 
 		vm.user = null;
 		vm.logout = logout;
-
+		vm.isActive = isActive;
+		
 		$rootScope.$on('loginStatusChanged', updateUser);
 
 		function updateUser() {
@@ -21,5 +22,9 @@
 			authService.logout();
 			$location.path('/admin/login');
 		}
+
+		function isActive(path) {
+			return path === $location.path();
+		}
 	}
-})();
+})();	
