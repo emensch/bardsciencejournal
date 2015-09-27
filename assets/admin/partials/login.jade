@@ -1,8 +1,9 @@
-p login
-form 
-  span Username
-  input(type='text', ng-model='vm.username')
-  span Password
-  input(type='password', ng-model='vm.password')
-  button(type='submit', ng-click='vm.submit()') Login
-a(href='/admin/register') Register
+.login
+  h1 login
+  form 
+    span Username
+    input(type='text', ng-model='vm.username')
+    span Password
+    input(type='password', ng-model='vm.password')
+    button(type='submit', ng-click='vm.submit()') Login
+  a(href='/admin/register') Register

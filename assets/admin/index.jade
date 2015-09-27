@@ -23,7 +23,8 @@ html(lang='en' ng-app='bsj.admin')
               span {{ vm.user.username }}
               a(ng-click='vm.logout()') logout
       .body-container
-        .view(ng-view)
+        .content
+          .view(ng-view)
 
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js')

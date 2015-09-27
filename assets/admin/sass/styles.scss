@@ -31,6 +31,27 @@ a {
 	color: $content-font-color;
 }
 
+.body-container {
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+.content {
+	@include container;
+	color: $content-font-color;
+	position: relative;
+}
+
+.login {
+	@include span(12);
+	@include card;
+
+	span, input {
+		display: block;
+		padding-bottom: 5px;
+	}
+}
+
 form {
 	input {
 		.ng-invalid.ng-touched {
