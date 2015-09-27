@@ -10,7 +10,7 @@ html(lang='en' ng-app='bsj.admin')
   body
     .main-container
       .header-container
-        .nav(ng-controller='navController as vm')
+        .nav(ng-controller='navController as vm', ng-show='vm.showNav')
           .navbar
             ul.nav-links
               li(ng-class='{active: vm.isActive(\'/admin/posts\')}')

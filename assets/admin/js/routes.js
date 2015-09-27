@@ -58,13 +58,15 @@
 			$locationProvider.html5Mode(true);
 	}
 
-	function checkAuth($q, $location, authService) {
+	function checkAuth($q, $location, authService, navService) {
 		var deferred = $q.defer();
 
 		if(authService.getCurrentUser()) {
 			deferred.resolve();
+			navService.setVisible(true);
 		} else {
 			deferred.reject();
+			navService.setVisible(false);
 			$location.path('/admin/login');
 		}
 

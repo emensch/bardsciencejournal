@@ -5,7 +5,7 @@
 		.module('bsj.admin')
 		.factory('authService', authService);
 
-	function authService(API_PREFIX, $q, $http, $rootScope, localStorageService, base64) {
+	function authService(API_PREFIX, $q, $http, $rootScope, localStorageService, base64, navService) {
 		var currentUser = null;
 
 		var service = {
@@ -41,6 +41,9 @@
 				};
 
 				localStorageService.set('currentUser', currentUser);
+				navService.setVisible(true);
+
+				$rootScope.$emit('navVisibilityChanged');
 				$rootScope.$emit('loginStatusChanged');
 
 				return $q.resolve();
@@ -56,6 +59,9 @@
 		function logout() {
 			currentUser = null;
 			localStorageService.remove('currentUser');
+			navService.setVisible(false);
+
+			$rootScope.$emit('navVisibilityChanged')
 			$rootScope.$emit('loginStatusChanged');
 		}
 
