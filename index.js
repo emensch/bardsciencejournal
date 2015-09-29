@@ -18,6 +18,7 @@ app.use(ng_interceptor([
 
 app.use(ng_interceptor([
 	'/admin/posts',
+	'/admin/newpost',
 	'/admin/users',
 	'/admin/descriptors',
 	'/admin/login',

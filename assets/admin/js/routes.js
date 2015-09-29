@@ -23,6 +23,14 @@
 					checkAuth: checkAuth
 				}				
 			})
+			.when('/admin/newpost', {
+				templateUrl: 'admin/partials/newpost.html',
+				controller: 'postsController',
+				controllerAs: 'vm',
+				resolve: {
+					checkAuth: checkAuth
+				}
+			})
 			.when('/admin/users', {
 				templateUrl: 'admin/partials/users.html',
 				controller: 'usersController',
