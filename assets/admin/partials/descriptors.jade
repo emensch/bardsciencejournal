@@ -1,5 +1,15 @@
 p Manage subjects/types
 .subject-list
+  h2 Subjects
   div(ng-repeat='subject in vm.subjects') {{ subject.name }}
+    button(ng-click='vm.deleteSubject(subject)') Delete
+  form(name='addSubjectForm')
+    input(type='text', ng-model='newSubjectName')
+    button(type='submit', ng-click='vm.addSubject(newSubjectName)') Add
 .type-list
+  h2 Types
   div(ng-repeat='type in vm.types') {{ type.name }}
+    button(ng-click='vm.deleteType(type)') Delete
+  form(name='addTypeForm')
+    input(type='text', ng-model='newTypeName')
+    button(type='submit', ng-click='vm.addType(newTypeName)') Add
