@@ -3,3 +3,5 @@ p Manage users
   .user-line(ng-repeat='user in vm.users')
     div {{ user.username }}
     div {{ user.email }}
+    button(ng-click='vm.deleteUser(user)') Delete
+    button(ng-if='!user.approved', ng-click='vm.approveUser(user)') Approve
