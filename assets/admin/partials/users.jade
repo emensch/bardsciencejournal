@@ -1,1 +1,5 @@
 p Manage users
+.user-list
+  .user-line(ng-repeat='user in vm.users')
+    div {{ user.username }}
+    div {{ user.email }}

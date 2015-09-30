@@ -70,6 +70,16 @@ a {
 	@include card;
 }
 
+.user-list {
+
+}
+
+.user-line {
+	@include span(12);
+	@include card;
+	margin-bottom: 20px;
+}
+
 form {
 	input {
 		.ng-invalid.ng-touched {
