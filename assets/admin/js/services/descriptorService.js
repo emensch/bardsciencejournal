@@ -9,8 +9,8 @@
 		var service = {
 			getSubjects: getSubjects,
 			getTypes: getTypes,
-			createSubjects: createSubjects,
-			createTypes: createTypes,
+			createSubject: createSubject,
+			createType: createType,
 			deleteSubject: deleteSubject,
 			deleteType: deleteType
 		};
@@ -45,30 +45,30 @@
 			}
 		}
 
-		function createSubjects(data) {
+		function createSubject(data) {
 			return $http.post(API_PREFIX + '/subjects', data)
-				.then(createSubjectsComplete)
-				.catch(createSubjectsFailed);
+				.then(createSubjectComplete)
+				.catch(createSubjectFailed);
 
-			function createSubjectsComplete() {
+			function createSubjectComplete() {
 				return $q.resolve();
 			}
 
-			function createSubjectsFailed() {
+			function createSubjectFailed() {
 				return $q.reject();
 			}
 		}
 
-		function createTypes(data) {
+		function createType(data) {
 			return $http.post(API_PREFIX + '/types', data)
-				.then(createTypesComplete)
-				.catch(createTypesFailed);
+				.then(createTypeComplete)
+				.catch(createTypeFailed);
 
-			function createTypesComplete() {
+			function createTypeComplete() {
 				return $q.resolve();
 			}
 
-			function createTypesFailed() {
+			function createTypeFailed() {
 				return $q.reject();
 			}
 		}
