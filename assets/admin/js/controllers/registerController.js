@@ -10,12 +10,12 @@
 
 		vm.submit = submit;
 
-		function submit() {
-			if(vm.pw1 == vm.pw2) {
+		function submit(newuser) {
+			if(newuser.pw1 == newuser.pw2) {
 				var data = {
-					username: vm.username,
-					email: vm.email,
-					password: vm.pw1
+					username: newuser.username,
+					email: newuser.email,
+					password: newuser.pw1
 				};
 
 				return userService.createUser(data)

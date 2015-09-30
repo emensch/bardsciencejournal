@@ -35,10 +35,9 @@
 			}
 		}
 
-		function submitPass() {
-			if(vm.pw1 == vm.pw1) {
-				console.log(vm.pw1);
-				resetpassService.submitPass(username, token, vm.pw1);
+		function submitPass(pwdata) {
+			if(pwdata.pw1 == pwdata.pw2) {
+				resetpassService.submitPass(username, token, pwdata.pw1);
 			}
 		}
 	}

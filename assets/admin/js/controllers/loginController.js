@@ -10,12 +10,9 @@
 
 		vm.submit = submit;
 
-		function submit() {
-			if(vm.username && vm.password) {
-				var credentials = {
-					username: vm.username,
-					password: vm.password
-				};
+		function submit(creds) {
+			if(creds.username && creds.password) {
+				var credentials = creds;
 
 				return authService.login(credentials)
 					.then(loginComplete)
@@ -24,7 +21,6 @@
 
 			function loginComplete() {
 				$location.path('/admin');
-				console.log(authService.getCurrentUser());
 			}
 
 			function loginFailed() {

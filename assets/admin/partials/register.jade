@@ -1,11 +1,11 @@
 p new user
 form(name='registerform', novalidate) 
   div Username
-  input(type='text', ng-model='vm.username', validate-username, required)
+  input(type='text', ng-model='newuser.username', validate-username, required)
   div Email
-  input(type='email', ng-model='vm.email', validate-email, required)
+  input(type='email', ng-model='newuser.email', validate-email, required)
   div Password
-  input(type='password', ng-model='vm.pw1', validate-password, required)
+  input(type='password', ng-model='newuser.pw1', validate-password, required)
   div Confirm password
-  input(type='password', ng-model='vm.pw2', validate-password, compare-to='vm.pw1', required)
-  button(type='submit', ng-click='registerform.$valid && vm.submit()') Submit
+  input(type='password', ng-model='newuser.pw2', validate-password, compare-to='newuser.pw1', required)
+  button(type='submit', ng-click='registerform.$valid && vm.submit(newuser)') Submit
