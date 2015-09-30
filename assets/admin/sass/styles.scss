@@ -52,6 +52,14 @@ a {
 	}
 }
 
+.post-list {
+	@include card;
+}
+
+.post-line {
+	margin-bottom: 20px;
+}
+
 form {
 	input {
 		.ng-invalid.ng-touched {

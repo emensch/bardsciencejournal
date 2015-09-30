@@ -1,2 +1,3 @@
-p Manage posts
-textarea(ng-model='editor', ck-editor)
+.post-list
+  .post-line(ng-repeat='post in vm.posts') 
+    span.title{{ post.title }}
