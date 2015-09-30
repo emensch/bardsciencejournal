@@ -60,6 +60,16 @@ a {
 	margin-bottom: 20px;
 }
 
+.subject-list {
+	@include span(6);
+	@include card;
+}
+
+.type-list {
+	@include span(6 last);
+	@include card;
+}
+
 form {
 	input {
 		.ng-invalid.ng-touched {

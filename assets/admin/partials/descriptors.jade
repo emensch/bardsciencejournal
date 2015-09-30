@@ -1,1 +1,5 @@
 p Manage subjects/types
+.subject-list
+  div(ng-repeat='subject in vm.subjects') {{ subject.name }}
+.type-list
+  div(ng-repeat='type in vm.types') {{ type.name }}
