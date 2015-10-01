@@ -25,7 +25,7 @@
 			})
 			.when('/admin/newpost', {
 				templateUrl: 'admin/partials/newpost.html',
-				controller: 'postsController',
+				controller: 'newPostController',
 				controllerAs: 'vm',
 				resolve: {
 					checkAuth: checkAuth

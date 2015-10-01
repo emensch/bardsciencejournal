@@ -1,3 +1,6 @@
 .post-list
+  a(href='/admin/newpost') New post
   .post-line(ng-repeat='post in vm.posts') 
-    span.title{{ post.title }}
+    div.title{{ post.title }}
+    div.title{{ post.description }}
+
