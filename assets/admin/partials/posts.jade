@@ -3,4 +3,6 @@
   .post-line(ng-repeat='post in vm.posts') 
     div.title{{ post.title }}
     div.title{{ post.description }}
-
+    button(ng-click='vm.editPost()') Edit
+    button(ng-click='vm.deletePost()') Delete
+ 
