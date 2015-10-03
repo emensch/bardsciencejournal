@@ -9,6 +9,7 @@
 		var vm = this;
 
 		vm.posts = [];
+		vm.deletePost = deletePost;
 
 		activate();
 
@@ -23,6 +24,13 @@
 					console.log(vm.posts);
 					return vm.posts;
 				});			
+		}
+
+		function deletePost(slug) {
+			return postService.deletePost(slug)
+				.then(function() {
+					getPosts();
+				});
 		}
 	}
 })();

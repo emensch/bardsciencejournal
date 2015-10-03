@@ -4,5 +4,5 @@
     div.title{{ post.title }}
     div.title{{ post.description }}
     button(ng-click='vm.editPost()') Edit
-    button(ng-click='vm.deletePost()') Delete
+    button(ng-click='vm.deletePost(post.slug)') Delete
  
