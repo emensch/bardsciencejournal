@@ -133,6 +133,7 @@ postSchema.statics.createFromReq = function (req, cb) {
 	newPost.authors = body.authors;
 	newPost.tags = body.tags;
 
+	console.log(newPost);
 	newPost.save( function (err) {
 		if (err) {
 			errors.parseSaveError(err);
@@ -180,7 +181,7 @@ postSchema.statics.updateFromReq = function (req, cb) {
 
 // Ensure photo is a valid url
 postSchema.path('photo').validate( function (photo) {
-	var regex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	var regex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/i
 	return regex.test(photo);
 });
 
