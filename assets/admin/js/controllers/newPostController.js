@@ -38,11 +38,14 @@
 		}
 
 		function submitPost(post) {
-			post.authors = post.authors.split(',').map(function (val){ return val.trim(); });
-			post.tags = post.tags.split(',').map(function (val){ return val.trim(); });
-			console.log(post);
-			$location.path('/admin/posts');
-			postService.createPost(post);
+			return postService.createPost(post)
+				.then(function() {
+					$location.path('/admin/posts');
+				})
+				.catch(function() {
+					console.log('fail');
+					console.log(post);
+				});
 		}
 	}
 })();

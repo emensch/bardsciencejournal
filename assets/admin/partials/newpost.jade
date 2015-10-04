@@ -12,8 +12,8 @@ form(name='newPostForm', novalidate)
   div Photo
   input(type='text', ng-model='newpost.photourl', required)
   div Authors
-  input(type='text', ng-model='newpost.authors', required)
+  input(type='text', ng-model='newpost.authors', ng-list, required)
   textarea(ng-model='newpost.content', ck-editor, required)
   div Tags
-  input(type='text', ng-model='newpost.tags')
+  input(type='text', ng-model='newpost.tags', ng-list)
   button(type='submit', ng-click='newPostForm.$valid && vm.submitPost(newpost)') Submit
