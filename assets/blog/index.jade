@@ -8,33 +8,6 @@ html(lang='en' ng-app='bsj')
     link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet')
     link(href='css/styles.min.css', rel='stylesheet') 
   body
-    .main-container
-      .header-container
-        .title-container
-          span.bard Bard
-          span.science-journal Science Journal
-        .nav(ng-controller='navController as vm')
-          .navbar
-            ul.nav-links
-              li(ng-class='{active: vm.isActive(\'/\')}')
-                a(href='/') Home
-              li(ng-class='{active: vm.isActive(\'/archive\')}')
-                a(href='/archive') Archive
-              li(ng-class='{active: vm.isActive(\'/about\')}')
-                a(href='/about') About
-            form.search-container 
-              input(type='search', id='search', placeholder='Search' ng-model='vm.search')
-              button.search-btn(type='submit', ng-click='vm.submit()')
-                i.fa.fa-search
-      .body-container
-        .content
-          .view(ng-view)
-      .footer-container
-        .login
-          a(href='http://127.0.0.1:3001/admin', target='_self') Contributor Login
-        span.copyright &copy 2015 The Bard Science Journal 
-        .siteauthor Website by &nbsp
-          a(href='http://elimensch.com') Eli Mensch
 
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js')
