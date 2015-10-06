@@ -8,6 +8,28 @@ html(lang='en' ng-app='bsj')
     link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet')
     link(href='css/styles.min.css', rel='stylesheet') 
   body
+    .main-container
+      .header-container
+        .logo
+          .bard Bard
+          .science-journal Science Journal  
+      .nav-container
+        .navbar(ng-controller='navController as vm')
+          ul
+            li
+              a(href='/', ng-class='{active: vm.isActive(\'/\')}') Home
+            li
+              a(href='/archive', ng-class='{active: vm.isActive(\'/archive\')}') Archive
+            li
+              a(href='/about', ng-class='{active: vm.isActive(\'/about\')}') About
+            li 
+              form.search
+                input(type='search', placeholder='Search', ng-model='vm.search')
+                button(type='submit', ng-click='vm.submit()')
+                  i.fa.fa-search
+      .body-container
+        .view(ng-view)
+      .footer-container    
 
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js')

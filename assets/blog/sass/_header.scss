@@ -1,0 +1,25 @@
+.header-container {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.logo {
+	display: inline-block;
+	font-family: $serif-fonts;
+
+	border-bottom-style: solid;
+	border-bottom-color: $red;
+	border-bottom-width: 4px;
+}
+
+.bard {
+	display: inline-block;
+	font-size: 52px;
+	color: $red;
+	margin-right: 7px;
+}
+
+.science-journal {
+	display: inline-block;
+	font-size: 26px;
+}
