@@ -1,6 +1,7 @@
 var express = require('express'),
 	router = express.Router(),
-	Post = require('../models/post');
+	Post = require('../models/post'),
+	auth = require('../middlewares/auth');
 
 router.get('/', function (req, res, next) {
 	Post.findWithQuery(req.query, function (err, posts) {
@@ -22,7 +23,7 @@ router.get('/:slug', function (req, res, next) {
 	});
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', auth, function (req, res, next) {
 	Post.createFromReq(req, function (err) {
 		if (err) {
 			return next(err);
@@ -32,7 +33,7 @@ router.post('/', function (req, res, next) {
 	});
 });
 
-router.put('/:slug', function (req, res, next) {
+router.put('/:slug', auth, function (req, res, next) {
 	Post.updateFromReq(req, function (err) {
 		if (err) {
 			return next(err);
@@ -42,7 +43,7 @@ router.put('/:slug', function (req, res, next) {
 	});
 });
 
-router.delete('/:slug', function (req, res, next) {
+router.delete('/:slug', auth, function (req, res, next) {
 	Post.deleteBySlug(req.params.slug, function (err) {
 		if (err) {
 			return next(err);

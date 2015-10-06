@@ -1,6 +1,7 @@
 var express = require('express'),
 	router = express.Router(),
-	User = require('../models/user');
+	User = require('../models/user'),
+	auth = require('../middlewares/auth');
 
 router.get('/', function (req, res, next) {
 	User.findAllWithQuery(req.query, function (err, users) {
@@ -22,7 +23,7 @@ router.post('/', function (req, res, next) {
 	});
 });
 
-router.delete('/:username', function (req, res, next) {
+router.delete('/:username', auth, function (req, res, next) {
 	User.deleteByUsername(req.params.username, function (err) {
 		if (err) {
 			return next(err);
@@ -32,7 +33,7 @@ router.delete('/:username', function (req, res, next) {
 	});
 });
 
-router.post('/:username/approve', function (req, res, next) {
+router.post('/:username/approve', auth, function (req, res, next) {
 	User.approveFromReq(req, function (err) {
 		if (err) {
 			return next(err);
