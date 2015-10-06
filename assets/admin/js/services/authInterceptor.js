@@ -28,7 +28,11 @@
 		}
 
 		function redirectToLogin(rejection) {
+			// Workaround for circular dependency injection
+			var authService = $injector.get('authService');
+	
 			if (rejection.status == 401) {
+				authService.logout();
 				$location.path('/admin/login');
 			}
 
