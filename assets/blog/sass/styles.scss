@@ -24,19 +24,87 @@ body {
 	@include container;
 }
 
+// Default post styles
 .post {
-	background-color: $red;
 	margin-bottom: 20px;
 
 	@include span(4);
-	height: 300px;
+
+	.img {
+		position: relative;
+		height: 200px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.subject-type {
+		position: absolute;
+		height: 40px;
+		min-width: 120px;
+		top: 15px;
+		background-color: rgba(0,0,0,0.75);
+
+		text-align: center;
+		color: #FFFFFF;
+
+		padding-left: 5px;
+		padding-right: 5px;
+
+		.subject {
+			font-size: 18px;
+		}
+
+		.type {
+			font-size: 14px;
+		}
+	}
+
+	.post-content {
+		height: 100px;
+		font-family: $serif-fonts;
+
+		.title {
+			font-size: 24px;
+			margin-bottom: 5px;
+		}
+
+		.authors {
+			margin-bottom: 5px;
+
+			ul {
+				list-style: none;
+				padding-left: 0px;
+				display: inline;
+
+				li {
+					display: inline;
+				}
+			}
+		}
+	}
 }
 
 .featured {
 	.post {
+		// Styles for first "big" post go here!
 		&:first-child {
 			@include span(8);
-			height: 620px;
+
+			.img {
+				height: 400px;
+			}
+
+			.post-content {
+				height: 220px;
+
+				.title {
+					font-size: 48px;
+				}
+			}
 		}
 
 		&:nth-child(2), &:nth-child(3), &:nth-child(3n+3) {
