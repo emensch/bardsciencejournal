@@ -1,0 +1,13 @@
+.home
+  .featured
+    .section-title 
+      span.title Featured
+      span.underline
+    .post-container
+      .post(ng-repeat='post in vm.featured')
+  .recent
+    .section-title 
+      span.title Recent
+      span.underline
+    .post-container
+      .post(ng-repeat='post in vm.recent')

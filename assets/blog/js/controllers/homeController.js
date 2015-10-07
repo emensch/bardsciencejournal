@@ -9,7 +9,8 @@
 		var vm = this;
 		
 		vm.message = 'home';
-		vm.posts = [];
+		vm.featured = [];
+		vm.recent = [];
 
 		activate();
 
@@ -18,10 +19,12 @@
 		}
 
 		function getPosts() {
-			return postService.getPosts({ num: 5 })
+			return postService.getPosts({ num: 6 })
 				.then(function(data) {
-					vm.posts = data;
-					console.log(vm.posts);
+					vm.featured = data;
+					vm.recent = data.slice(0, 3);
+					console.log(vm.featured);
+					console.log(vm.recent);
 					return vm.posts;
 				});
 		}
