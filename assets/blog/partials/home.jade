@@ -20,6 +20,7 @@
                 span(ng-if='post.authors.length > 1 && !$last') 
                   | {{ $index == post.authors.length-2 ? ' and' : ',' }}
           .description {{ post.description }}
+          .date {{ post.date | date }}
   .recent
     .section-title 
       span.title Recent
@@ -41,3 +42,4 @@
                 span(ng-if='post.authors.length > 1 && !$last') 
                   | {{ $index == post.authors.length-2 ? ' and' : ',' }}
           .description {{ post.description }}
+          .date {{ post.date | date }}
