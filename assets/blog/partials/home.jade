@@ -1,3 +1,21 @@
+mixin post
+  .img
+    img(ng-src='{{ post.photo }}')
+    .subject-type
+      .subject {{ post.subject }}
+      .type {{ post.type }}
+  .post-content
+    .title {{ post.title }}
+    .authors
+      span by
+      ul
+        li(ng-repeat='author in post.authors') 
+          a(href='/') {{ author }}
+          span(ng-if='post.authors.length > 1 && !$last') 
+            | {{ $index == post.authors.length-2 ? ' and' : ',' }}
+    .description {{ post.description }}
+    .date {{ post.date | date }}
+
 .home
   .featured
     .section-title 
@@ -5,41 +23,11 @@
       span.underline
     .post-container
       .post(ng-repeat='post in vm.featured')
-        .img
-          img(ng-src='{{ post.photo }}')
-          .subject-type
-            .subject {{ post.subject }}
-            .type {{ post.type }}
-        .post-content
-          .title {{ post.title }}
-          .authors
-            span by
-            ul
-              li(ng-repeat='author in post.authors') 
-                a(href='/') {{ author }}
-                span(ng-if='post.authors.length > 1 && !$last') 
-                  | {{ $index == post.authors.length-2 ? ' and' : ',' }}
-          .description {{ post.description }}
-          .date {{ post.date | date }}
+        +post
   .recent
     .section-title 
       span.title Recent
       span.underline
     .post-container
       .post(ng-repeat='post in vm.recent')
-        .img
-          img(ng-src='{{ post.photo }}')
-          .subject-type
-            .subject {{ post.subject }}
-            .type {{ post.type }}
-        .post-content
-          .title {{ post.title }}
-          .authors
-            span by
-            ul
-              li(ng-repeat='author in post.authors') 
-                a(href='/') {{ author }}
-                span(ng-if='post.authors.length > 1 && !$last') 
-                  | {{ $index == post.authors.length-2 ? ' and' : ',' }}
-          .description {{ post.description }}
-          .date {{ post.date | date }}
+        +post
