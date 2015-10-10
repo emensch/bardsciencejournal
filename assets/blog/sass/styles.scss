@@ -26,11 +26,11 @@ body {
 
 // Default post styles
 .post {
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 
 	@include span(4);
 
-	//box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.16);
+	box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.16);
 
 	.img {
 		position: relative;
@@ -90,7 +90,6 @@ body {
 	}
 
 	.post-content {
-		// height: 120px;
 		font-family: $sans-fonts;
 		padding-left: 4px;
 		padding-right: 4px;
@@ -121,13 +120,13 @@ body {
 
 		.description {
 			font-size: 15px;
-			height: 40px;
-			margin-bottom: 10px;
+			margin-bottom: 20px;
 		}
 
 		.date {
 			color: #A1A1A1;
 			font-size: 12px;
+			margin-bottom: 10px;
 		}
 	}
 }
@@ -144,8 +143,6 @@ body {
 			}
 
 			.post-content {
-				// height: 280px;
-
 				.title {
 					font-size: 40px;
 					margin-bottom: 5px;
@@ -160,8 +157,7 @@ body {
 
 				.description {
 					font-size: 20px;
-					height: 55px;
-				}
+					margin-bottom: 30px;				}
 
 				.date {
 					font-size: 16px;
