@@ -16,7 +16,8 @@ var postSchema = new Schema({
 	edits: [{ _id: false, 
 		reason: { type: String, required: true }, 
 		date: { type: Date, default: Date.now }}],
-	date: { type: Date, default: Date.now }
+	date: { type: Date, default: Date.now },
+	featured: { type: Boolean }
 });
 
 postSchema.index({ slug: 1 }, { unique: true });
