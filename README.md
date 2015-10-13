@@ -3,7 +3,7 @@ The website for the Bard Science Journal! Built on Node, Express, MongoDB, and A
 
 ### Structure
 ##### Assets
-Contains all pre-compilation static assets (Jade, Sass, JS)
+Contains all pre-compilation static assets for admin/blog sites (Jade, Sass, JS)
 ##### Controllers
 Controllers and routing logic
 ##### Helpers
