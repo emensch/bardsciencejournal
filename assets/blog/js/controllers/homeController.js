@@ -5,7 +5,7 @@
 		.module('bsj')
 		.controller('homeController', homeController);
 
-	function homeController(postService) {
+	function homeController($q, postService) {
 		var vm = this;
 		
 		vm.message = 'home';
@@ -15,18 +15,26 @@
 		activate();
 
 		function activate() {
-			return getPosts();
+			var promises = [getFeaturedPosts(), getRecentPosts()];
+			return $q.all(promises);
 		}
 
-		function getPosts() {
-			return postService.getPosts({ num: 6 })
+		function getFeaturedPosts() {
+			return postService.getPosts({ num: 6, featured: true })
 				.then(function(data) {
 					vm.featured = data;
-					vm.recent = data.slice(0, 3);
 					console.log(vm.featured);
-					console.log(vm.recent);
-					return vm.posts;
+					return vm.featured;
 				});
+		}
+
+		function getRecentPosts() {
+			return postService.getPosts({ num: 3, featured: false })
+				.then(function(data) {
+					vm.recent = data;
+					console.log(vm.recent);
+					return vm.recent;
+				});			
 		}
 	}
 })();
