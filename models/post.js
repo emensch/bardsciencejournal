@@ -43,6 +43,7 @@ postSchema.statics.findWithQuery = function (query, cb) {
 	var type = query.type;
 	var author = query.author;
 	var tag = query.tag;
+	var featured = query.featured;
 	var search = query.search;
 	var startDate = query.start;
 	var endDate = query.end;
@@ -64,6 +65,7 @@ postSchema.statics.findWithQuery = function (query, cb) {
 		if (type) queryObj.type = type.toLowerCase();
 		if (author) queryObj.authors = author.toLowerCase(); 
 		if (tag) queryObj.tags = tag.toLowerCase(); 
+		if (featured) queryObj.featured = featured;
 
 		if (startDate || endDate) {
 			if (startDate) dateObj.$gte = new Date(startDate);
