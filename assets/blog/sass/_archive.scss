@@ -19,29 +19,34 @@ $archive-layout: (
 
 	.post-content {
 		@include span(8 last);
+		position: relative;
 		height: 150px;
+		padding-left: 10px;
 
 		.title {
-			font-size: 24px;
+			font-size: 26px;
+			margin-bottom: 5px;
 		}
 
 		.authors {
 			margin-bottom: 8px;
 
 			&, a {
-				font-size: 14px;
+				font-size: 15px;
 			}
 		}
 
 		.description {
-			font-size: 16px;
+			font-size: 18px;
 			margin-bottom: 20px;
 		}
 
 		.date {
+			position: absolute;
 			color: #A1A1A1;
-			font-size: 14px;
-			margin-bottom: 10px;
+			font-size: 15px;
+			margin-bottom: 5px;
+			bottom: 0;
 		}
 	}
 
