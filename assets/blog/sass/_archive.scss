@@ -1,0 +1,49 @@
+$archive-layout: (
+	gutters: 0
+);
+
+.archive {
+	@include container;
+	@include layout($archive-layout);
+}
+
+.archive-post {
+	@extend .card;
+
+	margin-bottom: 40px;
+
+	.img {
+		@include span(4);
+		height: 150px;
+	}
+
+	.post-content {
+		@include span(8 last);
+		height: 150px;
+
+		.title {
+			font-size: 24px;
+		}
+
+		.authors {
+			margin-bottom: 8px;
+
+			&, a {
+				font-size: 14px;
+			}
+		}
+
+		.description {
+			font-size: 16px;
+			margin-bottom: 20px;
+		}
+
+		.date {
+			color: #A1A1A1;
+			font-size: 14px;
+			margin-bottom: 10px;
+		}
+	}
+
+	@extend .clearfix;
+}

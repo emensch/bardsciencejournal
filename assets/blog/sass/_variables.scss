@@ -1,3 +1,10 @@
+// Susy globals
+$susy: (
+	columns: 12,
+	container: 960px,
+	global-box-sizing: border-box,
+);
+
 // Site-wide serif/sans-serif font stacks
 $sans-fonts: 'Raleway', sans-serif;
 $serif-fonts: 'Droid Serif', serif;

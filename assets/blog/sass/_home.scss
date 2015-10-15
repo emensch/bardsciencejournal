@@ -1,0 +1,106 @@
+$home-layout: (
+	gutters: 1
+);
+
+.home {
+	@include container;
+	@include layout($home-layout);
+}
+
+.section-title {
+	margin-bottom: 15px;
+	padding-bottom: 5px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+
+	.title {
+		font-size: 36px;
+	}
+}
+
+// Default post styles
+.post {
+	@include span(4);
+	@extend .card;
+
+	margin-bottom: 40px;
+
+	.img {
+		height: 200px;
+		margin-bottom: 5px;
+	}
+
+	.post-content {
+		.title {
+			font-size: 20px;
+		}
+
+		.authors {
+			margin-bottom: 8px;
+
+			&, a {
+				font-size: 12px;
+			}
+		}
+
+		.description {
+			font-size: 15px;
+			margin-bottom: 20px;
+		}
+
+		.date {
+			color: #A1A1A1;
+			font-size: 12px;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.featured {
+	.post {
+		// Styles for first "big" post go here!
+		&:first-child {
+			@include span(8);
+
+			.img {
+				height: 480px;
+				margin-bottom: 20px;
+			}
+
+			.post-content {
+				.title {
+					font-size: 40px;
+					margin-bottom: 5px;
+				}
+
+				.authors {
+					&, a {
+						font-size: 16px;
+					}
+					margin-bottom: 20px;
+				}
+
+				.description {
+					font-size: 20px;
+					margin-bottom: 30px;				
+				}
+
+				.date {
+					font-size: 16px;
+				}
+			}
+		}
+
+		&:nth-child(2), &:nth-child(3), &:nth-child(3n+3) {
+			@include last;
+		}		
+	}
+}
+
+.recent {
+	.post {
+		&:nth-child(3n) {
+			@include last;
+		}
+	}
+}
