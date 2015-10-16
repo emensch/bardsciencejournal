@@ -1,4 +1,19 @@
 .archive
+  .nav-container
+    .navbar
+      ul
+        li
+          a(href='') Subject
+            i.fa.fa-caret-down
+        li
+          a(href='') Type
+            i.fa.fa-caret-down
+        li 
+          form.dates
+            span From:
+            input.date(type='text', placeholder='mm/dd/yyyy', ng-model='vm.from')
+            span To:
+            input.date(type='text', placeholder='mm/dd/yyyy', ng-model='vm.to')
   .post-container
     .archive-post(ng-repeat='post in vm.posts')
       .img

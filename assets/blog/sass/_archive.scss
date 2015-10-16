@@ -5,6 +5,18 @@ $archive-layout: (
 .archive {
 	@include container;
 	@include layout($archive-layout);
+
+	.navbar {
+		font-size: 18px;
+
+		i {
+			padding-left: 4px;
+		}
+	}
+
+	.date {
+		width: 7.2em;
+	}
 }
 
 .archive-post {

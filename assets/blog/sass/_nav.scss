@@ -11,6 +11,11 @@ $letter-spacing: 0.1em;
 .navbar {
 	font-size: $font-size;
 
+	input {
+		border: none;
+		outline: none;
+	}
+
 	ul {
 		list-style-type: none;
 		margin: 0;
@@ -38,12 +43,18 @@ $letter-spacing: 0.1em;
 
 		transition: color 0.3s ease;
 	}
+
+	span {
+		color: $inactive;
+	}
+
+	i {
+		color: inherit;
+	}
 }
 
 .search {
 	input {
-		border: none;
-		outline: none; 	
 		width: 3.8em;
 		padding: 0;
 		border-bottom-style: solid;
