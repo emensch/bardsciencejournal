@@ -8,15 +8,16 @@
 	function archiveController($q, $location, postService, descriptorService) {
 		var vm = this;
 		
-		vm.message = 'archive';
 		vm.posts = [];
 		vm.types = [];
 		vm.subjects = [];
+		vm.searchTerm = null;
+		vm.clearSearch = clearSearch;
 
 		activate();
 
 		function activate() {
-			var promises = [getPostWithOptions(), getTypes(), getSubjects()];
+			var promises = [getPostWithOptions(), getTypes(), getSubjects(), getSearchTerm()];
 			return $q.all(promises);
 		}
 
@@ -45,8 +46,17 @@
 				.then(function(data) {
 					vm.subjects = data;
 					console.log(vm.subjects);
-					return vm.types;
+					return vm.subjects;
 				});
+		}
+
+		function getSearchTerm() {
+			vm.searchTerm = $location.search().search;
+		}
+
+		function clearSearch() {
+			$location.search('search', null)
+			vm.searchTerm = null;
 		}
 	}
 })();
