@@ -35,14 +35,20 @@ $letter-spacing: 0.1em;
 		color: $inactive;	
 
 		&.active {
-			color: $active;
+			span {
+				color: $active;
+			}
 		}
 
 		&:hover {
-			color: $active;
+			span {
+				color: $active;
+			}
 		}
 
-		transition: color 0.3s ease;
+		span {
+			transition: color 0.3s ease;
+		}
 	}
 
 	span {
@@ -51,6 +57,41 @@ $letter-spacing: 0.1em;
 
 	i {
 		color: inherit;
+	}
+
+
+	.dropdown-menu {
+		position: absolute;
+		background-color: #FFFFFF;
+		z-index: 10;
+		text-align: left;
+		padding-left: 4px;
+		padding-right: 4px;
+
+		.dropdown-item {
+			display: block;
+			padding-top: 7px;
+			padding-bottom: 7px;
+			margin: 0;
+
+			&.active {
+				color: $active;
+			}
+
+			&:hover {
+				color: $active;
+			}
+
+			transition: color 0.3s ease;
+
+			&:not(:last-child) {
+				border-bottom-style: solid;
+				border-bottom-color: $inactive;
+				border-bottom-width: 1px;
+			}
+		}
+
+		@extend .card;
 	}
 }
 
