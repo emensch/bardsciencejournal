@@ -44,6 +44,7 @@ body {
 	top: 15px;
 	left: -4px;
 	background-color: rgba(0,0,0,0.75);
+	text-transform: capitalize;
 
 	text-align: center;
 	color: #FFFFFF;
@@ -103,6 +104,7 @@ body {
 		display: inline;
 
 		li {
+			text-transform: capitalize;
 			display: inline;
 		}
 	}
