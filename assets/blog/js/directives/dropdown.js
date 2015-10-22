@@ -23,7 +23,7 @@
 		return directive;
 	}
 
-	function DropdownController($element) {
+	function DropdownController($scope, $element, $document) {
 		var vm = this;
 
 		vm.select = select;
@@ -66,6 +66,25 @@
 
 		function defaultActive() {
 			return !ngModel.$modelValue;
+		}
+
+		$element.on('click', stopProp);
+		function stopProp(event) {
+			event.stopPropagation();
+		}
+
+		var body = $document.find('body');
+		body.on('click', closeMenu);
+		function closeMenu() {
+			if(vm.active) {
+				vm.active = false;
+				$scope.$apply();
+			}
+		}
+
+		$scope.$on('$destroy', cleanUp);
+		function cleanUp() {
+			body.off('click');
 		}
 	}
 })();
