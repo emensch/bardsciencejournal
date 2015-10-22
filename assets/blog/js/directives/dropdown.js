@@ -36,6 +36,14 @@
 
 		var ngModel = $element.controller('ngModel');
 
+		ngModel.$render = function() {
+			if(ngModel.$modelValue) {
+				vm.selectedOption = ngModel.$modelValue;
+			} else {
+				vm.selectedOption = vm.defaultName;
+			}
+		};
+
 		function select(item) {
 			ngModel.$setViewValue(item.name);
 			vm.selectedOption = item.name;
