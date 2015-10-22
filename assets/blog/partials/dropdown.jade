@@ -1,0 +1,5 @@
+span(ng-click='vm.toggleMenu()') {{ vm.selectedOption }}
+  i.fa.fa-caret-down
+ul.dropdown-menu
+  li.dropdown-item(ng-click='vm.selectDefault()') {{ vm.defaultOption }}
+  li.dropdown-item(ng-repeat='item in vm.items' ng-click='vm.select(item)') {{ item.name }}
