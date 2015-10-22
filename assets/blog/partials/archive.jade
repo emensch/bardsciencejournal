@@ -6,15 +6,9 @@
     .navbar(ng-switch-default)
       ul
         li
-          a(href='')
-            span Subject
-              i.fa.fa-caret-down
-            ul.dropdown-menu
-              li.dropdown-item(ng-repeat='subject in vm.subjects') {{ subject.name }}
+          a(dropdown, default-option='All', default-name='Subject', items="vm.subjects", ng-model='vm.subject', href='')
         li
-          a(href='')
-            span Type
-              i.fa.fa-caret-down
+          a(dropdown, default-option='All', default-name='Type', items="vm.types", ng-model='vm.type', href='')
         li 
           form.dates
             span From:

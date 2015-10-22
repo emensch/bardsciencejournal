@@ -67,6 +67,14 @@ $letter-spacing: 0.1em;
 		text-align: left;
 		padding-left: 4px;
 		padding-right: 4px;
+		overflow: hidden;
+		max-height: 0;
+
+		&.active {
+			max-height: 400px;
+		}
+
+		transition: max-height 0.3s ease;
 
 		.dropdown-item {
 			display: block;
