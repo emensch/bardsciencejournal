@@ -5,7 +5,7 @@
 		.module('bsj')
 		.directive('dropdown', dropdown);
 
-	function dropdown($timeout) {
+	function dropdown() {
 		var directive = {
 			controller: DropdownController,
 			controllerAs: 'vm',
@@ -29,6 +29,8 @@
 		vm.select = select;
 		vm.selectDefault = selectDefault;
 		vm.toggleMenu = toggleMenu;
+		vm.activeItem = activeItem;
+		vm.defaultActive = defaultActive;
 		vm.active = false;
 		vm.selectedOption = vm.defaultName;
 
@@ -48,6 +50,14 @@
 
 		function toggleMenu() {
 			vm.active = !vm.active;
+		}
+
+		function activeItem(item) {
+			return item.name === ngModel.$modelValue;
+		}
+
+		function defaultActive() {
+			return !ngModel.$modelValue;
 		}
 	}
 })();
