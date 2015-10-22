@@ -59,6 +59,9 @@ $letter-spacing: 0.1em;
 		color: inherit;
 	}
 
+	.dropdown {
+		text-transform: capitalize;
+	}
 
 	.dropdown-menu {
 		position: absolute;
@@ -69,6 +72,7 @@ $letter-spacing: 0.1em;
 		padding-right: 4px;
 		overflow: hidden;
 		max-height: 0;
+		text-transform: capitalize;
 
 		&.active {
 			max-height: 400px;

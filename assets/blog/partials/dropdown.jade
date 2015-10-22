@@ -1,4 +1,4 @@
-span(ng-click='vm.toggleMenu()') {{ vm.selectedOption }}
+span.dropdown(ng-click='vm.toggleMenu()') {{ vm.selectedOption }}
   i.fa.fa-caret-down
 ul(ng-class='{active: vm.active}').dropdown-menu
   li.dropdown-item(ng-class='{active: vm.defaultActive()}', ng-click='vm.selectDefault()') {{ vm.defaultOption }}
