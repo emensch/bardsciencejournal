@@ -17,11 +17,14 @@ html(lang='en' ng-app='bsj')
         .navbar(ng-controller='navController as vm')
           ul
             li
-              a(href='/', ng-class='{active: vm.isActive(\'/\')}') Home
+              a(href='/', ng-class='{active: vm.isActive(\'/\')}') 
+                span Home
             li
-              a(href='/archive', ng-class='{active: vm.isActive(\'/archive\')}') Archive
+              a(href='/archive', ng-class='{active: vm.isActive(\'/archive\')}') 
+                span Archive
             li
-              a(href='/about', ng-class='{active: vm.isActive(\'/about\')}') About
+              a(href='/about', ng-class='{active: vm.isActive(\'/about\')}') 
+                span About
             li 
               form.search
                 input(type='search', placeholder='Search', ng-model='vm.search')
