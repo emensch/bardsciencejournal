@@ -15,7 +15,8 @@
 			.when('/archive', {
 				templateUrl: 'partials/archive.html',
 				controller: 'archiveController',
-				controllerAs: 'vm'
+				controllerAs: 'vm',
+				reloadOnSearch: false
 			})
 			.when('/about', {
 				templateUrl: 'partials/about.html',
