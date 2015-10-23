@@ -23,7 +23,7 @@
 		return directive;
 	}
 
-	function DropdownController($scope, $element, $document) {
+	function DropdownController($scope, $rootScope, $element, $document) {
 		var vm = this;
 
 		vm.select = select;
@@ -68,13 +68,22 @@
 			return !ngModel.$modelValue;
 		}
 
-		$element.on('click', stopProp);
-		function stopProp(event) {
+		$element.on('click', clickHandler);
+		function clickHandler(event) {
+			$rootScope.$emit('dropdownClicked', $element);
 			event.stopPropagation();
+		}
+
+		$rootScope.$on('dropdownClicked', receiveClickEvent);
+		function receiveClickEvent(event, data) {
+			if($element !== data) {
+				closeMenu();
+			}
 		}
 
 		var body = $document.find('body');
 		body.on('click', closeMenu);
+
 		function closeMenu() {
 			if(vm.active) {
 				vm.active = false;
