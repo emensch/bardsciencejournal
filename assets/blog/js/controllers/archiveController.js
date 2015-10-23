@@ -5,12 +5,14 @@
 		.module('bsj')
 		.controller('archiveController', archiveController);
 
-	function archiveController($q, $location, postService, descriptorService) {
+	function archiveController($q, $location, $scope, postService, descriptorService) {
 		var vm = this;
 		
 		vm.posts = [];
 		vm.types = [];
 		vm.subjects = [];
+		vm.type = null;
+		vm.subject = null;
 		vm.searchTerm = null;
 		vm.clearSearch = clearSearch;
 
@@ -55,8 +57,18 @@
 		}
 
 		function clearSearch() {
-			$location.search('search', null)
+			$location.search('search', null);
 			vm.searchTerm = null;
 		}
+
+		$scope.$watch('vm.subject', function() {
+			$location.search('subject', vm.subject);
+			getPostWithOptions();
+		});
+
+		$scope.$watch('vm.type', function() {
+			$location.search('type', vm.type);
+			getPostWithOptions();
+		});
 	}
 })();
