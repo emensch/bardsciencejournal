@@ -5,7 +5,7 @@
 		.module('bsj')
 		.controller('archiveController', archiveController);
 
-	function archiveController($q, $location, $scope, postService, descriptorService) {
+	function archiveController($q, $location, $scope, $rootScope, postService, descriptorService) {
 		var vm = this;
 		
 		vm.posts = [];
@@ -69,6 +69,10 @@
 				$location.search(vm.params);
 				getPostWithOptions();
 			}
+		});
+
+		$rootScope.$on('searchSubmitted', function() {
+			getSearchTerm();
 		});
 	}
 })();

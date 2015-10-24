@@ -1,7 +1,7 @@
 .archive
-  .nav-container(ng-switch='vm.searchTerm != null')
+  .nav-container(ng-switch='vm.params.search != null')
     .searchtitle(ng-switch-when='true', ng-click='vm.clearSearch()') Showing results for: 
-      span.term {{ vm.searchTerm }}
+      span.term {{ vm.params.search }}
       i.fa.fa-close
     .navbar(ng-switch-default)
       ul

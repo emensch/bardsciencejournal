@@ -5,7 +5,7 @@
 		.module('bsj')
 		.factory('searchService', searchService);
 
-	function searchService($location) {
+	function searchService($location, $rootScope) {
 		var service = {
 			search: search
 		};
@@ -15,6 +15,7 @@
 		function search(term) {
 			if(term) {
 				$location.url('/archive?search=' + term);
+				$rootScope.$emit('searchSubmitted');
 			}
 		}
 	}
