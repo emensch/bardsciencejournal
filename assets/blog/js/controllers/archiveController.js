@@ -64,11 +64,11 @@
 			vm.params.search = null;
 		}
 
-		$scope.$watch('vm.params', function(newVal, oldVal) {
+		$scope.$watchCollection('vm.params', function(newVal, oldVal) {
 			if(newVal !== oldVal) {
 				$location.search(vm.params);
 				getPostWithOptions();
 			}
-		}, true);
+		});
 	}
 })();
