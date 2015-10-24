@@ -11,9 +11,13 @@
 		vm.posts = [];
 		vm.types = [];
 		vm.subjects = [];
-		vm.type = null;
-		vm.subject = null;
-		vm.searchTerm = null;
+		vm.params = {
+			type: null,
+			subject: null,
+			search: null,
+			from: null,
+			to: null
+		};
 		vm.clearSearch = clearSearch;
 
 		activate();
@@ -23,13 +27,13 @@
 			return $q.all(promises);
 		}
 
-		function getPostWithOptions() {
+		function getPostWithOptions(opts) {
 			var options = $location.search();
 
 			return postService.getPosts(options)
 				.then(function(data) {
 					vm.posts = data;
-					console.log(vm.posts);
+					console.log(data);
 					return vm.posts;
 				});
 		}
@@ -38,7 +42,6 @@
 			return descriptorService.getTypes()
 				.then(function(data) {
 					vm.types = data;
-					console.log(vm.types);
 					return vm.types;
 				});
 		}
@@ -47,28 +50,25 @@
 			return descriptorService.getSubjects()
 				.then(function(data) {
 					vm.subjects = data;
-					console.log(vm.subjects);
 					return vm.subjects;
 				});
 		}
 
 		function getSearchTerm() {
-			vm.searchTerm = $location.search().search;
+			vm.params.search = $location.search().search;
+			return vm.params.search;
 		}
 
 		function clearSearch() {
 			$location.search('search', null);
-			vm.searchTerm = null;
+			vm.params.search = null;
 		}
 
-		$scope.$watch('vm.subject', function() {
-			$location.search('subject', vm.subject);
-			getPostWithOptions();
-		});
-
-		$scope.$watch('vm.type', function() {
-			$location.search('type', vm.type);
-			getPostWithOptions();
-		});
+		$scope.$watch('vm.params', function(newVal, oldVal) {
+			if(newVal !== oldVal) {
+				$location.search(vm.params);
+				getPostWithOptions();
+			}
+		}, true);
 	}
 })();

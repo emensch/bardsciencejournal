@@ -6,15 +6,15 @@
     .navbar(ng-switch-default)
       ul
         li
-          a(dropdown, default-option='All', default-name='Subject', items="vm.subjects", ng-model='vm.subject', href='')
+          a(dropdown, default-option='All', default-name='Subject', items="vm.subjects", ng-model='vm.params.subject', href='')
         li
-          a(dropdown, default-option='All', default-name='Type', items="vm.types", ng-model='vm.type', href='')
+          a(dropdown, default-option='All', default-name='Type', items="vm.types", ng-model='vm.params.type', href='')
         li 
           form.dates
             span From:
-            input.date(type='text', placeholder='mm/dd/yyyy', ng-model='vm.from')
+            input.date(type='text', placeholder='mm/dd/yyyy', ng-model='vm.options.from')
             span To:
-            input.date(type='text', placeholder='mm/dd/yyyy', ng-model='vm.to')
+            input.date(type='text', placeholder='mm/dd/yyyy', ng-model='vm.options.to')
   .post-container
     .archive-post(ng-repeat='post in vm.posts')
       .img
