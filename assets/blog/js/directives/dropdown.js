@@ -10,7 +10,7 @@
 			controller: DropdownController,
 			controllerAs: 'vm',
 			bindToController: true,
-			restrict: 'A',
+			restrict: 'E',
 			require: 'ngModel',
 			scope: {
 				defaultOption: '@',
