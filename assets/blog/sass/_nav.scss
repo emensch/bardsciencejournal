@@ -32,31 +32,24 @@ $letter-spacing: 0.1em;
 
 	a {
 		text-decoration: none;
-		color: $inactive;	
-
-		&.active {
-			span {
-				color: $active;
-			}
-		}
-
-		&:hover {
-			span {
-				color: $active;
-			}
-		}
-
-		span {
-			transition: color 0.3s ease;
-		}
 	}
 
 	span {
-		color: $inactive;
+		cursor: pointer;
 	}
 
-	i {
-		color: inherit;
+	a, span {
+		color: $inactive;	
+
+		&.active {
+			color: $active;
+		}
+
+		&:hover {
+			color: $active;
+		}
+
+		transition: color 0.3s ease;
 	}
 
 	.dropdown {

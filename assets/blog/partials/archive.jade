@@ -6,9 +6,9 @@
     .navbar(ng-switch-default)
       ul
         li
-          a(dropdown, default-option='All', default-name='Subject', items="vm.subjects", ng-model='vm.params.subject', href='')
+          span(dropdown, default-option='All', default-name='Subject', items="vm.subjects", ng-model='vm.params.subject')
         li
-          a(dropdown, default-option='All', default-name='Type', items="vm.types", ng-model='vm.params.type', href='')
+          span(dropdown, default-option='All', default-name='Type', items="vm.types", ng-model='vm.params.type')
         li 
           form.dates
             span From:
