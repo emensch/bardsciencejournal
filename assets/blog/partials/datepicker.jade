@@ -1,3 +1,9 @@
 span.datepicker(ng-class='{active: vm.active}', ng-click='vm.toggleMenu()') {{ vm.name }}
   i.fa.fa-calendar
 .datepicker-menu(ng-class='{active: vm.active}')
+  .year-line
+    button(type='button')
+      i.fa.fa-caret-left
+    .year 2015
+    button(type='button')
+      i.fa.fa-caret-right

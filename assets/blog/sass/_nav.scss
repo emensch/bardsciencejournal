@@ -107,12 +107,41 @@ $letter-spacing: 0.1em;
 		z-index: 10;
 		height: 0;
 		width: 200px;
+		overflow: hidden;
+		color: $inactive;
+		padding-left: 4px;
+		padding-right: 4px;
 
 		&.active {
 			height: 200px;
 		}
 
 		transition: height 0.3s ease;
+
+		.year-line {
+			text-align: center;
+			line-height: 30px;
+			border-bottom: solid $inactive 1px;
+
+			.year {
+				width: 70%;
+				float: left;
+			}
+
+			button {
+				width: 15%;
+				color: $inactive;
+				padding: 0;
+				float: left;
+
+				&:hover {
+					color: $active;
+				}
+
+				transition: color 0.3s ease;
+			}
+			@extend .clearfix;
+		}
 
 		@extend .card;
 	}
