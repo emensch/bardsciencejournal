@@ -22,6 +22,14 @@
 	}
 
 	function DatepickerController() {
+		var vm = this;
 
+		vm.toggleMenu = toggleMenu;
+		vm.active = false;
+
+		function toggleMenu() {
+			vm.active = !vm.active;
+			console.log(vm.active);
+		}
 	}
 })();

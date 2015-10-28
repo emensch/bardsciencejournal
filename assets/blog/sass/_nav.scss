@@ -100,6 +100,22 @@ $letter-spacing: 0.1em;
 
 		@extend .card;
 	}
+
+	.datepicker-menu {
+		position: absolute;
+		background-color: #FFFFFF;
+		z-index: 10;
+		height: 0;
+		width: 200px;
+
+		&.active {
+			height: 200px;
+		}
+
+		transition: height 0.3s ease;
+
+		@extend .card;
+	}
 }
 
 .search {
