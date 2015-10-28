@@ -103,7 +103,7 @@ $letter-spacing: 0.1em;
 		position: absolute;
 		background-color: #FFFFFF;
 		z-index: 10;
-		height: 0;
+		max-height: 0;
 		width: 200px;
 		overflow: hidden;
 		color: $inactive;
@@ -111,10 +111,10 @@ $letter-spacing: 0.1em;
 		padding-right: 4px;
 
 		&.active {
-			height: 200px;
+			max-height: 150px;
 		}
 
-		transition: height 0.3s ease;
+		transition: max-height 0.3s ease;
 
 		.year-line {
 			text-align: center;
@@ -139,6 +139,24 @@ $letter-spacing: 0.1em;
 				transition: color 0.3s ease;
 			}
 			@extend .clearfix;
+		}
+
+		.months-container {
+			.month {
+				@include span(3 of 12);
+
+				padding-top: 8px;
+				padding-bottom: 8px;
+				cursor: pointer;
+
+				&:hover {
+					color: $active;
+				}
+
+				&:nth-child(4n) {
+					@include last;
+				}
+			}
 		}
 
 		@extend .card;

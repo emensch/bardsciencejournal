@@ -7,3 +7,5 @@ span.datepicker(ng-class='{active: vm.active}', ng-click='vm.toggleMenu()') {{ v
     .year 2015
     button(type='button')
       i.fa.fa-caret-right
+  .months-container
+    .month(ng-repeat='month in vm.months', ng-click='vm.selectMonth(month)') {{ month }}

@@ -26,10 +26,15 @@
 
 		vm.toggleMenu = toggleMenu;
 		vm.active = false;
+		vm.selectMonth = selectMonth;
+		vm.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 		function toggleMenu() {
 			vm.active = !vm.active;
-			console.log(vm.active);
+		}
+
+		function selectMonth(month) {
+			console.log(month);
 		}
 
 		$element.on('click', clickHandler);
