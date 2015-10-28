@@ -1,3 +1,3 @@
-span.datepicker(ng-click='vm.toggleMenu()') {{ vm.name }}
+span.datepicker(ng-class='{active: vm.active}', ng-click='vm.toggleMenu()') {{ vm.name }}
   i.fa.fa-calendar
 .datepicker-menu(ng-class='{active: vm.active}')
