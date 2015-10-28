@@ -92,9 +92,7 @@ $letter-spacing: 0.1em;
 			transition: color 0.3s ease;
 
 			&:not(:last-child) {
-				border-bottom-style: solid;
-				border-bottom-color: $inactive;
-				border-bottom-width: 1px;
+				border-bottom: solid $inactive 1px;
 			}
 		}
 
@@ -151,9 +149,7 @@ $letter-spacing: 0.1em;
 	input {
 		width: 3.8em;
 		padding: 0;
-		border-bottom-style: solid;
-		border-bottom-width: 2px;
-		border-bottom-color: transparent;
+		border-bottom: solid transparent 2px; 
 		color: $inactive;
 
 		&:focus, &:hover {
