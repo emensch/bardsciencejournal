@@ -70,11 +70,11 @@
 
 		$element.on('click', clickHandler);
 		function clickHandler(event) {
-			$rootScope.$emit('dropdownClicked', $element);
+			$rootScope.$emit('menuClicked', $element);
 			event.stopPropagation();
 		}
 
-		$rootScope.$on('dropdownClicked', receiveClickEvent);
+		$rootScope.$on('menuClicked', receiveClickEvent);
 		function receiveClickEvent(event, data) {
 			if($element !== data) {
 				closeMenu();
