@@ -10,11 +10,9 @@
         li
           dropdown(default-option='All', default-name='Type', items="vm.types", ng-model='vm.params.type')
         li 
-          form.dates
-            span From:
-            input.date(type='text', placeholder='mm/dd/yyyy', ng-model='vm.options.from')
-            span To:
-            input.date(type='text', placeholder='mm/dd/yyyy', ng-model='vm.options.to')
+          datepicker(name='From:', ng-model='vm.options.from')
+        li
+          datepicker(name='To:', ng-model='vm.options.to')
   .post-container
     .archive-post(ng-repeat='post in vm.posts')
       .img
