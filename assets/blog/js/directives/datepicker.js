@@ -14,6 +14,7 @@
 			require: 'ngModel',
 			scope: {
 				name: '@',
+				defaultDate: '@'
 			},
 			templateUrl: 'partials/datepicker.html'
 		};
@@ -28,7 +29,7 @@
 		vm.active = false;
 		vm.activeMonth = activeMonth;
 		vm.selectMonth = selectMonth;
-		vm.dateString = 'Jan 2015';
+		vm.dateString = vm.defaultDate;
 		vm.nextYear = nextYear;
 		vm.prevYear = prevYear;
 		vm.getYear = getYear;
@@ -40,7 +41,12 @@
 		var ngModel = $element.controller('ngModel');
 
 		ngModel.$render = function() {
-			console.log($filter('date')(date, 'MMM yyyy'));
+			if(ngModel.$modelValue) {
+				date = new Date(ngModel.$modelValue);
+				renderDate();
+			} else {
+				date = new Date(vm.defaultDate);
+			}
 		};
 
 		function toggleMenu() {
