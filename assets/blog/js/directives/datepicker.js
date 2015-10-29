@@ -26,6 +26,7 @@
 
 		vm.toggleMenu = toggleMenu;
 		vm.active = false;
+		vm.activeMonth = activeMonth;
 		vm.selectMonth = selectMonth;
 		vm.dateString = 'Jan 2015';
 		vm.nextYear = nextYear;
@@ -44,6 +45,10 @@
 
 		function toggleMenu() {
 			vm.active = !vm.active;
+		}
+
+		function activeMonth(month) {
+			return month === date.getMonth();
 		}
 
 		function selectMonth(month) {

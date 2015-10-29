@@ -149,6 +149,10 @@ $letter-spacing: 0.1em;
 				padding-bottom: 8px;
 				cursor: pointer;
 
+				&.active {
+					color: $active;
+				}
+
 				&:hover {
 					color: $active;
 				}

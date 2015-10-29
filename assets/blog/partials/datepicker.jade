@@ -8,4 +8,4 @@ span.datepicker(ng-class='{active: vm.active}', ng-click='vm.toggleMenu()') {{ v
     button(type='button', ng-click='vm.nextYear()')
       i.fa.fa-caret-right
   .months-container
-    .month(ng-repeat='month in vm.months', ng-click='vm.selectMonth($index)') {{ month }}
+    .month(ng-repeat='month in vm.months', ng-class='{active: vm.activeMonth($index)}', ng-click='vm.selectMonth($index)') {{ month }}
