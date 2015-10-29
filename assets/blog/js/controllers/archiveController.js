@@ -23,8 +23,20 @@
 		activate();
 
 		function activate() {
-			var promises = [getPostWithOptions(), getTypes(), getSubjects(), getSearchTerm()];
+			var promises = [getOptions(), getPostWithOptions(), getTypes(), getSubjects()];
 			return $q.all(promises);
+		}
+
+		function getOptions() {
+			var options = $location.search();
+			vm.params = {
+				type: options.type,
+				subject: options.subject,
+				search: options.search,
+				from: options.from,
+				to: options.to
+			}
+			return vm.params;
 		}
 
 		function getPostWithOptions(opts) {
@@ -52,11 +64,6 @@
 					vm.subjects = data;
 					return vm.subjects;
 				});
-		}
-
-		function getSearchTerm() {
-			vm.params.search = $location.search().search;
-			return vm.params.search;
 		}
 
 		function clearSearch() {
