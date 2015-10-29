@@ -78,6 +78,7 @@
 
 		function renderDate() {
 			vm.dateString = $filter('date')(date, 'MMM yyyy');
+			ngModel.$setViewValue($filter('date')(date, 'MM-dd-yyyy'));
 		}
 
 		$element.on('click', clickHandler);
