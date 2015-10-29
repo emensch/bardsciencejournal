@@ -1,11 +1,11 @@
-span.datepicker(ng-class='{active: vm.active}', ng-click='vm.toggleMenu()') {{ vm.name }}
+span.datepicker(ng-class='{active: vm.active}', ng-click='vm.toggleMenu()') {{ vm.name + ' ' + vm.dateString }}
   i.fa.fa-calendar
 .datepicker-menu(ng-class='{active: vm.active}')
   .year-line
-    button(type='button')
+    button(type='button', ng-click='vm.prevYear()')
       i.fa.fa-caret-left
-    .year 2015
-    button(type='button')
+    .year {{ vm.getYear() }}
+    button(type='button', ng-click='vm.nextYear()')
       i.fa.fa-caret-right
   .months-container
-    .month(ng-repeat='month in vm.months', ng-click='vm.selectMonth(month)') {{ month }}
+    .month(ng-repeat='month in vm.months', ng-click='vm.selectMonth($index)') {{ month }}

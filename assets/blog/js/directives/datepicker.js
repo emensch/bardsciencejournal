@@ -21,20 +21,52 @@
 		return directive;
 	}
 
-	function DatepickerController($scope, $rootScope, $element, $document) {
+	function DatepickerController($scope, $rootScope, $element, $document, $filter) {
 		var vm = this;
 
 		vm.toggleMenu = toggleMenu;
 		vm.active = false;
 		vm.selectMonth = selectMonth;
+		vm.dateString = 'Jan 2015';
+		vm.nextYear = nextYear;
+		vm.prevYear = prevYear;
+		vm.getYear = getYear;
+
 		vm.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+		var date = new Date(2015, 0, 1);
+
+		var ngModel = $element.controller('ngModel');
+
+		ngModel.$render = function() {
+			console.log($filter('date')(date, 'MMM yyyy'));
+		};
 
 		function toggleMenu() {
 			vm.active = !vm.active;
 		}
 
 		function selectMonth(month) {
-			console.log(month);
+			date.setMonth(month);
+			renderDate();
+		}
+
+		function nextYear() {
+			date.setYear(date.getFullYear() + 1);
+			renderDate();
+		}
+
+		function prevYear() {
+			date.setYear(date.getFullYear() - 1);
+			renderDate();
+		}
+
+		function getYear() {
+			return date.getFullYear();
+		}
+
+		function renderDate() {
+			vm.dateString = $filter('date')(date, 'MMM yyyy');
 		}
 
 		$element.on('click', clickHandler);
