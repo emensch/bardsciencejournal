@@ -22,7 +22,7 @@
 		return directive;
 	}
 
-	function DatepickerController($scope, $rootScope, $element, $document, $filter) {
+	function DatepickerController($scope, $rootScope, $element, $document, $filter, $attrs) {
 		var vm = this;
 
 		vm.toggleMenu = toggleMenu;
@@ -36,7 +36,8 @@
 
 		vm.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-		var date = new Date(2015, 0, 1);
+		var inclusive = 'inclusive' in $attrs;
+		var date = new Date();
 
 		var ngModel = $element.controller('ngModel');
 
@@ -77,8 +78,16 @@
 		}
 
 		function renderDate() {
+			if(inclusive) {
+				var tmpDate = new Date(date);
+				tmpDate.setMonth(tmpDate.getMonth() + 1);
+
+				ngModel.$setViewValue($filter('date')(tmpDate, 'MM-dd-yyyy'));
+			} else {
+				ngModel.$setViewValue($filter('date')(date, 'MM-dd-yyyy'));
+			}
+
 			vm.dateString = $filter('date')(date, 'MMM yyyy');
-			ngModel.$setViewValue($filter('date')(date, 'MM-dd-yyyy'));
 		}
 
 		$element.on('click', clickHandler);
