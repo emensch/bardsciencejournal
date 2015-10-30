@@ -115,9 +115,18 @@ body {
 		display: inline;
 
 		li {
-			text-transform: capitalize;
 			display: inline;
 		}
+	}
+
+	.author {
+		text-transform: capitalize;
+
+		&:hover {
+			color: #000000;
+		}
+
+		transition: color 0.3s ease;
 	}
 }
 

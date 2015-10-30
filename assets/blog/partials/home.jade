@@ -10,7 +10,7 @@ mixin post
       span by
       ul
         li(ng-repeat='author in post.authors') 
-          a(href='/archive?author={{author}}') {{ author }}
+          a(href='/archive?author={{author}}').author {{ author }}
           span(ng-if='post.authors.length > 1 && !$last') 
             | {{ $index == post.authors.length-2 ? ' and' : ',' }}
     .description {{ post.description }}
