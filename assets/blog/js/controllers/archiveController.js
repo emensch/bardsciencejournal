@@ -35,11 +35,11 @@
 				search: options.search,
 				from: options.from,
 				to: options.to
-			}
+			};
 			return vm.params;
 		}
 
-		function getPostWithOptions(opts) {
+		function getPostWithOptions() {
 			var options = $location.search();
 
 			return postService.getPosts(options)
@@ -79,7 +79,7 @@
 		});
 
 		$rootScope.$on('searchSubmitted', function() {
-			getSearchTerm();
+			getOptions();
 		});
 	}
 })();
