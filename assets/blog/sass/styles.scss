@@ -93,6 +93,17 @@ body {
 	font-weight: bold;
 }
 
+.posttitle {
+	display: block;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
 .authors {
 	&, a {
 		color: #A1A1A1;

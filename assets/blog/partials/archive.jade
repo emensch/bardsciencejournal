@@ -14,14 +14,14 @@
         li
           datepicker(name='To:', default-date='Jan 2015', inclusive, ng-model='vm.params.to')
   .post-container
-    .archive-post(ng-repeat='post in vm.posts')
+    .archive-post(ng-href='/', ng-repeat='post in vm.posts')
       .img
         img(ng-src='{{ post.photo }}')
         .subject-type
           .subject {{ post.subject }}
           .type {{ post.type }}
       .post-content
-        .title {{ post.title }}
+        a(ng-href='/post/{{ post.slug }}').title {{ post.title }}
         .authors
           span by
           ul

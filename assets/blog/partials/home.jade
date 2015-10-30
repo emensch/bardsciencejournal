@@ -5,7 +5,7 @@ mixin post
       .subject {{ post.subject }}
       .type {{ post.type }}
   .post-content
-    .title {{ post.title }}
+    a(ng-href='/post/{{ post.slug }}').title {{ post.title }}
     .authors
       span by
       ul
