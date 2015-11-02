@@ -14,6 +14,7 @@
 		vm.params = {
 			type: null,
 			subject: null,
+			author: null,
 			search: null,
 			from: null,
 			to: null
@@ -32,6 +33,7 @@
 			vm.params = {
 				type: options.type,
 				subject: options.subject,
+				author: options.author,
 				search: options.search,
 				from: options.from,
 				to: options.to
