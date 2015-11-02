@@ -131,6 +131,34 @@ body {
 	}
 }
 
+.tags {
+	ul {
+		list-style: none;
+		padding-left: 0px;
+		display: inline;
+
+		li {
+			display: inline;
+		}
+	}
+
+	.tag {
+		margin-right: 2px;
+		text-decoration: none;
+		color: #737373;
+		background-color: #EFEFEF;
+		padding: 3px;
+		border-radius: 3px;
+		font-size: 14px;
+
+		&:hover {
+			background-color: #D2D2D2;
+		}
+
+		transition: background-color 0.3s ease;
+	}	
+}
+
 .date {
 	color: #A1A1A1;
 }

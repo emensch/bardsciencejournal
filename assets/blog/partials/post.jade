@@ -16,3 +16,7 @@
               | {{ $index == vm.post.authors.length-2 ? ' and' : ',' }}
       .content(ng-bind-html='vm.post.content')
       .date {{ vm.post.date | date }}
+      .tags
+        ul
+          li(ng-repeat='tag in vm.post.tags') 
+            a(href='/archive?tag={{tag}}').tag {{ tag }}
