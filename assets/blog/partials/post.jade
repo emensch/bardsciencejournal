@@ -11,7 +11,7 @@
         span by
         ul
           li(ng-repeat='author in vm.post.authors') 
-            a(href='/archive?author={{author}}').author {{ author }}
+            a(ng-href='/archive?author={{author}}').author {{ author }}
             span(ng-if='vm.post.authors.length > 1 && !$last') 
               | {{ $index == vm.post.authors.length-2 ? ' and' : ',' }}
       .content(ng-bind-html='vm.post.content')
@@ -19,4 +19,4 @@
       .tags
         ul
           li(ng-repeat='tag in vm.post.tags') 
-            a(href='/archive?tag={{tag}}').tag {{ tag }}
+            a(ng-href='/archive?tag={{tag}}').tag {{ tag }}
