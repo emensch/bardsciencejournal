@@ -2,5 +2,5 @@
 	'use strict';
 	
 	angular
-		.module('bsj', ['ngRoute', 'ngAnimate']);	
+		.module('bsj', ['ngRoute', 'ngAnimate', 'ngSanitize']);	
 })();	
