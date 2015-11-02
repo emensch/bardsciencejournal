@@ -12,6 +12,9 @@
 	}
 
 	.post-content {
+		padding: 0 5px 5px 5px;
+		margin: 0 20px 20px;
+
 		.title {
 			text-align: center;
 			font-weight: bold;
@@ -28,9 +31,12 @@
 		.content {
 			font-family: 'Georgia', serif;
 			line-height: 2;
-			margin-left: 20px;
-			margin-right: 20px;
 			text-align: justify;
+			margin-bottom: 15px;
+		}
+
+		.date {
+			font-size: 14px;
 		}
 	}	
 }

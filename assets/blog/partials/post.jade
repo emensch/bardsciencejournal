@@ -15,3 +15,4 @@
             span(ng-if='vm.post.authors.length > 1 && !$last') 
               | {{ $index == vm.post.authors.length-2 ? ' and' : ',' }}
       .content(ng-bind-html='vm.post.content')
+      .date {{ vm.post.date | date }}
