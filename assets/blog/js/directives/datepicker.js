@@ -44,6 +44,9 @@
 		ngModel.$render = function() {
 			if(ngModel.$modelValue) {
 				date = new Date(ngModel.$modelValue);
+				if(inclusive) {
+					date.setMonth(date.getMonth() - 1);
+				}
 				renderDate();
 			} else {
 				date = new Date(vm.defaultDate);
