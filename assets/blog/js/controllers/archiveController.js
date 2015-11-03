@@ -8,11 +8,11 @@
 	function archiveController($q, $location, $scope, $rootScope, postService, descriptorService) {
 		var vm = this;
 		
-		vm.posts = [];
+		vm.posts = null;
 		vm.pages = 1;
 		vm.page = null;
-		vm.types = [];
-		vm.subjects = [];
+		vm.types = null;
+		vm.subjects = null;
 		vm.params = {
 			type: null,
 			subject: null,
