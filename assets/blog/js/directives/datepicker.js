@@ -64,6 +64,7 @@
 		function selectMonth(month) {
 			date.setMonth(month);
 			renderDate();
+			vm.active = false;
 		}
 
 		function nextYear() {
