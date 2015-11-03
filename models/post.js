@@ -194,6 +194,42 @@ postSchema.statics.updateFromReq = function (req, cb) {
 	});
 };
 
+postSchema.statics.getDates = function (cb) {
+	var Post = this;
+
+	Post.findOne()
+	.select('date')
+	.sort({'date': 1})
+	.limit(1)
+	.exec( function (err, first) {
+		if (err) {
+			return cb(err);
+		}
+
+		if(!first) {
+			err = errors.notFound();
+			return cb(err);
+		}
+
+		Post.findOne()
+		.select('date')
+		.sort({'date:': -1})
+		.limit(1)
+		.exec( function (err, last) {
+			if (err) {
+				return cb(err);
+			}
+
+			var dates = {
+				first: first.date,
+				last: last.date
+			};
+
+			cb(null, dates);
+		});
+	});
+};
+
 // Ensure photo is a valid url
 postSchema.path('photo').validate( function (photo) {
 	var regex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/i
