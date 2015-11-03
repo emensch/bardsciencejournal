@@ -32,10 +32,10 @@
         .description {{ post.description }}
         .date {{ post.date | date }}
   .pagination
-    button(type='button', ng-show='vm.params.page > 1', ng-click='vm.prevPage()')
+    button(type='button', ng-show='vm.page > 1', ng-click='vm.prevPage()')
       i.fa.fa-caret-left
       span Previous
-    span.page {{ vm.params.page }}
-    button(type='button', ng-show='vm.params.page < vm.pages', ng-click='vm.nextPage()')
+    span.page {{ vm.page }}
+    button(type='button', ng-show='vm.page < vm.pages', ng-click='vm.nextPage()')
       span Next
       i.fa.fa-caret-right

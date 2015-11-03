@@ -10,6 +10,7 @@
 		
 		vm.posts = [];
 		vm.pages = 1;
+		vm.page = null;
 		vm.types = [];
 		vm.subjects = [];
 		vm.params = {
@@ -18,9 +19,11 @@
 			author: null,
 			search: null,
 			from: null,
-			to: null
+			to: null,
 		};
 		vm.clearSearch = clearSearch;
+		vm.prevPage = prevPage;
+		vm.nextPage = nextPage;
 
 		activate();
 
@@ -39,6 +42,7 @@
 				from: options.from,
 				to: options.to
 			};
+			vm.page = options.page || 1;
 			return vm.params;
 		}
 
@@ -75,9 +79,24 @@
 			vm.params.search = null;
 		}
 
+		function prevPage() {
+			if(vm.page > 1) {
+				$location.search('page', --vm.page > 1 ? vm.page : null);
+			}
+			getPostWithOptions();
+		}
+
+		function nextPage() {
+			if(vm.page < vm.pages) {
+				$location.search('page', ++vm.page);
+			}
+			getPostWithOptions();
+		}
+
 		$scope.$watchCollection('vm.params', function(newVal, oldVal) {
 			if(newVal !== oldVal) {
 				$location.search(vm.params);
+				vm.page = 1;
 				getPostWithOptions();
 			}
 		});
