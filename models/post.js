@@ -48,7 +48,7 @@ postSchema.statics.findWithQuery = function (query, cb) {
 	var startDate = query.from;
 	var endDate = query.to;
 	var page = query.page || 1;
-	var num = Math.min(query.num, 10);
+	var num = Math.min((query.num || 10), 10);
 	var queryObj = {};
 	var dateObj = {};
 	var sortObj = {};
@@ -76,17 +76,30 @@ postSchema.statics.findWithQuery = function (query, cb) {
 		sortObj = { date: -1 };
 	}
 
-	this.find(queryObj, metaObj)
+	var Post = this;
+
+	Post.find(queryObj, metaObj)
 	.select('-_id -__v -content')
 	.skip((page - 1) * num)
 	.limit(num)
 	.sort(sortObj)
-	.exec( function (err, post) {
+	.exec( function (err, posts) {
 		if (err) {
 			return cb(err);
 		}
 
-		cb(null, post);
+		Post.count(queryObj, function (err, count) {
+			if (err) {
+				return cb(err);
+			}
+
+			var results = {
+				pages: Math.ceil(count / num),
+				posts: posts
+			};
+			
+			cb(null, results);
+		});
 	});
 };
 
@@ -136,7 +149,6 @@ postSchema.statics.createFromReq = function (req, cb) {
 	newPost.authors = body.authors;
 	newPost.tags = body.tags;
 
-	console.log(newPost);
 	newPost.save( function (err) {
 		if (err) {
 			errors.parseSaveError(err);
