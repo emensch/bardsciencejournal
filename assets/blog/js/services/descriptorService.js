@@ -8,7 +8,8 @@
 	function descriptorService(API_PREFIX, $http) {
 		var service = {
 			getSubjects: getSubjects,
-			getTypes: getTypes 
+			getTypes: getTypes,
+			getDates: getDates 
 		};
 
 		return service;
@@ -37,6 +38,20 @@
 			}
 
 			function getTypesFailed(res) {
+				console.log('Failed to retrieve '+res.config.url);
+			}
+		}
+
+		function getDates() {
+			return $http.get(API_PREFIX + '/dates')
+				.then(getDatesComplete)
+				.catch(getDatesFailed);
+
+			function getDatesComplete(res) {
+				return res.data;
+			}
+
+			function getDatesFailed(res) {
 				console.log('Failed to retrieve '+res.config.url);
 			}
 		}

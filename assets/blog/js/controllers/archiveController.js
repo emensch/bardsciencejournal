@@ -13,6 +13,7 @@
 		vm.page = null;
 		vm.types = null;
 		vm.subjects = null;
+		vm.dates = null;
 		vm.params = {
 			type: null,
 			subject: null,
@@ -28,7 +29,7 @@
 		activate();
 
 		function activate() {
-			var promises = [getOptions(), getPostWithOptions(), getTypes(), getSubjects()];
+			var promises = [getOptions(), getPostWithOptions(), getDates(), getTypes(), getSubjects()];
 			return $q.all(promises);
 		}
 
@@ -71,6 +72,14 @@
 				.then(function(data) {
 					vm.subjects = data;
 					return vm.subjects;
+				});
+		}
+
+		function getDates() {
+			return descriptorService.getDates()
+				.then(function(data) {
+					vm.dates = data;
+					return vm.dates;
 				});
 		}
 
