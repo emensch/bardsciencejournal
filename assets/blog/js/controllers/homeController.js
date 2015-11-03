@@ -22,7 +22,7 @@
 		function getFeaturedPosts() {
 			return postService.getPosts({ num: 6, featured: true })
 				.then(function(data) {
-					vm.featured = data;
+					vm.featured = data.posts;
 					console.log(vm.featured);
 					return vm.featured;
 				});
@@ -31,7 +31,7 @@
 		function getRecentPosts() {
 			return postService.getPosts({ num: 3, featured: false })
 				.then(function(data) {
-					vm.recent = data;
+					vm.recent = data.posts;
 					console.log(vm.recent);
 					return vm.recent;
 				});			

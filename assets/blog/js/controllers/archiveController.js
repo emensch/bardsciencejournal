@@ -9,6 +9,7 @@
 		var vm = this;
 		
 		vm.posts = [];
+		vm.pages = 1;
 		vm.types = [];
 		vm.subjects = [];
 		vm.params = {
@@ -46,7 +47,8 @@
 
 			return postService.getPosts(options)
 				.then(function(data) {
-					vm.posts = data;
+					vm.posts = data.posts;
+					vm.pages = data.pages;
 					console.log(data);
 					return vm.posts;
 				});
