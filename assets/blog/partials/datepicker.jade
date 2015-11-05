@@ -2,10 +2,10 @@ span.datepicker(ng-class='{active: vm.active}', ng-click='vm.toggleMenu()') {{ v
   i.fa.fa-calendar
 .datepicker-menu(ng-class='{active: vm.active}')
   .year-line
-    button(type='button', ng-click='vm.prevYear()')
+    button(type='button', ng-disabled='vm.isMinYear()', ng-click='vm.prevYear()')
       i.fa.fa-caret-left
     .year {{ vm.getYear() }}
-    button(type='button', ng-click='vm.nextYear()')
+    button(type='button', ng-disabled='vm.isMaxYear()', ng-click='vm.nextYear()')
       i.fa.fa-caret-right
   .months-container
-    .month(ng-repeat='month in vm.months', ng-class='{active: vm.activeMonth($index)}', ng-click='vm.selectMonth($index)') {{ month }}
+    button(ng-repeat='month in vm.months', ng-class='{active: vm.activeMonth($index)}', ng-disabled='vm.disabledMonth($index)', ng-click='vm.selectMonth($index)') {{ month }}
