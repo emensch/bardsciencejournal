@@ -10,9 +10,9 @@
         li
           dropdown(default-option='All', default-name='Type', items="vm.types", ng-model='vm.params.type')
         li 
-          datepicker(name='From:', default-date='Jan 2014', ng-model='vm.params.from')
+          datepicker(name='From:', min-date='{{vm.dates.first}}', max-date='{{vm.params.to}}', ng-model='vm.params.from')
         li
-          datepicker(name='To:', default-date='Jan 2015', inclusive, ng-model='vm.params.to')
+          datepicker(name='To:', min-date='{{vm.params.from}}', max-date='{{vm.dates.last}}', inclusive, ng-model='vm.params.to')
   .post-container(ng-switch='!vm.posts.length && vm.posts != null')
     .archive-post(ng-switch-default, ng-href='/', ng-repeat='post in vm.posts')
       .img

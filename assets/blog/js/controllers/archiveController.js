@@ -13,7 +13,10 @@
 		vm.page = null;
 		vm.types = null;
 		vm.subjects = null;
-		vm.dates = null;
+		vm.dates = {
+			first: null,
+			last: null
+		};
 		vm.params = {
 			type: null,
 			subject: null,
@@ -78,7 +81,10 @@
 		function getDates() {
 			return descriptorService.getDates()
 				.then(function(data) {
-					vm.dates = data;
+					vm.dates = {
+						first: data.first,
+						last: data.last
+					};
 					return vm.dates;
 				});
 		}
