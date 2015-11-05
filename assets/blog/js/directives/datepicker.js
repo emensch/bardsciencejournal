@@ -51,8 +51,6 @@
 			if(ngModel.$modelValue) {
 				var tmpDate = new Date(ngModel.$modelValue);
 				date = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), 1);
-
-				console.log(ngModel.$modelValue, date);
 				if(inclusive) {
 					date.setMonth(date.getMonth() - 1);
 				}
@@ -93,7 +91,6 @@
 		function nextYear() {
 			if(date.getFullYear() < max.getFullYear()) {
 				date.setYear(date.getFullYear() + 1);
-				console.log(date.getMonth(), max.getMonth());
 				if(date.getMonth() >= max.getMonth()) {
 					date.setMonth(inclusive ? max.getMonth() : max.getMonth() - 1);
 				}
