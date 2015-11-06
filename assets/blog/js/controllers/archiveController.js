@@ -5,7 +5,7 @@
 		.module('bsj')
 		.controller('archiveController', archiveController);
 
-	function archiveController($q, $location, $scope, $rootScope, postService, descriptorService) {
+	function archiveController($q, $location, $scope, $rootScope, dateService, postService, descriptorService) {
 		var vm = this;
 		
 		vm.posts = null;
@@ -39,12 +39,12 @@
 		function getOptions() {
 			var options = $location.search();
 			vm.params = {
-				type: options.type,
-				subject: options.subject,
-				author: options.author,
-				search: options.search,
-				from: options.from,
-				to: options.to
+				type: options.type || null,
+				subject: options.subject || null,
+				author: options.author || null,
+				search: options.search || null,
+				from: options.from || null,
+				to: options.to || null
 			};
 			vm.page = options.page || 1;
 			return vm.params;
@@ -52,7 +52,12 @@
 
 		function getPostWithOptions() {
 			var options = $location.search();
-
+			if(options.from) {
+				options.from = dateService.shortToLong(options.from);
+			}
+			if(options.to) {
+				options.to = dateService.shortToLong(options.to)
+			}
 			return postService.getPosts(options)
 				.then(function(data) {
 					vm.posts = data.posts;
@@ -82,8 +87,8 @@
 			return descriptorService.getDates()
 				.then(function(data) {
 					vm.dates = {
-						first: data.first,
-						last: data.last
+						first: dateService.longToShort(data.first),
+						last: dateService.longToShort(data.last)
 					};
 					return vm.dates;
 				});
