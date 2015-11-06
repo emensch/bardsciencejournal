@@ -23,7 +23,7 @@
 		return directive;
 	}
 
-	function DatepickerController($scope, $rootScope, $element, $document, $filter, $attrs) {
+	function DatepickerController($scope, $rootScope, $element, $document, $filter, $attrs, dateService) {
 		var vm = this;
 
 		vm.toggleMenu = toggleMenu;
@@ -49,10 +49,9 @@
 
 		ngModel.$render = function() {
 			if(ngModel.$modelValue) {
-				var tmpDate = new Date(ngModel.$modelValue);
-				date = new Date(tmpDate.getFullYear(), tmpDate.getMonth(), 1);
+				date = dateService.shortToObj(ngModel.$modelValue);
 				if(inclusive) {
-					date.setMonth(date.getMonth() - 1);
+					date.month = date.month - 1;
 				}
 			} else {
 				date = null;
@@ -64,18 +63,21 @@
 		}
 
 		function activeMonth(month) {
-			return date ? month === date.getMonth() : null;
+			return date ? month === date.month : null;
 		}
 
 		function disabledMonth(month) {
 			if(date) {
-				var tmpDate = new Date(date.getFullYear(), month, 1);
-
-				if(min && max) {
-					return !(tmpDate >= min && (inclusive ? tmpDate <= max : tmpDate < max));
+				var tmpDate = {
+					year: date.year,
+					month: month
 				}
 
-				return false;
+				if(min && max) {
+					return !(dateService.compare(tmpDate, min) >= 0 
+							&& (inclusive ? dateService.compare(tmpDate, max) <= 0 
+							: dateService.compare(tmpDate, max) < 0));
+				}
 			}
 			return true;
 		}
@@ -83,53 +85,55 @@
 		function selectMonth(month) {
 			if(!disabledMonth(month)) {
 				vm.active = false;
-				date.setMonth(month);
+				date.month = month;
 				renderDate();			
 			}
 		}
 
 		function nextYear() {
-			if(date.getFullYear() < max.getFullYear()) {
-				date.setYear(date.getFullYear() + 1);
-				if(date.getMonth() >= max.getMonth()) {
-					date.setMonth(inclusive ? max.getMonth() : max.getMonth() - 1);
+			if(date.year < max.year) {
+				date.year = (date.year + 1);
+				if(date.month >= max.month) {
+					date.month = (inclusive ? max.month : max.month - 1);
 				}
 				renderDate();
 			}
 		}
 
 		function prevYear() {
-			if(date.getFullYear() > min.getFullYear()) {
-				date.setYear(date.getFullYear() - 1);
-				if(date.getMonth() < min.getMonth()) {
-					date.setMonth(min.getMonth());
+			if(date.year > min.year) {
+				date.year = (date.year - 1);
+				if(date.month < min.month) {
+					date.month = min.month;
 				}
 				renderDate();
 			}
 		}
 
 		function getYear() {
-			return date ? date.getFullYear() : null;
+			return date ? date.year : null;
 		}
 
 		function isMinYear() {
-			return (date && min) ? (date.getFullYear() <= min.getFullYear()) : true;
+			return (date && min) ? (date.year <= min.year) : true;
 		}
 
 		function isMaxYear() {
-			return (date && max) ? (date.getFullYear() >= max.getFullYear()) : true;
+			return (date && max) ? (date.year >= max.year) : true;
 		}
 
 		function renderDate() {
 			if(date) {
 				if(inclusive) {
-					var tmpDate = new Date(date.getFullYear(), date.getMonth() + 1, 1);
-					ngModel.$setViewValue($filter('date')(tmpDate, 'MM-dd-yyyy'));
+					var tmpDate = {
+						year: date.year,
+						month: date.month + 1
+					};
+					ngModel.$setViewValue(dateService.objToShort(tmpDate));
 				} else {
-					date.setDate(1);
-					ngModel.$setViewValue($filter('date')(date, 'MM-dd-yyyy'));
+					ngModel.$setViewValue(dateService.objToShort(date));
 				}
-				vm.dateString = $filter('date')(date, 'MMM yyyy');
+				vm.dateString = dateService.displayString(dateService.objToShort(date));
 			} else {
 				vm.dateString = '...';
 			}
@@ -138,22 +142,24 @@
 		$scope.$watch('vm.minDate', function() {
 			if(vm.minDate) {
 				if(!inclusive) {
-					date = new Date(vm.minDate);
+					date = dateService.shortToObj(vm.minDate);
 					renderDate();
 				}
-				var tmpMin = new Date(vm.minDate);
-				min = new Date(tmpMin.getFullYear(), tmpMin.getMonth(), 1);
+				min = dateService.shortToObj(vm.minDate);
+				//var tmpMin = new Date(vm.minDate);
+				//min = new Date(tmpMin.getFullYear(), tmpMin.getMonth(), 1);
 			}
 		});
 
 		$scope.$watch('vm.maxDate', function() {
 			if(vm.maxDate) {
 				if(inclusive) {
-					date = new Date(vm.maxDate);
+					date = dateService.shortToObj(vm.maxDate);
 					renderDate();				
 				}
-				var tmpMax = new Date(vm.maxDate);
-				max = new Date(tmpMax.getFullYear(), tmpMax.getMonth(), 1);
+				max = dateService.shortToObj(vm.maxDate);
+				//var tmpMax = new Date(vm.maxDate);
+				//max = new Date(tmpMax.getFullYear(), tmpMax.getMonth(), 1);
 			}
 		});
 
