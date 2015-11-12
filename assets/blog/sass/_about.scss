@@ -1,0 +1,21 @@
+.about {
+	@include container;
+	@extend .card;
+	margin-bottom: 50px;
+
+	.img {
+		height: auto;
+		margin-bottom: 10px;
+	}
+
+	.content {
+		padding: 0 5px 10px 20px;
+		margin: 0 20px;
+	}
+}
+
+.about-title {
+	text-align: center;
+	font-size: 36px;
+	margin-bottom: 10px;
+}
