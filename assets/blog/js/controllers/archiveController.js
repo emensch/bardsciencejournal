@@ -51,7 +51,7 @@
 		}
 
 		function getPostWithOptions() {
-			var options = $location.search();
+			var options = angular.copy($location.search());
 			if(options.from) {
 				options.from = dateService.shortToLong(options.from);
 			}
