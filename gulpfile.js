@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	concat = require('gulp-concat'),
 	jade = require('gulp-jade'),
+	imagemin = require('gulp-imagemin'),
 	gutil = require('gulp-util'),
 	del = require('del');
 
@@ -36,6 +37,12 @@ gulp.task('blog_scripts', function () {
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(uglify().on('error', gutil.log))
 		.pipe(gulp.dest('public/js'));
+});
+
+gulp.task('blog_images', function () {
+	gulp.src('assets/blog/images/*')
+		.pipe(imagemin())
+		.pipe(gulp.dest('public/images'));
 });
 
 // Admin
@@ -80,6 +87,9 @@ gulp.task('watch', function () {
 	gulp.watch([
 		'assets/blog/js/**/*.js',
 		], ['blog_scripts']);
+	gulp.watch([
+		'assets/blog/images/*'
+		], ['blog_images']);
 	// Admin
 	gulp.watch([
 		'assets/admin/sass/*.scss',
@@ -99,6 +109,7 @@ gulp.task('clean', function (cb) {
 			'public/css/*.*',
 			'public/js/*.*',
 			'public/partials/*.*',
+			'public/images/*.*',
 			'public/admin/*.*',
 			'public/admin/css/*.*',
 			'public/admin/js/*.*',
@@ -106,4 +117,4 @@ gulp.task('clean', function (cb) {
 		], cb);
 });
 
-gulp.task('default', ['blog_styles', 'blog_jade', 'blog_scripts', 'admin_styles', 'admin_jade', 'admin_scripts']);
+gulp.task('default', ['blog_styles', 'blog_jade', 'blog_scripts', 'blog_images', 'admin_styles', 'admin_jade', 'admin_scripts']);
