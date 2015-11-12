@@ -10,9 +10,8 @@ html(lang='en' ng-app='bsj')
   body
     .main-container
       .header-container
-        .logo
-          .bard Bard
-          .science-journal Science Journal  
+        a(href='/')
+          img.logo(src='images/logo.png')  
       .nav-container
         .navbar(ng-controller='navController as vm')
           ul
