@@ -3,6 +3,7 @@
 @import 'variables';
 @import 'ng-animate';
 @import 'header';
+@import 'footer';
 @import 'nav';
 @import 'home';
 @import 'archive';
@@ -169,4 +170,8 @@ body {
 	padding-right: 5px;
 
 	@extend .clearfix;
+}
+
+.main-container {
+	padding-bottom: 20px;
 }
