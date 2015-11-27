@@ -79,7 +79,10 @@
 				var cmpMax = getMax();
 
 				if(cmpMin && cmpMax) {
-					return !(dateService.compare(tmpDate, cmpMin) >= 0 && dateService.compare(tmpDate, cmpMax) <= 0)
+					return !(dateService.compare(tmpDate, cmpMin) >= 0 && 
+						(inclusive ?
+							dateService.compare(tmpDate, cmpMax) <= 0 :
+							dateService.compare(tmpDate, cmpMax) <= 0));
 				}
 			}
 			return true;
@@ -98,7 +101,7 @@
 
 			if(date.year < cmpMax.year) {
 				date.year = (date.year + 1);
-				if(date.month >= cmpMax.month) {
+				if(date.month > cmpMax.month) {
 					date.month = cmpMax.month;
 				}
 				renderDate();
@@ -166,6 +169,14 @@
 
 		function getMax() {
 			if(vm.dynamicMax) {
+				var dateObj = dateService.shortToObj(vm.dynamicMax);
+				if(!inclusive) {
+					var tmpDate = {
+						month: dateObj.month - 1,
+						year: dateObj.year
+					}
+					return tmpDate;
+				}
 				return dateService.shortToObj(vm.dynamicMax);
 			}
 			return max;
