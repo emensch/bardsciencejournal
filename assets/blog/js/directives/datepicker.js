@@ -79,10 +79,7 @@
 				var cmpMax = getMax();
 
 				if(cmpMin && cmpMax) {
-					return !(dateService.compare(tmpDate, cmpMin) >= 0 && 
-						(inclusive ?
-							dateService.compare(tmpDate, cmpMax) <= 0 :
-							dateService.compare(tmpDate, cmpMax) <= 0));
+					return !(dateService.compare(tmpDate, cmpMin) >= 0 && dateService.compare(tmpDate, cmpMax) <= 0);
 				}
 			}
 			return true;
