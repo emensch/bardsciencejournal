@@ -25,6 +25,7 @@
 			from: null,
 			to: null,
 		};
+		vm.updateAuthor = updateAuthor;
 		vm.clearSearch = clearSearch;
 		vm.prevPage = prevPage;
 		vm.nextPage = nextPage;
@@ -56,7 +57,7 @@
 				options.from = dateService.shortToLong(options.from);
 			}
 			if(options.to) {
-				options.to = dateService.shortToLong(options.to)
+				options.to = dateService.shortToLong(options.to);
 			}
 			return postService.getPosts(options)
 				.then(function(data) {
@@ -92,6 +93,11 @@
 					};
 					return vm.dates;
 				});
+		}
+
+		function updateAuthor(author) {
+			vm.params.search = null;
+			vm.params.author = author;
 		}
 
 		function clearSearch() {
