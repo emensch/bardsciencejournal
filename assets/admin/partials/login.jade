@@ -1,9 +1,12 @@
-.login
-  h1 login
-  form 
-    span Username
-    input(type='text', ng-model='credentials.username')
-    span Password
-    input(type='password', ng-model='credentials.password')
-    button(type='submit', ng-click='vm.submit(credentials)') Login
-  a(href='/admin/register') Register
+.login-container
+  .login
+    h1 Contributor Login
+    form
+      .form-group
+        label Username
+        input(type='text', ng-model='credentials.username')
+      .form-group
+        label Password
+        input(type='password', ng-model='credentials.password')
+      button(type='submit', ng-click='vm.submit(credentials)') Login
+    a.register(href='/admin/register') Register
