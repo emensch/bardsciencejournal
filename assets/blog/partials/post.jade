@@ -20,3 +20,6 @@
         ul
           li(ng-repeat='tag in vm.post.tags') 
             a(ng-href='/archive?tag={{tag}}').tag {{ tag }}
+      ul.edit-history(ng-if'vm.post.edits')
+        li(ng-repeat='edit in vm.post.edits')
+          | Edited on {{ edit.date | date }}: {{ edit.reason }}

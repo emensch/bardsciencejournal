@@ -161,6 +161,18 @@ body {
 	}	
 }
 
+.edit-history {
+	list-style: none;
+	padding: 0;
+	margin: 20px 0;
+
+	li {
+		color: #A1A1A1;
+		font-size: 14px;
+		padding: 5px;
+	}
+}
+
 .date {
 	color: #A1A1A1;
 }
