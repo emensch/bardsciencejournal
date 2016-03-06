@@ -12,6 +12,7 @@
         vm.page = 1;
         vm.editPost = editPost;
 		vm.deletePost = deletePost;
+        vm.toggleFeatured = toggleFeatured;
         vm.prevPage = prevPage;
         vm.nextPage = nextPage;
 
@@ -41,6 +42,17 @@
 					getPosts();
 				});
 		}
+
+        function toggleFeatured(post) {
+            var newPost = {};
+            angular.copy(post, newPost);
+            newPost.featured = !newPost.featured;
+            console.log(newPost);
+            return postService.updatePost(newPost.slug, newPost)
+                .then(function() {
+                    getPosts();
+                });
+        }
 
         function prevPage() {
             if(vm.page > 1) {

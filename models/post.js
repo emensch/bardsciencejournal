@@ -14,7 +14,7 @@ var postSchema = new Schema({
 	authors: [{ type: String, lowercase: true, trim: true }],
 	tags: [{ type: String, lowercase: true, trim: true }],
 	edits: [{ _id: false, 
-		reason: { type: String, required: true }, 
+		reason: { type: String },
 		date: { type: Date, default: Date.now }}],
 	date: { type: Date, default: Date.now },
 	featured: { type: Boolean, default: false }
@@ -172,19 +172,22 @@ postSchema.statics.updateFromReq = function (req, cb) {
 			return cb(err);
 		}
 
-		post.title = body.title;
-		post.photo = body.photo;
-		post.subject = body.subject;
-		post.type = body.type;
-		post.description = body.description;
-		post.content = body.content;
-		post.edits.push({ reason: body.reason });
-
-		post.authors = body.authors;
-		post.tags = body.tags;
+		post.title = body.title || post.title;
+		post.photo = body.photo || post.photo;
+		post.subject = body.subject || post.subject;
+		post.type = body.type || post.type;
+		post.description = body.description || post.description;
+		post.content = body.content || post.content;
+		if(body.reason) {
+			post.edits.push({reason: body.reason});
+		}
+		post.authors = body.authors || post.authors;
+		post.tags = body.tags || post.tags;
+		post.featured = (typeof body.featured !== 'undefined') ? body.featured : post.featured;
 
 		post.save( function (err) {
 			if (err) {
+				console.log(err);
 				errors.parseSaveError(err);
 				return cb(err);
 			}
