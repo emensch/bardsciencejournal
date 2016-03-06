@@ -199,7 +199,7 @@ postSchema.statics.getDates = function (cb) {
 
 	Post.findOne()
 	.select('date')
-	.sort({'date': 1})
+	.sort({date: 1})
 	.limit(1)
 	.exec( function (err, first) {
 		if (err) {
@@ -213,13 +213,14 @@ postSchema.statics.getDates = function (cb) {
 
 		Post.findOne()
 		.select('date')
-		.sort({'date:': -1})
+		.sort({date: -1})
 		.limit(1)
 		.exec( function (err, last) {
 			if (err) {
 				return cb(err);
 			}
 
+			console.log(last);
 			var dates = {
 				first: first.date,
 				last: last.date
