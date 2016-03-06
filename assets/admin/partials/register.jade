@@ -1,11 +1,16 @@
-p new user
-form(name='registerform', novalidate) 
-  div Username
-  input(type='text', ng-model='newuser.username', validate-username, required)
-  div Email
-  input(type='email', ng-model='newuser.email', validate-email, required)
-  div Password
-  input(type='password', ng-model='newuser.pw1', validate-password, required)
-  div Confirm password
-  input(type='password', ng-model='newuser.pw2', validate-password, compare-to='newuser.pw1', required)
-  button(type='submit', ng-click='registerform.$valid && vm.submit(newuser)') Submit
+.register-container
+  .bsj-form.register
+    h1 Register
+    .form-group
+      label Username
+      input(type='text', ng-model='newuser.username', validate-username, required)
+    .form-group
+      label Email
+      input(type='email', ng-model='newuser.email', validate-email, required)
+    .form-group
+      label Password
+      input(type='password', ng-model='newuser.pw1', validate-password, required)
+    .form-group
+      label Confirm password
+      input(type='password', ng-model='newuser.pw2', validate-password, compare-to='newuser.pw1', required)
+    button(type='submit', ng-click='registerform.$valid && vm.submit(newuser)') Submit
