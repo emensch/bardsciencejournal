@@ -1,11 +1,13 @@
 @import 'bower_components/normalize-scss/_normalize';
 @import 'bower_components/susy/sass/susy';
 @import 'variables';
+@import 'tags';
 @import 'form';
 @import 'login';
 @import 'register';
 @import 'nav';
 @import 'postlist';
+@import 'newpost';
 
 @import url(https://fonts.googleapis.com/css?family=Droid+Serif|Raleway);
 

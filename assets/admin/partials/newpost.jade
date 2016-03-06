@@ -1,19 +1,21 @@
-form(name='newPostForm', novalidate)
-  label(for='subject') Subject
-  select(name='subject', id='subject', ng-model='newpost.subject', required)
-    option(ng-repeat='subject in vm.subjects') {{ subject.name }}
-  label(for='type') Type
-  select(name='type', id='type', ng-model='newpost.type', required)
-    option(ng-repeat='type in vm.types') {{ type.name }}
-  div Title
-  input(type='text', ng-model='newpost.title', required)
-  div Description
-  input(type='text', ng-model='newpost.description', required)
-  div Photo
-  input(type='text', ng-model='newpost.photourl', required)
-  div Authors
-  input(type='text', ng-model='newpost.authors', ng-list, required)
-  textarea(ng-model='newpost.content', ck-editor, required)
-  div Tags
-  input(type='text', ng-model='newpost.tags', ng-list)
-  button(type='submit', ng-click='newPostForm.$valid && vm.submitPost(newpost)') Submit
+.new-post
+  form(name='newPostForm', novalidate)
+    label(for='subject') Subject
+    select(name='subject', id='subject', ng-model='newpost.subject', required)
+      option(ng-repeat='subject in vm.subjects') {{ subject.name }}
+    label(for='type') Type
+    select(name='type', id='type', ng-model='newpost.type', required)
+      option(ng-repeat='type in vm.types') {{ type.name }}
+    div Title
+    input(type='text', ng-model='newpost.title', required)
+    div Description
+    input(type='text', ng-model='newpost.description', required)
+    div Photo
+    input(type='text', ng-model='newpost.photourl', required)
+    div Authors
+    tags-input(ng-model='newpost.authors', replace-spaces-with-dashes='false', required)
+    textarea(ng-model='newpost.content', ck-editor, required)
+    div Tags
+    tags-input(ng-model='newpost.tags')
+    div {{ newpost.tags }}
+    button(type='submit', ng-click='newPostForm.$valid && vm.submitPost(newpost)') Submit

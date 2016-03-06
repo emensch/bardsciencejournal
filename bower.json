@@ -20,6 +20,7 @@
     "susy": "~2.2.5",
     "normalize-scss": "~3.0.3",
     "angular-local-storage": "~0.2.2",
-    "ckeditor": "~4.5.3"
+    "ckeditor": "~4.5.3",
+    "ng-tags-input": "3.0.0"
   }
 }
