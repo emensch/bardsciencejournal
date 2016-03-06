@@ -1,93 +1,11 @@
 @import 'bower_components/normalize-scss/_normalize';
 @import 'bower_components/susy/sass/susy';
 @import 'variables';
-@import 'mixins';
-@import 'nav';
-@import 'header';
 
 @import url(https://fonts.googleapis.com/css?family=Droid+Serif|Raleway);
-
-$susy: (
-	columns: 12,
-	gutters: 1/4,
-	container: 800px,
-	global-box-sizing: border-box
-	);
 
 @include border-box-sizing;
 
 body {
-	font-family: $sans-fonts;
-	color: $font-color;
-	background-color: $footer-color;
-}
-
-a {
-	text-decoration: none;
-}
-
-.main-container {
-	background-color: $bg-color;
-	color: $content-font-color;
-}
-
-.body-container {
-	padding-bottom: 20px;
-	padding-top: 20px;
-}
-
-.content {
-	@include container;
-	color: $content-font-color;
-	position: relative;
-}
-
-.login {
-	@include span(12);
-	@include card;
-
-	span, input {
-		display: block;
-		padding-bottom: 5px;
-	}
-}
-
-.post-list {
-	@include card;
-}
-
-.post-line {
-	margin-bottom: 20px;
-}
-
-.subject-list {
-	@include span(6);
-	@include card;
-}
-
-.type-list {
-	@include span(6 last);
-	@include card;
-}
-
-.user-list {
-
-}
-
-.user-line {
-	@include span(12);
-	@include card;
-	margin-bottom: 20px;
-}
-
-form {
-	input {
-		.ng-invalid.ng-touched {
-			background-color: #FA787E;
-		}
-
-		.ng-valid.ng-touched {
-			background-color: #78FA89;
-		}
-	}
+  font-family: $sans-fonts;
 }
