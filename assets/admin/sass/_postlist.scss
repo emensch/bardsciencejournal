@@ -32,13 +32,14 @@
 
     .img {
       @include span(4);
-      height: 150px;
+      position: absolute;
+      height: 100%;
     }
 
     .post-content {
       @include span(8 last);
       position: relative;
-      height: 150px;
+      min-height: 150px;
       padding-left: 10px;
 
       .title {
@@ -70,19 +71,19 @@
       .description {
         font-size: 18px;
         margin-bottom: 20px;
+        min-height: 60px;
       }
 
       .date {
-        position: absolute;
         color: #A1A1A1;
         font-size: 15px;
         margin-bottom: 5px;
-        bottom: 0;
       }
     }
 
     .post-content-wrapper {
       @extend .clearfix;
+      position: relative;
     }
 
     .admin-buttons {
