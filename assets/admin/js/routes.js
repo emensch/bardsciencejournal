@@ -50,7 +50,10 @@
 			.when('/admin/login', {
 				templateUrl: 'admin/partials/login.html',
 				controller: 'loginController',
-				controllerAs: 'vm'
+				controllerAs: 'vm',
+                resolve: {
+                    checkLoginStatus: checkLoginStatus
+                }
 			})
 			.when('/admin/register', {
 				templateUrl: 'admin/partials/register.html',
@@ -79,5 +82,18 @@
 		}
 
 		return deferred.promise;
+	}
+
+	function checkLoginStatus($q, $location, authService) {
+		var deferred = $q.defer();
+
+		if(authService.getCurrentUser()) {
+			deferred.reject();
+            $location.path('/admin');
+		} else {
+            deferred.resolve();
+        }
+
+        return deferred.promise;
 	}
 })();
