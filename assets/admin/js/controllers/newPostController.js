@@ -23,7 +23,6 @@
 			return descriptorService.getTypes()
 				.then(function(data) {
 					vm.types = data;
-					console.log(vm.types);
 					return vm.types;
 				});
 		}
@@ -32,19 +31,26 @@
 			return descriptorService.getSubjects()
 				.then(function(data) {
 					vm.subjects = data;
-					console.log(vm.subjects);
 					return vm.subjects;
 				});
 		}
 
 		function submitPost(post) {
-			return postService.createPost(post)
+            var newPost = {};
+            angular.copy(post, newPost);
+            newPost.authors = newPost.authors.map(function(i) {
+                return i.text;
+            });
+			newPost.tags = newPost.tags.map(function(i) {
+				return i.text;
+			});
+			return postService.createPost(newPost)
 				.then(function() {
 					$location.path('/admin/posts');
 				})
 				.catch(function() {
 					console.log('fail');
-					console.log(post);
+					console.log(newPost);
 				});
 		}
 	}
