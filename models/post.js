@@ -17,7 +17,7 @@ var postSchema = new Schema({
 		reason: { type: String, required: true }, 
 		date: { type: Date, default: Date.now }}],
 	date: { type: Date, default: Date.now },
-	featured: { type: Boolean, required: true }
+	featured: { type: Boolean, default: false }
 });
 
 postSchema.index({ slug: 1 }, { unique: true });
