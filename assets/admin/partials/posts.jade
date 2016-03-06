@@ -1,8 +1,32 @@
 .post-list
-  a(href='/admin/newpost') New post
-  .post-line(ng-repeat='post in vm.posts') 
-    div.title{{ post.title }}
-    div.title{{ post.description }}
-    button(ng-click='vm.editPost()') Edit
-    button(ng-click='vm.deletePost(post.slug)') Delete
- 
+  .new-post
+    a(href='/admin/newpost') New post
+  .post(ng-href='/', ng-repeat='post in vm.posts')
+    .post-content-wrapper
+      .img
+        img(ng-src='{{ post.photo }}')
+        .subject-type
+          .subject {{ post.subject }}
+          .type {{ post.type }}
+      .post-content
+        a(ng-href='/post/{{ post.slug }}').title {{ post.title }}
+        .authors
+          span by
+          ul
+            li(ng-repeat='author in post.authors')
+              a.author(ng-click='vm.updateAuthor(author)') {{ author }}
+              span(ng-if='post.authors.length > 1 && !$last')
+                | {{ $index == post.authors.length-2 ? ' and' : ',' }}
+        .description {{ post.description }}
+        .date {{ post.date | date }}
+    .admin-buttons
+      button(ng-click='vm.editPost()') Edit
+      button(ng-click='vm.deletePost(post.slug)') Delete
+  .pagination(ng-if='vm.posts.length > 0')
+    button(type='button', ng-show='vm.page > 1', ng-click='vm.prevPage()')
+      i.fa.fa-caret-left
+      span Previous
+    span.page {{ vm.page }}
+    button(type='button', ng-show='vm.page < vm.pages', ng-click='vm.nextPage()')
+      span Next
+      i.fa.fa-caret-right

@@ -9,19 +9,18 @@ html(lang='en' ng-app='bsj.admin')
     link(href='admin/css/styles.min.css', rel='stylesheet') 
   body
     .main-container
-      .header-container
-        .nav(ng-controller='navController as vm', ng-show='vm.showNav')
-          .navbar
-            ul.nav-links
-              li(ng-class='{active: vm.isActive(\'/admin/posts\')}')
-                a(href='/admin/posts') Posts
-              li(ng-class='{active: vm.isActive(\'/admin/descriptors\')}')
-                a(href='/admin/descriptors') Subjects/Types
-              li(ng-class='{active: vm.isActive(\'/admin/users\')}')
-                a(href='/admin/users') Users
-            .user-display
-              span {{ vm.user.username }}
-              a(ng-click='vm.logout()') logout
+      .nav-container(ng-controller='navController as vm', ng-show='vm.showNav')
+        .navbar
+          ul.nav-links
+            li(ng-class='{active: vm.isActive(\'/admin/posts\')}')
+              a(href='/admin/posts') Posts
+            li(ng-class='{active: vm.isActive(\'/admin/descriptors\')}')
+              a(href='/admin/descriptors') Subjects/Types
+            li(ng-class='{active: vm.isActive(\'/admin/users\')}')
+              a(href='/admin/users') Users
+          //.user-display
+          //  span {{ vm.user.username }}
+          //  a(ng-click='vm.logout()') logout
       .body-container
         .content
           .view(ng-view)
