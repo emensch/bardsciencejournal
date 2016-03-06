@@ -31,6 +31,14 @@
 					checkAuth: checkAuth
 				}
 			})
+            .when('/admin/posts/edit/:slug', {
+                templateUrl: 'admin/partials/newpost.html',
+                controller: 'editPostController',
+                controllerAs: 'vm',
+                resolve: {
+                    checkAuth: checkAuth
+                }
+            })
 			.when('/admin/users', {
 				templateUrl: 'admin/partials/users.html',
 				controller: 'usersController',

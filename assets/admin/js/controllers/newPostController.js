@@ -8,6 +8,7 @@
 	function newPostController($q, $location, descriptorService, postService) {
 		var vm = this;
 
+        vm.post = {};
 		vm.subjects = [];
 		vm.types = [];
 		vm.submitPost = submitPost;

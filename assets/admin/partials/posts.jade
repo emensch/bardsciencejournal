@@ -20,7 +20,7 @@
         .description {{ post.description }}
         .date {{ post.date | date }}
     .admin-buttons
-      button(ng-click='vm.editPost()') Edit
+      button(ng-click='vm.editPost(post.slug)') Edit
       button(ng-click='vm.deletePost(post.slug)') Delete
   .pagination(ng-if='vm.posts.length > 0')
     button(type='button', ng-show='vm.page > 1', ng-click='vm.prevPage()')

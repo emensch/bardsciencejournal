@@ -5,11 +5,12 @@
 		.module('bsj.admin')
 		.controller('postsController', postsController);
 
-	function postsController(postService) {
+	function postsController(postService, $location) {
 		var vm = this;
 		vm.posts = [];
         vm.pages = 1;
         vm.page = 1;
+        vm.editPost = editPost;
 		vm.deletePost = deletePost;
         vm.prevPage = prevPage;
         vm.nextPage = nextPage;
@@ -29,6 +30,10 @@
 					return vm.posts;
 				});			
 		}
+
+        function editPost(slug) {
+            $location.path('/admin/posts/edit/'+slug);
+        }
 
 		function deletePost(slug) {
 			return postService.deletePost(slug)

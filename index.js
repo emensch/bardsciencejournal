@@ -24,6 +24,7 @@ app.use(ng_interceptor([
 	'/admin/login',
 	'/admin/resetpassword',
 	'/admin/register',
+	'/admin/posts/edit/*'
 ], 'public/admin/index.html'));
 
 app.use(express.static('public'));
