@@ -10,8 +10,10 @@ app.use(passport.initialize());
 
 app.use('/api', require('./controllers'));
 
-app.use(express.static('public'));
-app.use('/bower_components', express.static('bower_components'));
+if(process.env.NODE_ENV !== 'production') {
+	app.use(express.static('public'));
+	app.use('/bower_components', express.static('bower_components'));
+}
 
 app.get('/admin/*', function (req, res) {
 	res.sendFile(path.join(__dirname, 'public/admin/index.html'));
