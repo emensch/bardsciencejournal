@@ -69,7 +69,6 @@
 			if(!currentUser) {
 				var localStorageUser = localStorageService.get('currentUser');
 				if(localStorageUser) {
-					console.log('Retrieving user from local storage');
 					currentUser = localStorageUser;
 					$rootScope.$emit('loginStatusChanged');
 				}

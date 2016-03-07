@@ -7,9 +7,7 @@ var express = require('express'),
 // Enable json parsing for all requests
 router.use(bodyParser.json());
 
-// Auth test
 router.get('/auth', auth, function (req, res) {
-	console.log(req.user);
 	res.send("Hello, Mr. Anderson.");
 });
 

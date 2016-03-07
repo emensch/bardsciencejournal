@@ -57,7 +57,6 @@
 				})
 				.catch(function() {
 					console.log('fail');
-					console.log(newPost);
 				});
 		}
 	}

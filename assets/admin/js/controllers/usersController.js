@@ -22,7 +22,6 @@
 			return userService.getUsers()
 				.then(function(data) {
 					vm.users = data;
-					console.log(vm.users);
 					return vm.users;
 				});
 		}

@@ -22,7 +22,6 @@
 
 		function updateVisibility() {
 			vm.showNav = navService.isVisible();
-			console.log(vm.showNav);
 		}
 
 		function logout() {

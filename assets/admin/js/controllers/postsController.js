@@ -27,7 +27,6 @@
 				.then(function(data) {
 					vm.posts = data.posts;
                     vm.pages = data.pages;
-					console.log(vm.posts);
 					return vm.posts;
 				});			
 		}
@@ -47,7 +46,6 @@
             var newPost = {};
             angular.copy(post, newPost);
             newPost.featured = !newPost.featured;
-            console.log(newPost);
             return postService.updatePost(newPost.slug, newPost)
                 .then(function() {
                     getPosts();

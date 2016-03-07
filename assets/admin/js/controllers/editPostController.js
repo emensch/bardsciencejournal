@@ -48,7 +48,6 @@
             return postService.getPostBySlug(slug)
                 .then(function(data) {
                     vm.post = data;
-                    console.log(vm.post);
                     return vm.post;
                 })
         }

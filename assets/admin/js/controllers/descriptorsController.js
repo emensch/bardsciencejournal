@@ -26,7 +26,6 @@
 			return descriptorService.getTypes()
 				.then(function(data) {
 					vm.types = data;
-					console.log(vm.types);
 					return vm.types;
 				});
 		}
@@ -35,7 +34,6 @@
 			return descriptorService.getSubjects()
 				.then(function(data) {
 					vm.subjects = data;
-					console.log(vm.subjects);
 					return vm.subjects;
 				});
 		}

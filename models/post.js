@@ -223,7 +223,6 @@ postSchema.statics.getDates = function (cb) {
 				return cb(err);
 			}
 
-			console.log(last);
 			var dates = {
 				first: first.date,
 				last: last.date
