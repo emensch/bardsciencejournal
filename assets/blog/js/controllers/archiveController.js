@@ -63,7 +63,6 @@
 				.then(function(data) {
 					vm.posts = data.posts;
 					vm.pages = data.pages;
-					console.log(data);
 					return vm.posts;
 				});
 		}

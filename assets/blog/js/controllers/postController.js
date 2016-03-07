@@ -23,7 +23,6 @@
 				.then(function(data) {
 					vm.post = data;
 					vm.displayContent = $sce.trustAsHtml(vm.post.content);
-					console.log(vm.post);
 					return vm.posts;
 				});
 		}
