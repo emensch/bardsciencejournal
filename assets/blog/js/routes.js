@@ -27,6 +27,9 @@
 				templateUrl: 'partials/post.html',
 				controller: 'postController',
 				controllerAs: 'vm'
+			})
+			.otherwise({
+				templateUrl: 'partials/404.html'
 			});
 
 			$locationProvider.html5Mode(true);
