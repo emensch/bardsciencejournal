@@ -15,7 +15,8 @@
 		activate();
 
 		function activate() {
-			var promises = [getFeaturedPosts(), getRecentPosts()];
+			//var promises = [getFeaturedPosts(), getRecentPosts()];
+			var promises = [getFeaturedPosts()];
 			return $q.all(promises);
 		}
 
