@@ -5,10 +5,10 @@
 		.module('bsj')
 		.controller('postController', postController);
 
-	function postController($routeParams, postService) {
+	function postController($routeParams, $sce, postService) {
 		var vm = this;
 		
-		vm.message = 'post';
+		vm.displayContent = '';
 		vm.post = {};
 		
 		activate();
@@ -22,6 +22,7 @@
 			return postService.getPostBySlug(slug)
 				.then(function(data) {
 					vm.post = data;
+					vm.displayContent = $sce.trustAsHtml(vm.post.content);
 					console.log(vm.post);
 					return vm.posts;
 				});

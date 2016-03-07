@@ -14,7 +14,7 @@
             a(ng-href='/archive?author={{author}}').author {{ author }}
             span(ng-if='vm.post.authors.length > 1 && !$last') 
               | {{ $index == vm.post.authors.length-2 ? ' and' : ',' }}
-      .content(ng-bind-html='vm.post.content')
+      .content(ng-bind-html='vm.displayContent')
       .date {{ vm.post.date | date }}
       .tags
         ul
