@@ -2,7 +2,7 @@ var express = require('express'),
 	env = require('./env.js'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
-	ng_interceptor = require('./middlewares/ng_interceptor');
+	path = require('path');
 
 var app = express();
 
@@ -10,25 +10,16 @@ app.use(passport.initialize());
 
 app.use('/api', require('./controllers'));
 
-app.use(ng_interceptor([
-	'/archive',
-	'/about',
-	'/post/*',
-], 'public/index.html'));
-
-app.use(ng_interceptor([
-	'/admin/posts',
-	'/admin/newpost',
-	'/admin/users',
-	'/admin/descriptors',
-	'/admin/login',
-	'/admin/resetpassword',
-	'/admin/register',
-	'/admin/posts/edit/*'
-], 'public/admin/index.html'));
-
 app.use(express.static('public'));
 app.use('/bower_components', express.static('bower_components'));
+
+app.get('/admin/*', function (req, res) {
+	res.sendFile(path.join(__dirname, 'public/admin/index.html'));
+});
+
+app.get('*', function (req, res) {
+	res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 // Connect to mongodb and run server on success
 mongoose.connect(process.env.MONGO_URL);
