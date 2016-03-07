@@ -29,7 +29,7 @@ html(lang='en' ng-app='bsj')
       .body-container
         .view.ng-animate-enabled(ng-view, autoscroll)
     .footer-container(ng-controller='footerController as vm')
-      .copyright-line © {{ ::vm.year }} Bard Science Journal
+      .copyright-line(ng-cloak) © {{ ::vm.year }} Bard Science Journal
       a.login(href='admin/login', target='_self') Contributor Login
 
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js')
