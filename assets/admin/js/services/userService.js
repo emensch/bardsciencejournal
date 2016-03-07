@@ -40,12 +40,12 @@
 				.then(createUserComplete)
 				.catch(createUserFailed);
 
-			function createUserComplete() {
-				return $q.resolve();
+			function createUserComplete(res) {
+				return $q.resolve(res);
 			}
 
-			function createUserFailed() {
-				return $q.reject();
+			function createUserFailed(res) {
+				return $q.reject(res);
 			}
 		}	
 
@@ -54,12 +54,12 @@
 				.then(deleteUserComplete)
 				.catch(deleteUserFailed);
 
-			function deleteUserComplete() {
-				return $q.resolve();
+			function deleteUserComplete(res) {
+				return $q.resolve(res);
 			}
 
-			function deleteUserFailed() {
-				return $q.reject();
+			function deleteUserFailed(res) {
+				return $q.reject(res);
 			}
 		}
 
@@ -68,12 +68,12 @@
 				.then(approveUserComplete)
 				.catch(approveUserFailed);
 
-			function approveUserComplete() {
-				return $q.resolve();
+			function approveUserComplete(res) {
+				return $q.resolve(res);
 			}
 
-			function approveUserFailed() {
-				return $q.reject();
+			function approveUserFailed(res) {
+				return $q.reject(res);
 			}
 		}
 	}

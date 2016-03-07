@@ -5,9 +5,10 @@
 		.module('bsj.admin')
 		.controller('registerController', registerController);
 
-	function registerController(userService) {
+	function registerController($location, userService) {
 		var vm = this;
 
+		vm.error = '';
 		vm.submit = submit;
 
 		function submit(newuser) {
@@ -24,11 +25,18 @@
 			}
 
 			function createUserComplete() {
-				console.log('Creation succeeded');
+				$location.path('/admin/login');
 			}
 
-			function createUserFailed() {
-				console.log('Creation failed');
+			function createUserFailed(res) {
+				switch (res.status) {
+					case 409:
+						vm.error = 'That username or email is already taken.';
+						break;
+					default:
+						vm.error = 'An error occurred. Try again later';
+						break;
+				}
 			}	
 		}
 	}

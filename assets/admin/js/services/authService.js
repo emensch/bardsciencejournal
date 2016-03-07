@@ -34,7 +34,7 @@
 				.then(loginSuccess)
 				.catch(loginFailed);
 
-			function loginSuccess() {
+			function loginSuccess(res) {
 				currentUser = {
 					username: username,
 					password: password
@@ -46,13 +46,13 @@
 				$rootScope.$emit('navVisibilityChanged');
 				$rootScope.$emit('loginStatusChanged');
 
-				return $q.resolve();
+				return $q.resolve(res);
 			}
 
-			function loginFailed() {
+			function loginFailed(res) {
 				currentUser = null;
 
-				return $q.reject();
+				return $q.reject(res);
 			}
 		}
 

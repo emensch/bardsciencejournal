@@ -9,4 +9,5 @@
         label Password
         input(type='password', ng-model='credentials.password')
       button(type='submit', ng-click='vm.submit(credentials)') Login
+    .errormessage {{ vm.error }}
     a.register(href='/admin/register') Register

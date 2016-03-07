@@ -23,7 +23,15 @@
 				$location.path('/admin');
 			}
 
-			function loginFailed() {
+			function loginFailed(res) {
+				switch(res.status) {
+					case 401:
+						vm.error = 'Incorrect username or password';
+						break;
+					default:
+						vm.error = 'An error occurred. Try again later';
+						break;
+				}
 				console.log('Login failed');
 			}
 		}
