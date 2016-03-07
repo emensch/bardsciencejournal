@@ -45,18 +45,15 @@ body {
 
 .subject-type {
 	position: absolute;
-	height: 40px;
+	padding: 5px;
 	min-width: 120px;
-	top: 15px;
+	top: 10px;
 	left: -4px;
 	background-color: rgba(0,0,0,0.75);
 	text-transform: capitalize;
 
 	text-align: center;
 	color: #FFFFFF;
-
-	padding-left: 5px;
-	padding-right: 5px;
 
 	.subject {
 		font-size: 18px;
