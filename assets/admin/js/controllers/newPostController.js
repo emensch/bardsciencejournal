@@ -13,6 +13,12 @@
 		vm.types = [];
 		vm.submitPost = submitPost;
 
+        vm.tinymceOptions = {
+            height: 500,
+            body_class: 'contentClass',
+            content_css: '/admin/css/styles.min.css'
+        };
+
 		activate();
 
 		function activate() {
