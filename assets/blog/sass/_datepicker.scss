@@ -1,0 +1,85 @@
+.navbar {
+  .datepicker-menu {
+    position: absolute;
+    background-color: #FFFFFF;
+    z-index: 10;
+    max-height: 0;
+    width: 200px;
+    overflow: hidden;
+    color: $inactive;
+    padding: 0 4px;
+
+    &.active {
+      max-height: 150px;
+    }
+
+    transition: max-height 0.3s ease;
+
+    .year-line {
+      text-align: center;
+      line-height: 30px;
+      border-bottom: solid $inactive 1px;
+
+      .year {
+        color: $active;
+        width: 70%;
+        float: left;
+      }
+
+      button {
+        width: 15%;
+        color: $inactive;
+        padding: 0;
+        float: left;
+
+        &:disabled {
+          color: $disabled;
+        }
+
+        &:enabled {
+          &.active {
+            color: $active;
+          }
+
+          &:hover {
+            color: $active;
+          }
+        }
+
+        transition: color 0.3s ease;
+      }
+      @extend .clearfix;
+    }
+
+    .months-container {
+      button {
+        @include span(3 of 12);
+
+        padding-top: 8px;
+        padding-bottom: 8px;
+
+        &:disabled {
+          color: $disabled;
+        }
+
+        &:enabled {
+          &.active {
+            color: $active;
+          }
+
+          &:hover {
+            color: $active;
+          }
+        }
+
+        &:nth-child(4n) {
+          @include last;
+        }
+
+        transition: color 0.3s ease;
+      }
+    }
+
+    @extend .card;
+  }
+}

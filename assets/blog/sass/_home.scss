@@ -8,8 +8,8 @@ $home-layout: (
 }
 
 .section-title {
-	margin-bottom: 15px;
-	padding-bottom: 5px;
+	margin: 15px 20px;
+	padding: 5px 0;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
 
@@ -18,9 +18,15 @@ $home-layout: (
 	}
 }
 
+.post-container {
+	padding-left: 20px;
+	padding-right: 20px;
+
+	@extend .clearfix;
+}
+
 // Default post styles
 .post {
-	@include span(4);
 	@extend .card;
 
 	margin-bottom: 40px;
@@ -64,51 +70,74 @@ $home-layout: (
 	}
 }
 
-.featured {
+@media (min-width: 800px) {
 	.post {
-		// Styles for first "big" post go here!
-		&:first-child {
-			@include span(8);
+		@include span(4);
+	}
 
-			.img {
-				height: 480px;
-				margin-bottom: 20px;
-			}
+	.featured {
+		.post {
+			// Styles for first "big" post go here!
+			&:first-child {
+				@include span(8);
 
-			.post-content {
-				.title {
-					font-size: 40px;
-					margin-bottom: 5px;
-				}
-
-				.authors {
-					&, a {
-						font-size: 16px;
-					}
+				.img {
+					height: 480px;
 					margin-bottom: 20px;
 				}
 
-				.description {
-					font-size: 20px;
-					margin-bottom: 30px;				
-				}
+				.post-content {
+					.title {
+						font-size: 40px;
+						margin-bottom: 5px;
+					}
 
-				.date {
-					font-size: 16px;
+					.authors {
+						&, a {
+							font-size: 16px;
+						}
+						margin-bottom: 20px;
+					}
+
+					.description {
+						font-size: 20px;
+						margin-bottom: 30px;
+					}
+
+					.date {
+						font-size: 16px;
+					}
 				}
 			}
-		}
 
-		&:nth-child(2), &:nth-child(3), &:nth-child(3n+3) {
-			@include last;
-		}		
+			&:nth-child(2), &:nth-child(3), &:nth-child(3n+3) {
+				@include last;
+			}
+		}
+	}
+
+	.recent {
+		.post {
+			&:nth-child(3n) {
+				@include last;
+			}
+		}
 	}
 }
 
-.recent {
+
+@media (max-width: 800px) {
 	.post {
-		&:nth-child(3n) {
+		@include span(6);
+
+		&:nth-child(2n) {
 			@include last;
 		}
+	}
+}
+
+@media (max-width: 600px) {
+	.post {
+		@include span(12 last);
 	}
 }

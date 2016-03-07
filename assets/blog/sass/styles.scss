@@ -5,10 +5,13 @@
 @import 'header';
 @import 'footer';
 @import 'nav';
+@import 'dropdown';
+@import 'datepicker';
 @import 'home';
 @import 'archive';
 @import 'postview';
 @import 'about';
+
 
 @import url(https://fonts.googleapis.com/css?family=Lora:400,700|Raleway);
 
@@ -124,6 +127,8 @@ body {
 
 	.author {
 		text-transform: capitalize;
+		cursor: pointer;
+		text-decoration: underline;
 
 		&:hover {
 			color: #000000;
@@ -175,13 +180,6 @@ body {
 
 .date {
 	color: #A1A1A1;
-}
-
-.post-container {
-	padding-left: 5px;
-	padding-right: 5px;
-
-	@extend .clearfix;
 }
 
 .main-container {

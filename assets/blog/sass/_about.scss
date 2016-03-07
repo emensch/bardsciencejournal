@@ -1,7 +1,6 @@
 .about {
 	@include container;
 	@extend .card;
-	margin-bottom: 50px;
 
 	.img {
 		height: auto;

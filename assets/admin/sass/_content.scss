@@ -2,4 +2,9 @@
   font-family: $serif-fonts;
   line-height: 2;
   font-size: 16px;
+
+  img {
+    width: 100% !important;
+    height: auto !important;
+  }
 }
