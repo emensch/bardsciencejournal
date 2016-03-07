@@ -14,9 +14,9 @@
     input(type='text', ng-model='vm.post.photo', required)
     div Authors
     tags-input(ng-model='vm.post.authors', replace-spaces-with-dashes='false', required)
-    textarea(ng-model='vm.post.content', ck-editor, required)
+    textarea(ng-model='vm.post.content', ui-tinymce, required)
     div Tags
-    tags-input(ng-model='vm.post.tags')
+    tags-input(ng-model='vm.post.tags', replace-spaces-with-dashes='false')
     div(ng-if='vm.isEditing') Edit reason
     input(ng-if='vm.isEditing', ng-model='vm.post.reason')
     button(type='submit', ng-click='vm.postForm.$valid && vm.submitPost(vm.post)') Submit

@@ -6,7 +6,7 @@ html(lang='en' ng-app='bsj.admin')
     title Bard Science Journal
     base(href='/admin')
     link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', rel='stylesheet')
-    link(href='admin/css/styles.min.css', rel='stylesheet') 
+    link(href='admin/css/styles.min.css', rel='stylesheet')
   body
     .main-container
       .nav-container(ng-controller='navController as vm', ng-show='vm.showNav')
@@ -29,5 +29,6 @@ html(lang='en' ng-app='bsj.admin')
     script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js')
     script(src='bower_components/angular-local-storage/dist/angular-local-storage.min.js')
     script(src='bower_components/ng-tags-input/ng-tags-input.min.js')
+    script(src='bower_components/tinymce-dist/tinymce.js')
+    script(src='bower_components/angular-ui-tinymce/src/tinymce.js')
     script(src='admin/js/app.js')
-    script(src='bower_components/ckeditor/ckeditor.js')
