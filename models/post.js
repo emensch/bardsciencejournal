@@ -139,7 +139,7 @@ postSchema.statics.createFromReq = function (req, cb) {
 	var body = req.body;
 	newPost = new this({
 		title: body.title,
-		photo: body.photourl,
+		photo: body.photo,
 		subject: body.subject,
 		type: body.type,
 		description: body.description, 

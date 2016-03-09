@@ -18,7 +18,8 @@
         vm.tinymceOptions = {
             height: 500,
             body_class: 'contentClass',
-            content_css: '/admin/css/styles.min.css'
+            content_css: '/admin/css/styles.min.css',
+            plugins: 'image'
         };
 
         activate();
