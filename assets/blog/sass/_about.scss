@@ -8,8 +8,34 @@
 	}
 
 	.content {
-		padding: 0 5px 10px 20px;
+		padding: 10px 20px;
 		margin: 0 20px;
+		line-height: 2;
+		text-align: justify;
+	}
+
+	.social-links {
+		text-align: center;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+
+		li {
+			padding: 10px;
+			display: inline-block;
+
+			a {
+				font-size: 32px;
+				color: #A1A1A1;
+				text-decoration: none;
+
+				&:hover {
+					color: #000000;
+				}
+
+				transition: color 0.3s ease;
+			}
+		}
 	}
 }
 
