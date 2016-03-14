@@ -7,6 +7,7 @@ var postSchema = new Schema({
 	title: { type: String, required: true }, 
 	slug: { type: String, required: true },
 	photo: { type: String, required: true },
+	photosource: { type: String },
 	subject: { type: String, required: true, lowercase: true, trim: true },
 	type: { type: String, required: true, lowercase: true, trim: true },
 	description: { type: String, required: true},
@@ -140,6 +141,7 @@ postSchema.statics.createFromReq = function (req, cb) {
 	newPost = new this({
 		title: body.title,
 		photo: body.photo,
+		photosource: body.photosource,
 		subject: body.subject,
 		type: body.type,
 		description: body.description, 
@@ -174,6 +176,7 @@ postSchema.statics.updateFromReq = function (req, cb) {
 
 		post.title = body.title || post.title;
 		post.photo = body.photo || post.photo;
+		post.photosource = body.photosource || post.photosource;
 		post.subject = body.subject || post.subject;
 		post.type = body.type || post.type;
 		post.description = body.description || post.description;

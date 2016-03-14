@@ -9,9 +9,11 @@
     div Title
     input(type='text', ng-model='vm.post.title', required)
     div Description
-    input(type='text', ng-model='vm.post.description', required)
+    textarea(ng-model='vm.post.description', required)
     div Photo
     input(type='text', ng-model='vm.post.photo', required)
+    div Photosource
+    input(type='text', ng-model='vm.post.photosource', required)
     div Authors
     tags-input(ng-model='vm.post.authors', replace-spaces-with-dashes='false', required)
     textarea(ng-model='vm.post.content', ui-tinymce='vm.tinymceOptions', required)
