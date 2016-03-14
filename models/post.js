@@ -176,7 +176,7 @@ postSchema.statics.updateFromReq = function (req, cb) {
 
 		post.title = body.title || post.title;
 		post.photo = body.photo || post.photo;
-		post.photosource = body.photosource || post.photosource;
+		post.photosource = body.photosource;
 		post.subject = body.subject || post.subject;
 		post.type = body.type || post.type;
 		post.description = body.description || post.description;
