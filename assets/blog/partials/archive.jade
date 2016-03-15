@@ -16,7 +16,8 @@
   .post-container(ng-switch='!vm.posts.length && vm.posts != null')
     .archive-post(ng-switch-default, ng-href='/', ng-repeat='post in vm.posts')
       .img
-        img(ng-src='{{ post.photo }}')
+        a(ng-href='/post/{{ post.slug }}')
+          img(ng-src='{{ post.photo }}')
         .subject-type
           .subject {{ post.subject }}
       .post-content

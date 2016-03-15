@@ -1,6 +1,7 @@
 mixin post
   .img
-    img(ng-src='{{ post.photo }}')
+    a(ng-href='/post/{{ post.slug }}')
+      img(ng-src='{{ post.photo }}')
     .subject-type
       .subject {{ post.subject }}
   .post-content
